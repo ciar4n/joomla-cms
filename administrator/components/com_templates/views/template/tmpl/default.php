@@ -12,6 +12,7 @@ defined('_JEXEC') or die;
 // Include the component HTML helpers.
 JHtml::addIncludePath(JPATH_COMPONENT . '/helpers/html');
 
+JHtml::_('behavior.polyfill', array('classlist'), 'lt IE 9');
 JHtml::_('bootstrap.tooltip');
 JHtml::_('formbehavior.chosen', 'select');
 JHtml::_('behavior.formvalidator');
@@ -75,6 +76,14 @@ jQuery(document).ready(function($){
 		$('#folderModal input.address').val($(this).attr('data-id'));
 		$(this).addClass('selected');
 	});
+
+	var containerDiv = document.querySelector('.span3.tree-holder'),
+		treeContainer = containerDiv.querySelector('.nav.nav-list'),
+		liEls = treeContainer.querySelectorAll('.folder.show');
+
+	for (var i = 0, l = liEls.length; i < l; i++) {
+		liEls[i].querySelector('a').classList.add('active');
+	}
 });");
 
 if ($this->type == 'image')
