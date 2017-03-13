@@ -26,16 +26,17 @@ body {
   box-shadow: 0 0 50px rgba(0,0,0,.15);
 }
 .container-header {
+  position: relative;
   height: 200px;
   background-color: #173149;
-  // box-shadow: 0 4px 0 0 rgba(27,57,86,.2);
+  box-shadow: 0 4px 0 0 rgba(27,57,86,.2), 0 0 80px rgba(0,0,0,.4);
 }
 .container-main {
   position: relative;
   z-index: 1060;
   padding-top: 80px;
-  color: #fff;
-  background-color: rgba(255, 255, 255, .05);
+  background-color: #fff;
+  box-shadow: inset 0 5px 0 rgba(27,57,86,.2), 0 0 80px rgba(0,0,0,.4);
 }
 
 .header {
@@ -61,16 +62,19 @@ body {
     margin: 30px 0 0;
   }
 
+  input, textarea, select {
+    border-color: #b6bcc2;
+  }
+
   .text-muted {
-    color: #fff !important;
-    opacity: .7;
+    color: #2a5c8b !important;
   }
 }
 
 $complete: #7ac143;
 $active: #f9a541;
 $mute: #4882b7;
-$disabled: #214b71;
+$disabled: #4882b7;
 
 .nav-steps {
   position: absolute;
@@ -78,7 +82,7 @@ $disabled: #214b71;
   left: 0;
   display: table;
   width: 100%;
-  padding: 0 80px;
+  padding: 0 140px;
   margin: 0;
   font-size: 1.2rem;
   color: darken($mute, 33%);
@@ -87,7 +91,7 @@ $disabled: #214b71;
 
   .nav-link {
     font-size: 1.2rem;
-    color: #fff;
+    color: #1b3956;
   }
 
   > li {
@@ -112,7 +116,7 @@ $disabled: #214b71;
       background-color: $mute;
       background-image: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.2) 100%);
       border-radius: 100%;
-      box-shadow: 0 0 0 6px rgba(27,57,86,.2), 0 0 0 3px #173149, -2px 0 2px rgba(0,0,0,.3);
+      box-shadow: 0 0 0 8px rgba(27,57,86,.2), 0 0 0 3px #173149, -2px 0 2px rgba(0,0,0,.3);
     }
     &::after {
       position: absolute;
@@ -142,9 +146,10 @@ $disabled: #214b71;
       }
     }
     &.disabled {
+      color: #1b3956;
       &::before,
       &::after {
-        color: #7f9fbe;
+        color: #fff;
         background-color: $disabled;
       }
     }
