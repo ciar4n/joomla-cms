@@ -40,7 +40,7 @@ class InstallationHtmlHelper
 		$tabs[] = 'summary';
 
 		$html = array();
-		$html[] = '<ul class="nav nav-tabs mb-1">';
+		$html[] = '<ul class="nav-steps">';
 
 		foreach ($tabs as $tab)
 		{
@@ -67,7 +67,7 @@ class InstallationHtmlHelper
 		$tabs[] = 'complete';
 
 		$html = array();
-		$html[] = '<ul class="nav nav-tabs mb-1">';
+		$html[] = '<ul class="nav-steps col-lg-8  offset-md-2">';
 
 		foreach ($tabs as $tab)
 		{
@@ -94,23 +94,27 @@ class InstallationHtmlHelper
 		$input  = JFactory::getApplication()->input;
 		$num    = static::getTabNumber($id, $tabs);
 		$view   = static::getTabNumber($input->getWord('view'), $tabs);
-		$tab    = '<span class="badge badge-default">' . $num . '</span> ' . JText::_('INSTL_STEP_' . strtoupper($id) . '_LABEL');
+		$tab    = JText::_('INSTL_STEP_' . strtoupper($id) . '_LABEL');
 		$active = $num == $view ? ' active' : '';
+		$state = '';
 
 		if ($view + 1 == $num)
 		{
 			$tab = '<a class="nav-link' . $active . '" href="#" onclick="Install.submitform();">' . $tab . '</a>';
+			$state = "people";
 		}
 		elseif ($view < $num)
 		{
 			$tab = '<a class="nav-link disabled">' . $tab . '</a>';
+			$state = 'disabled';
 		}
 		else
 		{
 			$tab = '<a class="nav-link' . $active . '" href="#" onclick="return Install.goToPage(\'' . $id . '\')">' . $tab . '</a>';
+			$state = 'complete';
 		}
 
-		return '<li class="nav-item step" id="' . $id . '">' . $tab . '</li>';
+		return '<li class="step ' . $state . ' ' . $active . '" id="' . $id . ' "data-step="' . $num . '">' . $tab . '</li>';
 	}
 
 	/**

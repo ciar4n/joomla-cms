@@ -33,6 +33,7 @@ module.exports = function(grunt) {
 			puny          : 'media/vendor/punycode/js',
 			codemirror    : 'media/vendor/codemirror',
 			adminTemplate : 'administrator/templates/atum',
+			installTemplate : 'installation/template',
 			node_module   : 'build/assets_tmp/node_modules/'
 		},
 
@@ -187,7 +188,8 @@ module.exports = function(grunt) {
 					sourceMap: true // SHOULD BE FALSE FOR DIST
 				},
 				files: {
-					'<%= folder.adminTemplate %>/css/template.css': '<%= folder.adminTemplate %>/scss/template.scss'
+					'<%= folder.adminTemplate %>/css/template.css': '<%= folder.adminTemplate %>/scss/template.scss',
+					'<%= folder.installTemplate %>/css/template.css': '<%= folder.installTemplate %>/scss/template.scss'
 				}
 			}
 		},
@@ -196,6 +198,7 @@ module.exports = function(grunt) {
 		scsslint: {
 			allFiles: [
 				'<%= folder.adminTemplate %>/scss',
+				'<%= folder.installTemplate %>/scss',
 			],
 			options: {
 				config: 'scss-lint.yml',
@@ -258,7 +261,10 @@ module.exports = function(grunt) {
 				],
 			},
 			dist: {
-				src: '<%= folder.adminTemplate %>/css/template.css'
+				src: [
+					'<%= folder.adminTemplate %>/css/template.css',
+					'<%= folder.installTemplate %>/css/template.css'
+				]
 			}
 		},
 
