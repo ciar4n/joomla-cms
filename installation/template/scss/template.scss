@@ -11,6 +11,9 @@ $fa-font-path: "../../../media/vendor/font-awesome/fonts";
 // Switcher
 @import "../../../administrator/templates/atum/scss/blocks/switcher";
 
+$complete: #7ac143;
+$active: #f9a541;
+$nav-steps: #4882b7;
 
 body {
   background-color: #eee;
@@ -77,11 +80,6 @@ body {
   }
 }
 
-$complete: #7ac143;
-$active: #f9a541;
-$mute: #4882b7;
-$disabled: #4882b7;
-
 .nav-steps {
   position: absolute;
   top: -20px;
@@ -90,7 +88,7 @@ $disabled: #4882b7;
   width: 100%;
   padding: 0 140px;
   margin: 0;
-  color: darken($mute, 33%);
+  color: darken($nav-steps, 33%);
   list-style: none;
   table-layout: fixed;
   .nav-link {
@@ -121,7 +119,7 @@ $disabled: #4882b7;
       line-height: 2.3rem;
       text-align: center;
       content: attr(data-step);
-      background-color: $mute;
+      background-color: $nav-steps;
       background-image: linear-gradient(180deg, rgba(255,255,255,.1) 0%, rgba(0,0,0,.1) 100%);
       border: .4rem solid #e8e6e6;
       border-radius: 100%;
@@ -136,8 +134,7 @@ $disabled: #4882b7;
       height: .4rem;
       margin-left: 1.5rem\9;
       content: "";
-      background: $mute;
-      // box-shadow: 0 0 0 3px #173149;
+      background: $nav-steps;
     }
     &:first-child::after {
       display: none;
@@ -159,7 +156,7 @@ $disabled: #4882b7;
       &::before,
       &::after {
         color: #fff;
-        background-color: $disabled;
+        background-color: $nav-steps;
       }
     }
   }
