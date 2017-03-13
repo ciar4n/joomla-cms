@@ -8789,22 +8789,24 @@ body {
 
 .container-header {
   position: relative;
-  height: 200px;
+  height: 230px;
   background-color: #173149;
-  box-shadow: 0 4px 0 0 rgba(27, 57, 86, 0.2), 0 0 80px rgba(0, 0, 0, 0.4); }
+  box-shadow: 0 0 80px rgba(0, 0, 0, 0.4); }
 
 .container-main {
   position: relative;
   z-index: 1060;
-  padding-top: 80px;
+  padding-top: 100px;
+  margin-top: -20px;
+  margin-bottom: 100px;
   background-color: #fff;
-  box-shadow: inset 0 5px 0 rgba(27, 57, 86, 0.2), 0 0 80px rgba(0, 0, 0, 0.4); }
+  box-shadow: 0 70px 80px rgba(0, 0, 0, 0.4), inset 0 7px 0 #e8e6e6; }
 
 .header {
   color: #fff;
   background-color: #1b3956;
   background-repeat: no-repeat;
-  box-shadow: 0 5px 0 0 #2a5c8b; }
+  box-shadow: 0 7px 0 0 #2a5c8b; }
   .header .logo {
     width: 100%;
     max-width: 380px;
@@ -8818,57 +8820,62 @@ body {
     margin: 30px 0 0; }
   .install-form input, .install-form textarea, .install-form select {
     border-color: #b6bcc2; }
+  .install-form .progress {
+    margin-top: 10px; }
   .install-form .text-muted {
     color: #2a5c8b !important; }
 
 .nav-steps {
   position: absolute;
-  top: -25px;
+  top: -20px;
   left: 0;
   display: table;
   width: 100%;
   padding: 0 140px;
   margin: 0;
-  font-size: 1.2rem;
   color: #182c3e;
   list-style: none;
   table-layout: fixed; }
   .nav-steps .nav-link {
-    font-size: 1.2rem;
-    color: #1b3956; }
+    font-size: 1.1rem;
+    color: #1b3956;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: .5; }
   .nav-steps > li {
     position: relative;
     display: table-cell;
-    font-size: .8em;
+    font-size: .8rem;
     color: #fff;
     text-align: center; }
     .nav-steps > li::before {
       position: relative;
       z-index: 1000;
       display: block;
-      width: 2.5em;
-      height: 2.5em;
+      width: 3rem;
+      height: 3rem;
       margin: 0 auto;
-      margin-bottom: .25em;
+      margin-bottom: .25rem;
+      font-size: 1.2rem;
       font-weight: bold;
-      line-height: 2.5em;
+      line-height: 2.3rem;
       text-align: center;
       content: attr(data-step);
       background-color: #4882b7;
-      background-image: linear-gradient(0deg, transparent 0%, rgba(0, 0, 0, 0.2) 100%);
+      background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.1) 100%);
+      border: .4rem solid #e8e6e6;
       border-radius: 100%;
-      box-shadow: 0 0 0 8px rgba(27, 57, 86, 0.2), 0 0 0 3px #173149, -2px 0 2px rgba(0, 0, 0, 0.3); }
+      box-shadow: 0 0 1px rgba(0, 0, 0, 0.3), inset 0 0 1px rgba(0, 0, 0, 0.3), inset 1px 1px 1px rgba(255, 255, 255, 0.3); }
     .nav-steps > li::after {
       position: absolute;
-      top: 1.15rem;
+      top: 1.2rem;
       right: 50%;
       display: block;
       width: 100%;
-      height: .25rem;
+      height: .4rem;
       margin-left: 1.5rem\9;
       content: "";
-      background: #4882b7;
-      box-shadow: 0 0 0 3px #173149; }
+      background: #4882b7; }
     .nav-steps > li:first-child::after {
       display: none; }
     .nav-steps > li.complete::before, .nav-steps > li.complete::after {
@@ -8888,7 +8895,7 @@ body {
     width: 100%; }
 
 .install-nav-footer {
-  margin: 20px -50px 0;
+  margin: 20px -49px -17px;
   text-align: center;
   background: #fafafa;
   border-top: 1px solid #ddd; }
@@ -8896,6 +8903,7 @@ body {
     margin-bottom: 0;
     border: 0; }
   .install-nav-footer .nav-button {
+    display: block;
     font-weight: bold;
     line-height: 4rem;
     text-transform: uppercase; }
