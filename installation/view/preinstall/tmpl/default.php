@@ -26,9 +26,8 @@ defined('_JEXEC') or die;
 <!--	--><?php //echo JHtml::_('form.token'); ?>
 <!--</form>-->
 <form action="index.php" method="post" id="adminForm">
-	<div class="container">
 		<div class="row">
-			<div class="col-md-8">
+			<div class="col-md-12">
 				<h3><?php echo JText::_('INSTL_PRECHECK_TITLE'); ?></h3>
 				<hr class="hr-condensed" />
 				<p class="install-text">
@@ -36,7 +35,7 @@ defined('_JEXEC') or die;
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-10">
+			<div class="col-md-12 pt-3">
 				<table class="table table-striped">
 					<tbody>
 						<?php foreach ($this->options as $option) : ?>
@@ -66,14 +65,13 @@ defined('_JEXEC') or die;
 						</tr>
 					</tfoot>
 				</table>
-			</div>
-		</div>
+			</div>	
 	</div>
-	<div class="btn-toolbar justify-content-end">
-		<div class="btn-group">
-			<a href="#" class="btn btn-primary" onclick="Install.submitform();" title="<?php echo JText::_('JCHECK_AGAIN'); ?>"><span class="icon-refresh icon-white"></span> <?php echo JText::_('JCHECK_AGAIN'); ?></a>
-		</div>
-	</div>
+	<ul class="nav nav-tabs nav-justified install-nav-footer">
+		<li class="nav-item">
+			<a href="#" class="nav-button prev-button" onclick="Install.submitform();" title="<?php echo JText::_('JCHECK_AGAIN'); ?>"><span class="icon-refresh icon-white"></span> <?php echo JText::_('JCHECK_AGAIN'); ?></a>
+		</li>
+	</ul>
 	<input type="hidden" name="task" value="preinstall">
 	<?php echo JHtml::_('form.token'); ?>
 </form>
