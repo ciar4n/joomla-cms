@@ -42,7 +42,7 @@ class InstallationViewPreinstallHtml extends InstallationViewDefault
 	public function render()
 	{
 		$this->options  = $this->model->getPhpOptions();
-		$this->settings = $this->model->getPhpSettings();
+//		$this->settings = $this->model->getPhpSettings();
 
 		return parent::render();
 	}

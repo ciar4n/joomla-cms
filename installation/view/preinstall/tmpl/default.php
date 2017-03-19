@@ -9,31 +9,31 @@
 defined('_JEXEC') or die;
 
 /* @var InstallationViewPreinstallHtml $this */
-var_dump('TEST');
+
 ?>
-<form action="index.php" method="post" id="languageForm">
-	<div class="btn-toolbar justify-content-end">
-		<div class="btn-group">
-			<a href="#" class="btn btn-primary" onclick="Install.submitform();" title="<?php echo JText::_('JCHECK_AGAIN'); ?>"><span class="icon-refresh icon-white"></span> <?php echo JText::_('JCHECK_AGAIN'); ?></a>
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="jform_language" class="control-label"><?php echo JText::_('INSTL_SELECT_LANGUAGE_TITLE'); ?></label>
-		<?php echo $this->form->getInput('language'); ?>
-	</div>
-	<input type="hidden" name="view" value="preinstall">
-	<input type="hidden" name="task" value="setlanguage">
-	<?php echo JHtml::_('form.token'); ?>
-</form>
+<!--<form action="index.php" method="post" id="languageForm">-->
+<!--	<div class="btn-toolbar justify-content-end">-->
+<!--		<div class="btn-group">-->
+<!--			<a href="#" class="btn btn-primary" onclick="Install.submitform();" title="--><?php //echo JText::_('JCHECK_AGAIN'); ?><!--"><span class="icon-refresh icon-white"></span> --><?php //echo JText::_('JCHECK_AGAIN'); ?><!--</a>-->
+<!--		</div>-->
+<!--	</div>-->
+<!--	<div class="form-group">-->
+<!--		<label for="jform_language" class="control-label">--><?php //echo JText::_('INSTL_SELECT_LANGUAGE_TITLE'); ?><!--</label>-->
+<!--		--><?php //echo $this->form->getInput('language'); ?>
+<!--	</div>-->
+<!--	<input type="hidden" name="view" value="preinstall">-->
+<!--	<input type="hidden" name="task" value="setlanguage">-->
+<!--	--><?php //echo JHtml::_('form.token'); ?>
+<!--</form>-->
 <form action="index.php" method="post" id="adminForm">
-	<div class="row">
-		<div class="col-md-6">
+	<div class="">
+		<div class="">
 			<h3><?php echo JText::_('INSTL_PRECHECK_TITLE'); ?></h3>
 			<hr class="hr-condensed" />
 			<p class="install-text">
 				<?php echo JText::_('INSTL_PRECHECK_DESC'); ?>
 			</p>
-			<table class="table table-striped table-sm">
+			<table class="table table-striped">
 				<tbody>
 					<?php foreach ($this->options as $option) : ?>
 					<tr>
@@ -41,12 +41,17 @@ var_dump('TEST');
 							<?php echo $option->label; ?>
 						</td>
 						<td>
-							<span class="badge badge-<?php echo ($option->state) ? 'success' : 'important'; ?>">
+							<span class="badge badge-<?php echo ($option->state) ? 'success' : 'danger'; ?>">
 								<?php echo JText::_($option->state ? 'JYES' : 'JNO'); ?>
 								<?php if ($option->notice) : ?>
 									<span class="icon-info-sign icon-white hasTooltip" title="<?php echo $option->notice; ?>"></span>
 								<?php endif;?>
 							</span>
+						</td>
+						<td>
+							<?php if (!$option->state) : ?>
+								<button class="btn btn-outline-danger">Help me resolve this</button>
+							<?php endif; ?>
 						</td>
 					</tr>
 					<?php endforeach; ?>
@@ -54,50 +59,6 @@ var_dump('TEST');
 				<tfoot>
 					<tr>
 						<td colspan="2"></td>
-					</tr>
-				</tfoot>
-			</table>
-		</div>
-		<div class="col-md-6">
-			<h3><?php echo JText::_('INSTL_PRECHECK_RECOMMENDED_SETTINGS_TITLE'); ?></h3>
-			<hr class="hr-condensed" />
-			<p class="install-text"><?php echo JText::_('INSTL_PRECHECK_RECOMMENDED_SETTINGS_DESC'); ?></p>
-			<table class="table table-striped table-sm">
-				<thead>
-					<tr>
-						<th>
-							<?php echo JText::_('INSTL_PRECHECK_DIRECTIVE'); ?>
-						</th>
-						<th>
-							<?php echo JText::_('INSTL_PRECHECK_RECOMMENDED'); ?>
-						</th>
-						<th>
-							<?php echo JText::_('INSTL_PRECHECK_ACTUAL'); ?>
-						</th>
-					</tr>
-				</thead>
-				<tbody>
-					<?php foreach ($this->settings as $setting) : ?>
-					<tr>
-						<td>
-							<?php echo $setting->label; ?>
-						</td>
-						<td>
-							<span class="badge badge-success disabled">
-								<?php echo JText::_($setting->recommended ? 'JON' : 'JOFF'); ?>
-							</span>
-						</td>
-						<td>
-							<span class="badge badge-<?php echo ($setting->state === $setting->recommended) ? 'success' : 'warning'; ?>">
-								<?php echo JText::_($setting->state ? 'JON' : 'JOFF'); ?>
-							</span>
-						</td>
-					</tr>
-				<?php endforeach; ?>
-				</tbody>
-				<tfoot>
-					<tr>
-						<td colspan="3"></td>
 					</tr>
 				</tfoot>
 			</table>
