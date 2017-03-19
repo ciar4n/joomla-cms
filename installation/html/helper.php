@@ -5,9 +5,7 @@
  * @copyright  Copyright (C) 2005 - 2017 Open Source Matters, Inc. All rights reserved.
  * @license    GNU General Public License version 2 or later; see LICENSE.txt
  */
-
 defined('_JEXEC') or die;
-
 /**
  * HTML utility class for the installation application
  *
@@ -27,31 +25,23 @@ class InstallationHtmlHelper
 		// Determine if the configuration file path is writable.
 		$path   = JPATH_CONFIGURATION . '/configuration.php';
 		$useftp = file_exists($path) ? !is_writable($path) : !is_writable(JPATH_CONFIGURATION . '/');
-
 		$tabs   = array();
 		$tabs[] = 'site';
 		$tabs[] = 'database';
-
 		if ($useftp)
 		{
 			$tabs[] = 'ftp';
 		}
-
 		$tabs[] = 'summary';
-
 		$html = array();
-		$html[] = '<ul class="nav nav-tabs mb-1">';
-
+		$html[] = '<ul class="nav-steps">';
 		foreach ($tabs as $tab)
 		{
 			$html[] = static::getTab($tab, $tabs);
 		}
-
 		$html[] = '</ul>';
-
 		return implode('', $html);
 	}
-
 	/**
 	 * Method to generate the side bar.
 	 *
@@ -65,20 +55,15 @@ class InstallationHtmlHelper
 		$tabs[] = 'languages';
 		$tabs[] = 'defaultlanguage';
 		$tabs[] = 'complete';
-
 		$html = array();
-		$html[] = '<ul class="nav nav-tabs mb-1">';
-
+		$html[] = '<ul class="nav-steps col-lg-8  offset-md-2">';
 		foreach ($tabs as $tab)
 		{
 			$html[] = static::getTab($tab, $tabs);
 		}
-
 		$html[] = '</ul>';
-
 		return implode('', $html);
 	}
-
 	/**
 	 * Method to generate the navigation tab.
 	 *
@@ -94,25 +79,26 @@ class InstallationHtmlHelper
 		$input  = JFactory::getApplication()->input;
 		$num    = static::getTabNumber($id, $tabs);
 		$view   = static::getTabNumber($input->getWord('view'), $tabs);
-		$tab    = '<span class="badge badge-default">' . $num . '</span> ' . JText::_('INSTL_STEP_' . strtoupper($id) . '_LABEL');
+		$tab    = JText::_('INSTL_STEP_' . strtoupper($id) . '_LABEL');
 		$active = $num == $view ? ' active' : '';
-
+		$state = '';
 		if ($view + 1 == $num)
 		{
 			$tab = '<a class="nav-link' . $active . '" href="#" onclick="Install.submitform();">' . $tab . '</a>';
+			$state = "people";
 		}
 		elseif ($view < $num)
 		{
 			$tab = '<a class="nav-link disabled">' . $tab . '</a>';
+			$state = 'disabled';
 		}
 		else
 		{
 			$tab = '<a class="nav-link' . $active . '" href="#" onclick="return Install.goToPage(\'' . $id . '\')">' . $tab . '</a>';
+			$state = 'complete';
 		}
-
-		return '<li class="nav-item step" id="' . $id . '">' . $tab . '</li>';
+		return '<li class="step ' . $state . ' ' . $active . '" id="' . $id . ' "data-step="' . $num . '">' . $tab . '</li>';
 	}
-
 	/**
 	 * Method to determine the tab (step) number.
 	 *
@@ -127,7 +113,6 @@ class InstallationHtmlHelper
 	{
 		$num = (int) array_search($id, $tabs);
 		$num++;
-
 		return $num;
 	}
 }

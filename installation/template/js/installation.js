@@ -5,6 +5,11 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
+Joomla = window.Joomla || {};
+
+// Initialize the Installation object
+Joomla.installation = {};
+
 var Installation = function(_container, _base) {
     var $, container, busy, baseUrl, view;
 
@@ -61,7 +66,7 @@ var Installation = function(_container, _base) {
                 if (r.lang !== null && lang.toLowerCase() === r.lang.toLowerCase()) {
                     Install.goToPage(r.data.view, true);
                 } else {
-                    window.location = baseUrl + '?view=' + r.data.view;
+	                window.location = baseUrl + '?view=' + r.data.view + '&layout=default';
                 }
             }
         }).fail(function (xhr) {
@@ -118,7 +123,7 @@ var Installation = function(_container, _base) {
                 if (lang.toLowerCase() === r.lang.toLowerCase()) {
                     Install.goToPage(r.data.view, true);
                 } else {
-                    window.location = baseUrl + '?view=' + r.data.view;
+	                window.location = baseUrl + '?view=' + r.data.view + '&layout=default';
                 }
             }
         }).fail(function (xhr) {
@@ -151,7 +156,7 @@ var Installation = function(_container, _base) {
 
         $.ajax({
             type : "GET",
-            url : baseUrl + '?tmpl=body&view=' + page,
+	        url : baseUrl + '?tmpl=body&view=' + page + '&layout=default',
             dataType : 'html'
         }).done(function(result) {
             $('#' + container).html(result);
@@ -202,7 +207,7 @@ var Installation = function(_container, _base) {
 
         $.ajax({
             type: "POST",
-            url: baseUrl + '?format=json&task=Install' + task,
+	        url : baseUrl + '?task=Install' + task  + '&layout=default',
             data: data,
             dataType: 'json'
         }).done(function (r) {
@@ -242,7 +247,7 @@ var Installation = function(_container, _base) {
         $el.attr('disabled', 'disabled');
         $.ajax({
             type : "POST",
-            url : baseUrl + '?format=json&task=detectftproot',
+	        url : baseUrl + '?task=detectftproot' + '&layout=default',
             data : data,
             dataType : 'json'
         }).done(function(r) {
@@ -279,7 +284,7 @@ var Installation = function(_container, _base) {
 
         $.ajax({
             type : "POST",
-            url : baseUrl + '?format=json&task=verifyftpsettings',
+            url : baseUrl + '?format=json&task=verifyftpsettings' + '&layout=default',
             data : data,
             dataType : 'json'
         }).done(function(r) {
@@ -320,7 +325,7 @@ var Installation = function(_container, _base) {
 
         $.ajax({
             type : "POST",
-            url : baseUrl + '?task=removefolder',
+            url : baseUrl + '?task=removefolder' + '&layout=default',
             data : data,
             dataType : 'json'
         }).done(function(r) {
@@ -400,7 +405,30 @@ var Installation = function(_container, _base) {
 function initElements()
 {
 	(function($){
-		$('.hasTooltip').tooltip({html:true});
+		// $('.hasTooltip').tooltip({html:true});
+		hidables = document.querySelectorAll('.optional-entries');
+
+		for (var i = 0; i < hidables.length; i++) {
+			hidables[i].style.display = 'none';
+		}
+
+		var hideAble = document.querySelector('.hidables');
+		if (hideAble) {
+			hideAble.addEventListener('click', function(e) {
+				"use strict";
+				hidables = document.querySelectorAll('.optional-entries');
+				for (var i = 0; i < hidables.length; i++) {
+					if (hidables[i].style.display == 'none') {
+						hidables[i].style.display = 'block';
+						e.target.innerHTML = '<span class="fa fa-eye-slash"></span> '  + e.target.getAttribute('data-simple');
+					} else {
+						hidables[i].style.display = 'none';
+						e.target.innerHTML = '<span class="fa fa-exclamation-triangle"></span> '  + e.target.getAttribute('data-advanced');
+					}
+				}
+			});
+		}
+
 
 		// Turn radios into btn-group
 		$('.radio.btn-group label').addClass('btn');
@@ -511,6 +539,39 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	// Init the elements
 	initElements();
+
+	var makeRandomDbPrefix = function() {
+
+	};
+
+	// Initialize the installation data
+	Joomla.installation.data = {
+		// Admin
+		adminName: "",
+		// adminPassword: "",
+		adminEmail: "",
+		// Site
+		siteName: "",
+		siteDescription: "",
+		siteOffline: false,
+		// Database
+		dbType: "MySQLi",
+		dbLocation: "localhost",
+		dbName: "",
+		dbUsername: "",
+		dbPassword: "",
+		dbPrefix: makeRandomDbPrefix(),
+		dbBackup: true,
+		// Extra
+		sampleData: false,
+		extraLanguages: [],
+		components: [],
+		modules: [],
+		plugins: [],
+		templates: [],
+		libraries: []
+	};
+
 
 	// Init installation
 	var installOptions  = Joomla.getOptions('system.installation'),

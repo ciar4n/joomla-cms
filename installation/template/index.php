@@ -58,16 +58,20 @@ $this->addScriptOptions('system.installation', array('url' => JRoute::_('index.p
 		<jdoc:include type="head" />
 	</head>
 	<body data-basepath="<?php echo JUri::root(true); ?>" style="height: 100vh">
+
 		<?php // Header ?>
-		<div class="header" style="padding: 20px 0 20px;">
-			<h5 style="font-size: 1rem; text-align: center">
-				<!-- <img src="<?php echo $this->baseurl ?>/template/images/logo.svg" alt="Joomla"/> -->
-			</h5>
+		<div class="header">
+			<div class="container container-header d-flex align-items-center justify-content-center">
+				<img src="<?php echo $this->baseurl ?>/template/images/logo.svg" alt="Joomla" class="logo"/>
+			</div>
+		</div>
+		<div class="container">
+			<jdoc:include type="message" />
 		</div>
 		<?php // Container ?>
 		<canvas id="myCanvas" class="hidden"></canvas>
-		<div class="container">
-			<jdoc:include type="message" />
+		<div class="container container-main">
+
 			<div id="javascript-warning">
 				<noscript>
 					<div class="alert alert-danger">

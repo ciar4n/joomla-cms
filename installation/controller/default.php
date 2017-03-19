@@ -56,7 +56,7 @@ class InstallationControllerDefault extends JControllerBase
 
 				if ($model->getPhpOptionsSufficient())
 				{
-					$app->redirect('index.php');
+					$app->redirect('index.php?view=site&layout=languages');
 				}
 
 				break;
