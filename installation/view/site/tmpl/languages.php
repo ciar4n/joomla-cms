@@ -12,16 +12,19 @@ defined('_JEXEC') or die;
 /* @var InstallationViewDefault $this */
 ?>
 <canvas id="myCanvas" class="hidden"></canvas>
-<div class="'align-self-center">
-	<form action="index.php" method="post" id="languageForm">
-		<div class="form-group abs">
-			<label for="jform_language"><?php echo JText::_('INSTL_SELECT_LANGUAGE_TITLE'); ?></label>
-			<?php echo $this->form->getInput('language'); ?>
-		</div>
+<form action="index.php" method="post" id="languageForm">
+<div class="row pt-4 pb-5">
+	<div class="col-md-4 offset-md-1 pr-4 pt-1 text-right">
+		<label for="jform_language"><?php echo JText::_('INSTL_SELECT_LANGUAGE_TITLE'); ?></label>
+	</div>	
+	<div class="col-md-6">
+		<?php echo $this->form->getInput('language'); ?>
 		<input type="hidden" name="task" value="setlanguage" />
 		<?php echo JHtml::_('form.token'); ?>
-	</form>
+	</div>			
 </div>
+	
+</form>
 
 <script>
 	var canvas, ctx;
@@ -40,8 +43,12 @@ defined('_JEXEC') or die;
 		height = Math.max( document.body.scrollHeight, document.body.offsetHeight);
 		canvas.height = window.innerHeight;
 		canvas.style.top = '210px';
-		canvas.style.backgroundColor = "#ffffff";
-		canvas.style.position = 'absolute'
+		canvas.style.left = '0';
+		canvas.style.right = '0';
+		canvas.style.bottom = '0';
+		canvas.style.backgroundColor = "transparent";
+		canvas.style.color = "#ffffff";
+		canvas.style.position = 'fixed'
 		ctx = canvas.getContext('2d');
 
 		drawTimer = window.setInterval(draw, 400);
