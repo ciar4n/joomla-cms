@@ -69,7 +69,6 @@ $this->addScriptOptions('system.installation', array('url' => JRoute::_('index.p
 			<jdoc:include type="message" />
 		</div>
 		<?php // Container ?>
-		<canvas id="myCanvas" class="hidden"></canvas>
 		<div class="container container-main">
 
 			<div id="javascript-warning">
