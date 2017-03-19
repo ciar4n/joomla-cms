@@ -8780,6 +8780,13 @@ body {
 *, *::after, *::before {
   box-sizing: border-box; }
 
+form {
+  width: 100%;
+  padding: 0 20px; }
+
+.container {
+  width: 940px; }
+
 .container-main, .container-header {
   width: 940px;
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.15); }
@@ -8793,7 +8800,7 @@ body {
 .container-main {
   position: relative;
   z-index: 1060;
-  padding-top: 100px;
+  padding-top: 40px;
   margin-top: -20px;
   margin-bottom: 100px;
   background-color: #fff;
@@ -8892,7 +8899,7 @@ body {
     width: 100%; }
 
 .install-nav-footer {
-  margin: 20px -49px -17px;
+  margin: 20px -27px -17px;
   text-align: center;
   background: #fafafa;
   border-top: 1px solid #ddd; }
