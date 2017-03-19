@@ -29,7 +29,7 @@ JHtml::_('behavior.core');
 JHtml::_('script', 'installation/template/js/installation.js', array('version' => 'auto'));
 
 // Add Stylesheets
-JHtml::_('bootstrap.loadCss', true, $this->direction);
+// JHtml::_('bootstrap.loadCss', true, $this->direction);
 JHtml::_('stylesheet', 'installation/template/css/template.css', array('version' => 'auto'));
 
 // Load JavaScript message titles
@@ -69,7 +69,6 @@ $this->addScriptOptions('system.installation', array('url' => JRoute::_('index.p
 			<jdoc:include type="message" />
 		</div>
 		<?php // Container ?>
-		<canvas id="myCanvas" class="hidden"></canvas>
 		<div class="container container-main">
 
 			<div id="javascript-warning">

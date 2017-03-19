@@ -11,6 +11,7 @@ defined('_JEXEC') or die;
 
 /* @var InstallationViewDefault $this */
 ?>
+<canvas id="myCanvas" class="hidden"></canvas>
 <div class="'align-self-center">
 	<form action="index.php" method="post" id="languageForm">
 		<div class="form-group abs">
@@ -30,19 +31,21 @@ defined('_JEXEC') or die;
 	document.addEventListener('DOMContentLoaded', function() {
 		canvas = document.getElementById('myCanvas');
 
+		// Make canvas a direct child of body
+		document.body.appendChild(canvas);
 		canvas.style.display = 'block';
 		width = document.body.clientWidth;
 		canvas.width = document.body.clientWidth;
 //			height = document.body.getBoundingClientRect();
 		height = Math.max( document.body.scrollHeight, document.body.offsetHeight);
 		canvas.height = window.innerHeight;
-		canvas.style.top = 0;
+		canvas.style.top = '210px';
 		canvas.style.backgroundColor = "#ffffff";
 		canvas.style.position = 'absolute'
 		ctx = canvas.getContext('2d');
 
 		drawTimer = window.setInterval(draw, 400);
-		clearTimer = window.setInterval(clear, 10000);
+		//clearTimer = window.setInterval(clear, 10000);
 
 		function setCookie(cname, cvalue) {
 			var d = new Date();
