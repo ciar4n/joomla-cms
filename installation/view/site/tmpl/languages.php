@@ -11,6 +11,7 @@ defined('_JEXEC') or die;
 
 /* @var InstallationViewDefault $this */
 ?>
+<canvas id="myCanvas" class="hidden"></canvas>
 <div class="'align-self-center">
 	<form action="index.php" method="post" id="languageForm">
 		<div class="form-group abs">
@@ -30,6 +31,8 @@ defined('_JEXEC') or die;
 	document.addEventListener('DOMContentLoaded', function() {
 		canvas = document.getElementById('myCanvas');
 
+		// Make canvas a direct child of body
+		document.body.appendChild(canvas);
 		canvas.style.display = 'block';
 		width = document.body.clientWidth;
 		canvas.width = document.body.clientWidth;
