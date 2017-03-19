@@ -56,29 +56,16 @@ $this->addScriptOptions('system.installation', array('url' => JRoute::_('index.p
 <html lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>">
 	<head>
 		<jdoc:include type="head" />
-		<script>
-			jQuery(function()
-			{
-				// Delay instantiation after document.formvalidation and other dependencies loaded
-				window.setTimeout(function(){
-					window.Install = new Installation('container-installation', '<?php echo JUri::current(); ?>');
-				}, 500);
-			});
-		</script>
 	</head>
-	<body data-basepath="<?php echo JUri::root(true); ?>">
+	<body data-basepath="<?php echo JUri::root(true); ?>" style="height: 100vh">
 		<?php // Header ?>
-		<div class="header">
-			<img src="<?php echo $this->baseurl ?>/template/images/joomla.png" alt="Joomla">
-			<hr>
-			<h5>
-				<?php // Fix wrong display of Joomla!® in RTL language ?>
-				<?php $joomla  = '<a href="https://www.joomla.org" target="_blank">Joomla!</a><sup>' . (JFactory::getLanguage()->isRtl() ? '&#x200E;' : '') . '</sup>'; ?>
-				<?php $license = '<a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.html" target="_blank">' . JText::_('INSTL_GNU_GPL_LICENSE') . '</a>'; ?>
-				<?php echo JText::sprintf('JGLOBAL_ISFREESOFTWARE', $joomla, $license); ?>
+		<div class="header" style="padding: 20px 0 20px;">
+			<h5 style="font-size: 1rem; text-align: center">
+				<!-- <img src="<?php echo $this->baseurl ?>/template/images/logo.svg" alt="Joomla"/> -->
 			</h5>
 		</div>
 		<?php // Container ?>
+		<canvas id="myCanvas" class="hidden"></canvas>
 		<div class="container">
 			<jdoc:include type="message" />
 			<div id="javascript-warning">
@@ -88,7 +75,7 @@ $this->addScriptOptions('system.installation', array('url' => JRoute::_('index.p
 					</div>
 				</noscript>
 			</div>
-			<div id="container-installation">
+			<div id="container-installation" class="container-installation d-flex">
 				<jdoc:include type="component" />
 			</div>
 			<hr>

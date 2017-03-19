@@ -74,7 +74,7 @@ class InstallationControllerDefault extends JControllerBase
 				$checkOptions = true;
 				$options      = $model->getOptions();
 
-				if (!$model->getPhpOptionsSufficient())
+				if (!isset($sessionOptions['language']) && !$model->getPhpOptionsSufficient())
 				{
 					$app->redirect('index.php?view=preinstall');
 				}

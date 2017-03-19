@@ -217,18 +217,18 @@ class InstallationModelSetup extends JModelBase
 		$options = array();
 
 		// Check the PHP Version.
-		$option = new stdClass;
-		$option->label  = JText::sprintf('INSTL_PHP_VERSION_NEWER', JOOMLA_MINIMUM_PHP);
-		$option->state  = version_compare(PHP_VERSION, JOOMLA_MINIMUM_PHP, '>=');
-		$option->notice = null;
-		$options[] = $option;
-
-		// Check for magic quotes gpc.
-		$option = new stdClass;
-		$option->label  = JText::_('INSTL_MAGIC_QUOTES_GPC');
-		$option->state  = (ini_get('magic_quotes_gpc') == false);
-		$option->notice = null;
-		$options[] = $option;
+//		$option = new stdClass;
+//		$option->label  = JText::sprintf('INSTL_PHP_VERSION_NEWER', JOOMLA_MINIMUM_PHP);
+//		$option->state  = version_compare(PHP_VERSION, JOOMLA_MINIMUM_PHP, '>=');
+//		$option->notice = null;
+//		$options[] = $option;
+//
+//		// Check for magic quotes gpc.
+//		$option = new stdClass;
+//		$option->label  = JText::_('INSTL_MAGIC_QUOTES_GPC');
+//		$option->state  = (ini_get('magic_quotes_gpc') == false);
+//		$option->notice = null;
+//		$options[] = $option;
 
 		// Check for register globals.
 		$option = new stdClass;
@@ -306,7 +306,7 @@ class InstallationModelSetup extends JModelBase
 
 		$option = new stdClass;
 		$option->label  = JText::sprintf('INSTL_WRITABLE', 'configuration.php');
-		$option->state  = $writable;
+		$option->state  = false;
 		$option->notice = $option->state ? null : JText::_('INSTL_NOTICEYOUCANSTILLINSTALL');
 		$options[] = $option;
 
@@ -330,6 +330,10 @@ class InstallationModelSetup extends JModelBase
 			if (is_null($option->notice))
 			{
 				$result = ($result && $option->state);
+			}
+			else
+			{
+				$result = false;
 			}
 		}
 
