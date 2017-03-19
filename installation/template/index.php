@@ -29,7 +29,7 @@ JHtml::_('behavior.core');
 JHtml::_('script', 'installation/template/js/installation.js', array('version' => 'auto'));
 
 // Add Stylesheets
-JHtml::_('bootstrap.loadCss', true, $this->direction);
+// JHtml::_('bootstrap.loadCss', true, $this->direction);
 JHtml::_('stylesheet', 'installation/template/css/template.css', array('version' => 'auto'));
 
 // Load JavaScript message titles
