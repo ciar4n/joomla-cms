@@ -27,7 +27,7 @@ defined('_JEXEC') or die;
 <!--</form>-->
 <form action="index.php" method="post" id="adminForm">
 		<div class="row">
-			<div class="col-md-12">
+			<div class="col-md-6">
 				<h3><?php echo JText::_('INSTL_PRECHECK_TITLE'); ?></h3>
 				<hr class="hr-condensed" />
 				<p class="install-text">

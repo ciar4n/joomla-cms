@@ -8893,10 +8893,8 @@ form {
         color: #fff;
         background-color: #4882b7; }
 
-.languageForm {
-  padding: 0 0 30px; }
-  .languageForm .custom-select {
-    width: 100%; }
+.container-languages {
+  width: 100%; }
 
 .install-nav-footer {
   margin: 20px -27px -17px;
