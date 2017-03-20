@@ -437,7 +437,14 @@ document.addEventListener('DOMContentLoaded', function() {
 	initElements();
 
 	var makeRandomDbPrefix = function() {
+        var symbols = '0123456789abcdefghijklmnopqrstuvwxyz', letters = 'abcdefghijklmnopqrstuvwxyz';
+		var prefix = letters[Math.floor(Math.random() * 24)];
 
+        for (var i = 0; i < 4; i++ ) {
+            prefix += symbols[Math.floor(Math.random() * 34)];
+        }
+
+        return prefix + '_';
 	};
 
 	// Initialize the installation data
