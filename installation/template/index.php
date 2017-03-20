@@ -57,7 +57,7 @@ $this->addScriptOptions('system.installation', array('url' => JRoute::_('index.p
 	<head>
 		<jdoc:include type="head" />
 	</head>
-	<body data-basepath="<?php echo JUri::root(true); ?>" style="height: 100vh">
+	<body data-basepath="<?php echo JUri::root(true); ?>" >
 
 		<?php // Header ?>
 		<div class="header">

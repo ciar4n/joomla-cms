@@ -12,30 +12,36 @@
 <!--	</div>-->
 <!--</form>-->
 <form action="index.php" method="post" id="adminForm" class="form-validate">
-	<div class="row">
-		<div class="col-md-11 col-lg-8 container">
-			<h3><?php echo JText::_('INSTL_SITE'); ?></h3>
-			<hr>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-11 col-lg-12 container">
+	<div id="install-site" class="row">
+		<div class="col">
 			<div class="form-group row align-items-center">
-				<div class="col-md-8 offset-md-2"><?php echo $this->form->getLabel('site_name'); ?></div>
 				<div class="col-md-8 offset-md-2">
-					<?php echo $this->form->getInput('site_name'); ?>
+					<?php echo $this->form->getLabel('site_name'); ?>
 				</div>
-				<div class="col-md-1">
-					<a class="hasPopover text-muted" data-toggle="popover" data-content="<?php echo JText::_('INSTL_SITE_NAME_DESC'); ?>"><i class="fa fa-question-circle"></i></a>
+				<div class="col-md-8 offset-md-2">
+					<div class="input-group">
+						<?php echo $this->form->getInput('site_name'); ?>
+						<span class="input-group-btn">
+							<a class="btn btn-secondary" data-tooltip-size="large" data-tooltip="<?php echo JText::_('INSTL_SITE_NAME_DESC'); ?>"><i class="fa fa-question-circle"></i></a>
+						</span>
+					</div>
 				</div>
 			</div>
+
 			<div class="form-group row align-items-center">
-				<div class="col-md-8 offset-md-2"><?php echo $this->form->getLabel('site_metadesc'); ?></div>
-				<div class="col-md-8 offset-md-2"><?php echo $this->form->getInput('site_metadesc'); ?></div>
-				<div class="col-md-1">
-					<a class="hasPopover text-muted" data-toggle="popover" data-trigger="hover" data-content="<?php echo JText::_('INSTL_SITE_METADESC_TITLE_LABEL'); ?>"><i class="fa fa-question-circle"></i></a>
+				<div class="col-md-8 offset-md-2">
+					<?php echo $this->form->getLabel('site_metadesc'); ?>
+				</div>
+				<div class="col-md-8 offset-md-2">
+					<div class="input-group">
+						<?php echo $this->form->getInput('site_metadesc'); ?>
+						<span class="input-group-btn">
+							<a class="btn btn-secondary" data-tooltip-size="large" data-tooltip="<?php echo JText::_('INSTL_SITE_METADESC_TITLE_LABEL'); ?>"><i class="fa fa-question-circle"></i></a>
+						</span>
+					</div>
 				</div>
 			</div>
+
 			<div class="form-group row align-items-center">
 				<div class="col-md-8 offset-md-2"><?php echo $this->form->getLabel('site_offline'); ?></div>
 				<div class="col-md-8 offset-md-2"><?php echo $this->form->getInput('site_offline'); ?></div>
@@ -43,26 +49,48 @@
 					<a class="hasPopover text-muted" data-toggle="popover" data-trigger="hover" data-content="<?php echo JText::_('INSTL_SITE_OFFLINE_TITLE_LABEL'); ?>"><i class="fa fa-question-circle"></i></a>
 				</div>
 			</div>
+		</div>
+	</div>
+	<div id="install-user" class="row">
+		<div class="col">
 			<div class="form-group row align-items-center">
-				<div class="col-md-8 offset-md-2"><?php echo $this->form->getLabel('admin_email'); ?></div>
-				<div class="col-md-8 offset-md-2"><?php echo $this->form->getInput('admin_email'); ?></div>
-				<div class="col-md-1">
-					<a class="hasPopover text-muted" data-toggle="popover" data-content="<?php echo JText::_('INSTL_ADMIN_EMAIL_DESC'); ?>"><i class="fa fa-question-circle"></i></a>
+				<div class="col-md-8 offset-md-2">
+					<?php echo $this->form->getLabel('admin_email'); ?>
+				</div>
+				<div class="col-md-8 offset-md-2">
+					<div class="input-group">
+						<?php echo $this->form->getInput('admin_email'); ?>
+						<span class="input-group-btn">
+							<a class="btn btn-secondary" data-tooltip-size="large" data-tooltip="<?php echo JText::_('INSTL_ADMIN_EMAIL_DESC'); ?>"><i class="fa fa-question-circle"></i></a>
+						</span>
+					</div>
 				</div>
 			</div>
 			<div class="form-group row align-items-center">
-				<div class="col-md-8 offset-md-2"><?php echo $this->form->getLabel('admin_user'); ?></div>
-				<div class="col-md-8 offset-md-2"><?php echo $this->form->getInput('admin_user'); ?></div>
-				<div class="col-md-1">
-					<a class="hasPopover text-muted" data-toggle="popover" data-content="<?php echo JText::_('INSTL_ADMIN_USER_DESC'); ?>"><i class="fa fa-question-circle"></i></a>
+				<div class="col-md-8 offset-md-2">
+					<?php echo $this->form->getLabel('admin_user'); ?>
+				</div>
+				<div class="col-md-8 offset-md-2">
+					<div class="input-group">
+						<?php echo $this->form->getInput('admin_user'); ?>
+						<span class="input-group-btn">
+							<a class="btn btn-secondary" data-tooltip-size="large" data-tooltip="<?php echo JText::_('INSTL_ADMIN_USER_DESC'); ?>"><i class="fa fa-question-circle"></i></a>
+						</span>
+					</div>
 				</div>
 			</div>
 			<div class="form-group row align-items-center">
-				<div class="col-md-8 offset-md-2"><?php echo $this->form->getLabel('admin_password'); ?></div>
+				<div class="col-md-8 offset-md-2">
+					<?php echo $this->form->getLabel('admin_password'); ?>
+				</div>
 				<?php // Disables autocomplete ?> <input type="password" style="display:none">
-				<div class="col-md-8 offset-md-2"><?php echo $this->form->getInput('admin_password'); ?></div>
-				<div class="col-md-1">
-					<a class="hasPopover text-muted" data-toggle="popover" data-content="<?php echo JText::_('INSTL_ADMIN_PASSWORD_DESC'); ?>"><i class="fa fa-question-circle"></i></a>
+				<div class="col-md-8 offset-md-2">
+					<div class="input-group">
+						<?php echo $this->form->getInput('admin_password'); ?>
+						<span class="input-group-btn">
+							<a class="btn btn-secondary" data-tooltip-size="large" data-tooltip="<?php echo JText::_('INSTL_ADMIN_PASSWORD_DESC'); ?>"><i class="fa fa-question-circle"></i></a>
+						</span>
+					</div>
 				</div>
 			</div>
 			<div class="form-group row align-items-center">
@@ -72,46 +100,93 @@
 			</div>
 		</div>
 	</div>
-
-	<h3><?php echo JText::_('INSTL_DATABASE'); ?></h3>
-	<hr class="hr-condensed" />
-	<div class="row">
-		<div class="col-md-6">
-			<div class="form-group">
-				<?php echo $this->form->getLabel('db_type'); ?>
-				<?php echo $this->form->getInput('db_type'); ?>
-				<p class="form-text text-muted small"><?php echo JText::_('INSTL_DATABASE_TYPE_DESC'); ?></p>
+	<div id="install-database" class="row">
+		<div class="col">
+			<div class="form-group row align-items-center">
+				<div class="col-md-8 offset-md-2">
+					<?php echo $this->form->getLabel('db_type'); ?>
+				</div>
+				<div class="col-md-8 offset-md-2">
+					<div class="input-group">
+						<?php echo $this->form->getInput('db_type'); ?>
+						<span class="input-group-btn">
+							<a class="btn btn-secondary" data-tooltip-size="large" data-tooltip="<?php echo JText::_('INSTL_DATABASE_TYPE_DESC'); ?>"><i class="fa fa-question-circle"></i></a>
+						</span>
+					</div>
+				</div>
 			</div>
-			<div class="form-group">
-				<?php echo $this->form->getLabel('db_host'); ?>
-				<?php echo $this->form->getInput('db_host'); ?>
-				<p class="form-text text-muted small"><?php echo JText::_('INSTL_DATABASE_HOST_DESC'); ?></p>
+			<div class="form-group row align-items-center">
+				<div class="col-md-8 offset-md-2">
+					<?php echo $this->form->getLabel('db_host'); ?>
+				</div>
+				<div class="col-md-8 offset-md-2">
+					<div class="input-group">
+						<?php echo $this->form->getInput('db_host'); ?>
+						<span class="input-group-btn">
+							<a class="btn btn-secondary" data-tooltip-size="large" data-tooltip="<?php echo JText::_('INSTL_DATABASE_HOST_DESC'); ?>"><i class="fa fa-question-circle"></i></a>
+						</span>
+					</div>
+				</div>
 			</div>
-			<div class="form-group">
-				<?php echo $this->form->getLabel('db_user'); ?>
-				<?php echo $this->form->getInput('db_user'); ?>
-				<p class="form-text text-muted small"><?php echo JText::_('INSTL_DATABASE_USER_DESC'); ?></p>
+			<div class="form-group row align-items-center">
+				<div class="col-md-8 offset-md-2">
+					<?php echo $this->form->getLabel('db_user'); ?>
+				</div>
+				<div class="col-md-8 offset-md-2">
+					<div class="input-group">
+						<?php echo $this->form->getInput('db_user'); ?>
+						<span class="input-group-btn">
+							<a class="btn btn-secondary" data-tooltip-size="large" data-tooltip="<?php echo JText::_('INSTL_DATABASE_USER_DESC'); ?>"><i class="fa fa-question-circle"></i></a>
+						</span>
+					</div>
+				</div>
 			</div>
-			<div class="form-group">
-				<?php echo $this->form->getLabel('db_pass'); ?>
+			<div class="form-group row align-items-center">
+				<div class="col-md-8 offset-md-2">
+					<?php echo $this->form->getLabel('db_pass'); ?>
+				</div>
 				<?php // Disables autocomplete ?> <input type="password" style="display:none">
-				<?php echo $this->form->getInput('db_pass'); ?>
-				<p class="form-text text-muted small"><?php echo JText::_('INSTL_DATABASE_PASSWORD_DESC'); ?></p>
+				<div class="col-md-8 offset-md-2">
+					<div class="input-group">
+						<?php echo $this->form->getInput('db_pass'); ?>
+						<span class="input-group-btn">
+							<a class="btn btn-secondary" data-tooltip-size="large" data-tooltip="<?php echo JText::_('INSTL_DATABASE_PASSWORD_DESC'); ?>"><i class="fa fa-question-circle"></i></a>
+						</span>
+					</div>
+				</div>
 			</div>
-			<div class="form-group">
-				<?php echo $this->form->getLabel('db_name'); ?>
-				<?php echo $this->form->getInput('db_name'); ?>
-				<p class="form-text text-muted small"><?php echo JText::_('INSTL_DATABASE_NAME_DESC'); ?></p>
+			<div class="form-group row align-items-center">
+				<div class="col-md-8 offset-md-2">
+					<?php echo $this->form->getLabel('db_name'); ?>
+				</div>
+				<div class="col-md-8 offset-md-2">
+					<div class="input-group">
+						<?php echo $this->form->getInput('db_name'); ?>
+						<span class="input-group-btn">
+							<a class="btn btn-secondary" data-tooltip-size="large" data-tooltip="<?php echo JText::_('INSTL_DATABASE_NAME_DESC'); ?>"><i class="fa fa-question-circle"></i></a>
+						</span>
+					</div>
+				</div>
 			</div>
-			<div class="form-group">
-				<?php echo $this->form->getLabel('db_prefix'); ?>
-				<?php echo $this->form->getInput('db_prefix'); ?>
-				<p class="form-text text-muted small"><?php echo JText::_('INSTL_DATABASE_PREFIX_DESC'); ?></p>
+			<div class="form-group row align-items-center">
+				<div class="col-md-8 offset-md-2">
+					<?php echo $this->form->getLabel('db_prefix'); ?>
+				</div>
+				<div class="col-md-8 offset-md-2">
+					<div class="input-group">
+						<?php echo $this->form->getInput('db_prefix'); ?>
+						<span class="input-group-btn">
+							<a class="btn btn-secondary" data-tooltip-size="large" data-tooltip="<?php echo JText::_('INSTL_DATABASE_PREFIX_DESC'); ?>"><i class="fa fa-question-circle"></i></a>
+						</span>
+					</div>
+				</div>
 			</div>
-			<div class="form-group">
-				<?php echo $this->form->getLabel('db_old'); ?>
-				<?php echo $this->form->getInput('db_old'); ?>
-				<p class="form-text text-muted small"><?php echo JText::_('INSTL_DATABASE_OLD_PROCESS_DESC'); ?></p>
+			<div class="form-group row align-items-center">
+				<div class="col-md-8 offset-md-2"><?php echo $this->form->getLabel('db_old'); ?></div>
+				<div class="col-md-8 offset-md-2"><?php echo $this->form->getInput('db_old'); ?></div>
+				<div class="col-md-1">
+					<a class="hasPopover text-muted" data-toggle="popover" data-content="<?php echo JText::_('INSTL_DATABASE_OLD_PROCESS_DESC'); ?>"><i class="fa fa-question-circle"></i></a>
+				</div>
 			</div>
 		</div>
 	</div>
