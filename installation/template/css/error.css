@@ -122,7 +122,6 @@ p a {
 }
 
 .links {
-	align-self: flex-end;
 	text-align: center;
     width: 100%;
 }
