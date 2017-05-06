@@ -104,7 +104,6 @@ p a {
 }
 
 .footer ul {
-	display: inline-block;
 	margin-bottom: 5px;
 }
 
@@ -120,6 +119,16 @@ p a {
 
 .footer a:hover {
 	color: #59B0FF
+}
+
+.links {
+	align-self: flex-end;
+	text-align: center;
+    width: 100%;
+}
+.links li {
+	display: inline-block;
+	margin-top: 20px;
 }
 
 @media screen and (max-width:480px) {
