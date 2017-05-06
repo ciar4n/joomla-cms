@@ -57,14 +57,11 @@ p a {
 	box-shadow: 0 0 10px rgba(0,0,0,0.05);
 }
 
-.alert-main::after {
+svg {
 	position: absolute;
-	bottom: 60px;
+	bottom: -120px;
 	right: -70px;
-	font-family: FontAwesome;
-	font-size: 30rem;
-	color: #fff;
-	content: "\f1aa";
+	width: 400px;
 	transform: rotate(10deg);
 	z-index: -1;
 }
@@ -135,7 +132,3 @@ p a {
 		font-size: 30px
 	}
 }
-
-
-// FontAwesome
-@import "../../../media/vendor/font-awesome/css/font-awesome.css";
