@@ -146,7 +146,16 @@ p a {
 }
 
 @media screen and (max-width:480px) {
+	.container {
+		height: auto;
+		padding-top: 20px;
+		padding-bottom: 20px;
+	}
 	h1 {
 		font-size: 30px
+	}
+
+	.link-help {
+	    white-space: nowrap;
 	}
 }
