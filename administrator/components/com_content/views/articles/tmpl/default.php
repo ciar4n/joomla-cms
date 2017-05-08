@@ -46,10 +46,7 @@ $assoc = JLanguageAssociations::isEnabled();
 
 <form action="<?php echo JRoute::_('index.php?option=com_content&view=articles'); ?>" method="post" name="adminForm" id="adminForm">
 	<div class="row">
-		<div id="j-sidebar-container" class="col-md-2">
-			<?php echo $this->sidebar; ?>
-		</div>
-		<div class="col-md-10">
+		<div class="col-md-12">
 			<div id="j-main-container" class="j-main-container">
 				<?php
 				// Search tools bar

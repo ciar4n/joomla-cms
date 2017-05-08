@@ -196,6 +196,25 @@ $doc->setMetaData('theme-color', '#1c3d5c');
 
 		<?php // container-fluid ?>
 		<div class="container-fluid container-main">
+		<div class="sidebar-nav">
+			<ul class="nav flex-row">
+				<li class="active">
+					<a href="index.php?option=com_content&view=articles">Articles</a>
+				</li>
+				<li>
+					<a href="index.php?option=com_categories&extension=com_content">Categories</a>
+				</li>
+				<li>
+					<a href="index.php?option=com_fields&context=com_content.article">Fields</a>
+				</li>
+				<li>
+					<a href="index.php?option=com_fields&view=groups&context=com_content.article">Field Groups</a>
+				</li>
+				<li>
+					<a href="index.php?option=com_content&view=featured">Featured Articles</a>
+				</li>
+			</ul>
+		</div>
 			<?php if (!$cpanel) : ?>
 				<?php // Subheader ?>
 				<a class="btn btn-subhead hidden-md-up" data-toggle="collapse" data-target=".subhead-collapse"><?php echo JText::_('TPL_ATUM_TOOLBAR'); ?>
@@ -206,7 +225,69 @@ $doc->setMetaData('theme-color', '#1c3d5c');
 							<div id="container-collapse" class="container-collapse"></div>
 							<div class="row">
 								<div class="col-md-12">
-									<jdoc:include type="modules" name="toolbar" style="no" />
+									<!-- <jdoc:include type="modules" name="toolbar" style="no" /> -->
+
+								<div class="btn-toolbar d-flex" role="toolbar" aria-label="Toolbar" id="toolbar">
+									<button onclick="Joomla.submitbutton('article.add');" class="toolbar-new btn btn-sm btn-success">
+										<span class="icon-new"></span>
+										<span class="text">New</span></button>
+
+									<button onclick="if (document.adminForm.boxchecked.value == 0) { Joomla.renderMessages({'error': [Joomla.JText._('JLIB_HTML_PLEASE_MAKE_A_SELECTION_FROM_THE_LIST')]}) } else { Joomla.submitbutton('articles.publish'); }" class="toolbar-publish select-action btn btn-sm btn-success">
+										<span class="icon-publish"></span>
+										Publish</button>
+
+									<button onclick="if (document.adminForm.boxchecked.value == 0) { Joomla.renderMessages({'error': [Joomla.JText._('JLIB_HTML_PLEASE_MAKE_A_SELECTION_FROM_THE_LIST')]}) } else { Joomla.submitbutton('articles.unpublish'); }" class="toolbar-unpublish select-action btn btn-sm btn-danger">
+										<span class="icon-unpublish"></span>
+										Unpublish</button>
+
+									<button onclick="if (document.adminForm.boxchecked.value == 0) { Joomla.renderMessages({'error': [Joomla.JText._('JLIB_HTML_PLEASE_MAKE_A_SELECTION_FROM_THE_LIST')]}) } else { Joomla.submitbutton('articles.featured'); }" class="toolbar-feature select-action btn btn-sm btn-warning">
+										<span class="icon-featured"></span>
+										Feature</button>
+
+									<button onclick="if (document.adminForm.boxchecked.value == 0) { Joomla.renderMessages({'error': [Joomla.JText._('JLIB_HTML_PLEASE_MAKE_A_SELECTION_FROM_THE_LIST')]}) } else { Joomla.submitbutton('articles.unfeatured'); }" class="toolbar-unfeature select-action btn btn-sm btn-primary">
+										<span class="icon-unfeatured"></span>
+										Unfeature</button>
+
+									<!-- <i class="fa fa-ellipsis-h" aria-hidden="true"></i> -->
+
+<!-- 									<button onclick="if (document.adminForm.boxchecked.value == 0) { Joomla.renderMessages({'error': [Joomla.JText._('JLIB_HTML_PLEASE_MAKE_A_SELECTION_FROM_THE_LIST')]}) } else { Joomla.submitbutton('articles.archive'); }" class="select-action btn btn-sm btn-primary">
+										<span class="icon-archive"></span>
+										Archive</button>
+
+									<button onclick="if (document.adminForm.boxchecked.value == 0) { Joomla.renderMessages({'error': [Joomla.JText._('JLIB_HTML_PLEASE_MAKE_A_SELECTION_FROM_THE_LIST')]}) } else { Joomla.submitbutton('articles.checkin'); }" class="select-action btn btn-sm btn-outline-primary">
+										<span class="icon-checkin"></span>
+										Check-in</button>
+									<button data-toggle="modal" onclick="if (document.adminForm.boxchecked.value==0){Joomla.renderMessages({'error': [Joomla.JText._('JLIB_HTML_PLEASE_MAKE_A_SELECTION_FROM_THE_LIST')]})}else{jQuery( '#collapseModal' ).modal('show'); return true;}" class="select-action btn btn-outline-primary btn-sm">
+										<span class="icon-checkbox-partial" title="Batch"></span>
+										Batch</button>
+
+									<button onclick="if (document.adminForm.boxchecked.value == 0) { Joomla.renderMessages({'error': [Joomla.JText._('JLIB_HTML_PLEASE_MAKE_A_SELECTION_FROM_THE_LIST')]}) } else { Joomla.submitbutton('articles.trash'); }" class="select-action btn btn-sm btn-outline-primary">
+										<span class="icon-trash"></span>
+										Trash</button> -->
+
+									<div class="dropdown">
+									  <button class="select-action btn btn-outline-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									  <span class="fa fa-ellipsis-h" title="Batch"></span>
+									    More
+									  </button>
+									  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+									    <a class="dropdown-item" href="#">Archive</a>
+									    <a class="dropdown-item" href="#">Check-in</a>
+									    <a class="dropdown-item" href="#">Batch</a>
+									    <a class="dropdown-item" href="#">Trash</a>
+									  </div>
+									</div>
+
+									<button onclick="location.href='index.php?option=com_config&amp;view=component&amp;component=com_content&amp;path=&amp;return=aHR0cDovL2xvY2FsaG9zdC9qb29tbGEtNC1kZXYvYWRtaW5pc3RyYXRvci9pbmRleC5waHA%2Fb3B0aW9uPWNvbV9jb250ZW50';" class="btn btn-outline-danger btn-sm ml-auto">
+										<span class="icon-options"></span>
+										Options</button>
+									<button onclick="Joomla.popupWindow('https://help.joomla.org/proxy?keyref=Help40:Content_Article_Manager&amp;lang=en', 'Help', 700, 500, 1)" rel="help" class="btn btn-outline-info btn-sm">
+										<span class="icon-question-sign"></span>
+										Help</button>
+
+
+								</div>
+
 								</div>
 							</div>
 						</div>

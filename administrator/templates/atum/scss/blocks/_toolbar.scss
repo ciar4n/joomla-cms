@@ -2,12 +2,12 @@
 
 .subhead {
   position: absolute;
-  top: 0;
+  top: 48px;
   right: 0;
   left: 0;
   width: auto;
   min-height: 43px;
-  padding: 15px 0;
+  padding: 16px 0;
   color: #0c192e;
   background: $atum-container-main-bg;
 
@@ -129,7 +129,7 @@
 
     }
 
-    .btn-success:not(.dropdown-toggle) {
+    .toolbar-new:not(.dropdown-toggle) {
       width: 140px;
       color: $white-offset;
       background-color: $brand-success;
@@ -192,4 +192,32 @@
 .btn-toolbar {
   margin-bottom: 20px;
   margin-left: 0;
+}
+
+
+.select-action {
+  position: relative;
+  left: -10px;
+  opacity: 0;
+  transition-delay: .15s;
+  .table-row-selected & {
+    left: 0;
+    opacity: 1;
+  }
+}
+
+.table-row-selected {
+  .toolbar-new {
+    width: 40px !important;
+    .text {
+      display: none;
+    }
+  }
+
+}
+
+.subhead {
+  .dropdown-menu::after {
+    left: .5rem;
+  }
 }
