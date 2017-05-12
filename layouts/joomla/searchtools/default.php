@@ -80,26 +80,33 @@ $filtersActiveClass = $hideActiveFilters ? '' : ' js-stools-container-filters-vi
 JHtml::_('searchtools.form', $data['options']['formSelector'], $data['options']);
 ?>
 <div class="js-stools clearfix">
-	<div class="clearfix">
-		<?php if ($data['options']['showSelector']) : ?>
-		<div class="js-stools-container-selector">
-			<?php echo JLayoutHelper::render('joomla.searchtools.default.selector', $data); ?>
-		</div>
-		<?php endif; ?>
-		<div class="js-stools-container-bar">
-			<?php echo $this->sublayout('bar', $data); ?>
-		</div>
-		<div class="js-stools-container-list hidden-md-down">
-			<?php echo $this->sublayout('list', $data); ?>
-		</div>
-	</div>
-	<!-- Filters div -->
-	<?php if ($data['options']['filterButton']) : ?>
-	<div class="js-stools-container-filters hidden-sm-down clearfix<?php echo $filtersActiveClass; ?>">
-		<?php echo $this->sublayout('filters', $data); ?>
-	</div>
-	<?php endif; ?>
+<!-- <div class="js-stools-icons" style="float: left;">
+<a class="js-stools-icon" href="#">
+<span class="fa fa-cog" aria-hidden="true"></span>
+</a>
+</div> -->
+
+<div class="btn-group" style="padding: 5px 6px;">
+<div class="input-group">
+<input id="filter_search" class="form-control" name="filter[search]" value="" placeholder="Search" data-original-title="" title="" type="text">
+<span class="input-group-btn">
+<button class="btn btn-secondary hasTooltip" type="submit" title="" data-original-title="Search">
+<span class="icon-search"></span>
+</button>
+<button class="btn btn-secondary hasTooltip js-stools-btn-clear" type="button" title="" data-original-title="Clear"> Clear </button>
+</span>
+</div>
+</div>
+<div class="js-stools-icons">
+<a class="js-stools-icon" href="#">
+<span class="fa fa-filter" aria-hidden="true"></span>
+</a><a class="js-stools-icon" href="#">
+<span class="fa fa-cog" aria-hidden="true"></span>
+</a>
+</div>
+
 </div>
 <?php if ($data['options']['showNoResults']) : ?>
 	<?php echo $this->sublayout('noitems', $data); ?>
 <?php endif; ?>
+

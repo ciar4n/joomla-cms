@@ -141,3 +141,51 @@
 .badge-association[href]:focus, .badge-association[href]:hover {
   background-color: #4b5257;
 }
+
+
+
+
+// JS Tools
+.js-stools {
+  padding: 0;
+}
+.js-stools-icons {
+  float: right;
+}
+.js-stools-icon {
+  display: inline-block;
+  width: 3.6rem;
+  font-size: 1.3rem;
+  line-height: 3.2rem;
+  color: #464a4c;
+  text-align: center;
+  border-left: 1px solid #ccc;
+  box-shadow: 1px 0 #fefefe inset;
+}
+
+
+table {
+  border-collapse: collapse;
+}
+
+thead {
+  display: block;
+  margin-right: 17px;
+  overflow: auto;
+}
+
+tbody {
+  display: block;
+  height: calc(100vh - 400px);
+  overflow: auto;
+}
+
+.table td {
+  padding: 10px 8px;
+  vertical-align: middle;
+}
+
+
+.btn-secondary.active, .btn-secondary:active, .show > .btn-secondary.dropdown-toggle {
+  border-color: #ccc;
+}

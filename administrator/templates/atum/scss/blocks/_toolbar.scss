@@ -221,3 +221,16 @@
     left: .5rem;
   }
 }
+
+.toolbar-publish {
+  display: none;
+  .table-row-published & {
+    display: inline;
+  }
+}
+.toolbar-unpublish {
+  display: none;
+  .table-row-selected::not(.table-row-published) {
+    display: inline;
+  }
+}
