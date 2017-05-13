@@ -200,17 +200,17 @@
   left: -10px;
   opacity: 0;
   transition-delay: .15s;
-  .table-row-selected & {
-    left: 0;
-    opacity: 1;
-  }
+  // .table-row-selected & {
+  //   left: 0;
+  //   opacity: 1;
+  // }
 }
 
 .table-row-selected {
   .toolbar-new {
-    width: 40px !important;
+    // width: 40px !important;
     .text {
-      display: none;
+      // display: none;
     }
   }
 
@@ -222,15 +222,15 @@
   }
 }
 
-.toolbar-publish {
-  display: none;
-  .table-row-published & {
-    display: inline;
-  }
-}
-.toolbar-unpublish {
-  display: none;
-  .table-row-selected::not(.table-row-published) {
-    display: inline;
-  }
-}
+// .toolbar-publish {
+//   display: none;
+//   .table-row-published & {
+//     display: inline;
+//   }
+// }
+// .toolbar-unpublish {
+//   display: none;
+//   .table-row-selected::not(.table-row-published) {
+//     display: inline;
+//   }
+// }
