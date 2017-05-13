@@ -10442,10 +10442,10 @@ table .fa.fa-ellipsis-h {
   opacity: .8; }
 
 .published {
-  box-shadow: inset 3px 0 0 #348534; }
+  box-shadow: -3px 0 0 #348534; }
 
 .unpublished {
-  box-shadow: inset 3px 0 0 #ef476f; }
+  box-shadow: -3px 0 0 #ef476f; }
 
 table {
   border-spacing: 0 .5px;

@@ -199,13 +199,16 @@ table .fa.fa-ellipsis-h {
 }
 
 .published {
-  box-shadow: inset 3px 0 0 $brand-success;
+  box-shadow: -3px 0 0 $brand-success;
 }
 .unpublished {
-  box-shadow: inset 3px 0 0 $brand-danger;
+  box-shadow: -3px 0 0 $brand-danger;
 }
 
 table {
   border-spacing: 0 .5px;
   border-collapse: separate;
+  th a {
+    font-size: .9;
+  }
 }
