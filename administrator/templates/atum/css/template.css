@@ -293,7 +293,7 @@ html {
   -webkit-tap-highlight-color: transparent; }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Roboto", Arial, sans-serif;
   font-size: 1rem;
   font-weight: normal;
   line-height: 1.5;
@@ -3886,7 +3886,7 @@ button.close {
   position: absolute;
   z-index: 1070;
   display: block;
-  font-family: Arial, sans-serif;
+  font-family: "Roboto", Arial, sans-serif;
   font-style: normal;
   font-weight: normal;
   letter-spacing: normal;
@@ -3968,7 +3968,7 @@ button.close {
   display: block;
   max-width: 276px;
   padding: 1px;
-  font-family: Arial, sans-serif;
+  font-family: "Roboto", Arial, sans-serif;
   font-style: normal;
   font-weight: normal;
   letter-spacing: normal;
@@ -10424,7 +10424,7 @@ iframe {
 .btn-secondary.active, .btn-secondary:active, .show > .btn-secondary.dropdown-toggle {
   border-color: #ccc; }
 
-table .fa.fa-ellipsis-h {
+table .fa.fa-ellipsis-h, table .fa.fa-cog {
   position: relative;
   top: 3px;
   font-size: 18px;
@@ -10449,7 +10449,7 @@ tr td:first-child {
   left: 9px; }
 
 .column-status .btn {
-  padding: 0;
+  padding: 0 1px;
   background-color: transparent;
   border: 0; }
 
@@ -10473,6 +10473,10 @@ tr td:first-child {
 .column-status .icon-unpublish {
   color: #c9625e;
   border-color: #c9625e; }
+
+.column-status .icon-checkedout, .column-status .icon-archive {
+  color: #464a4c;
+  border-color: #464a4c; }
 
 .dropdown-item.active, .dropdown-item:active {
   background-color: #eee; }

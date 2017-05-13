@@ -69,10 +69,10 @@ $assoc = JLanguageAssociations::isEnabled();
  								<th style="width:5%" class="nowrap text-center">
 									<?php echo JHtml::_('searchtools.sort', 'JSTATUS', 'a.state', $listDirn, $listOrder); ?>
 								</th>
-								<th style="width:3%" class="nowrap text-center row-actions-head">
+								<th style="width:3%" class="nowrap row-actions-head">
 									<div class="dropdown tools">
 									  <a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									    <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+									    <i class="fa fa-cog" aria-hidden="true"></i>
 									  </a>
 									  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 <!-- 									  	<a class="dropdown-item" href="#">Select All</a>
@@ -169,12 +169,16 @@ $assoc = JLanguageAssociations::isEnabled();
 									<?php echo JHtml::_('grid.id', $i, $item->id); ?>
 								</td>
   								<td class="text-center column-status" style="width:5%">
-									<div style="width: 60px;">
+									<div style="width: 66px;">
 										<?php echo JHtml::_('jgrid.published', $item->state, $i, 'articles.', $canChange, 'cb', $item->publish_up, $item->publish_down); ?>
-										<?php echo JHtml::_('contentadministrator.featured', $item->featured, $i, $canChange); ?>
+										<?php if ($item->checked_out) { ?>
+											<?php echo JHtml::_('jgrid.checkedout', $i, $item->editor, $item->checked_out_time, 'articles.', $canCheckin); ?>
+										<?php } else { ?>
+											<?php echo JHtml::_('contentadministrator.featured', $item->featured, $i, $canChange); ?>
+										<?php } ?>
 									</div>
 								</td>
-								<td style="width:3%" class="nowrap text-center row-actions">
+								<td style="width:3%" class="nowrap row-actions">
 									<div class="dropdown tools">
 									  <a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 									    <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
@@ -191,9 +195,9 @@ $assoc = JLanguageAssociations::isEnabled();
 								
 								<td class="has-context" style="width:28%">
 									<div class="float-left break-word">
-										<?php if ($item->checked_out) : ?>
+<!-- 										<?php if ($item->checked_out) : ?>
 											<?php echo JHtml::_('jgrid.checkedout', $i, $item->editor, $item->checked_out_time, 'articles.', $canCheckin); ?>
-										<?php endif; ?>
+										<?php endif; ?> -->
 										<?php if ($item->language == '*') : ?>
 											<?php $language = JText::alt('JALL', 'language'); ?>
 										<?php else : ?>

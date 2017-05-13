@@ -191,7 +191,7 @@
 }
 
 
-table .fa.fa-ellipsis-h {
+table .fa.fa-ellipsis-h, table .fa.fa-cog {
   position: relative;
   top: 3px;
   font-size: 18px;
@@ -231,6 +231,7 @@ tr td:first-child {
   margin-left: 10px;
 }
 
+
 .tools {
   &:hover {
     cursor: pointer;
@@ -245,7 +246,7 @@ tr td:first-child {
 
 .column-status {
   .btn {
-    padding: 0;
+    padding: 0 1px;
     background-color: transparent;
     border: 0;
   }
@@ -269,6 +270,10 @@ tr td:first-child {
   .icon-unpublish {
     color: $brand-danger;
     border-color: $brand-danger;
+  }
+  .icon-checkedout, .icon-archive {
+    color: $gray;
+    border-color: $gray;
   }
 }
 
