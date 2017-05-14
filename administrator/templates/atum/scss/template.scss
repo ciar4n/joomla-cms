@@ -146,9 +146,7 @@
 
 
 // JS Tools
-.js-stools {
-  padding: 0;
-}
+
 .js-stools-icons {
   float: right;
 }
@@ -233,6 +231,8 @@ tr td:first-child {
 
 
 .tools {
+  display: inline-block;
+  margin: 0 4px;
   &:hover {
     cursor: pointer;
   }

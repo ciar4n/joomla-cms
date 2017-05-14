@@ -63,16 +63,16 @@ $assoc = JLanguageAssociations::isEnabled();
 								<th style="width:3%" class="nowrap text-center hidden-sm-down">
 									<?php echo JHtml::_('searchtools.sort', '', 'a.ordering', $listDirn, $listOrder, null, 'asc', 'JGRID_HEADING_ORDERING', 'icon-menu-2'); ?>
 								</th>
-								<th style="width:3%; display: none;" class="text-center">
+								<th style="width:3%;" class="text-center">
 									<?php echo JHtml::_('grid.checkall'); ?>
 								</th>
- 								<th style="width:5%" class="nowrap text-center">
+   								<th style="width:5%" class="nowrap text-center">
 									<?php echo JHtml::_('searchtools.sort', 'JSTATUS', 'a.state', $listDirn, $listOrder); ?>
 								</th>
-								<th style="width:3%" class="nowrap row-actions-head">
+								<th style="width:3%" class="nowrap text-center row-actions-head">
 									<div class="dropdown tools">
-									  <a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									    <i class="fa fa-cog" aria-hidden="true"></i>
+									  <a class="dropdown-toggle" style="color: #006898" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									    Actions<span class="ml-1 fa fa-caret-down"></span>
 									  </a>
 									  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 <!-- 									  	<a class="dropdown-item" href="#">Select All</a>
@@ -165,20 +165,31 @@ $assoc = JLanguageAssociations::isEnabled();
 										<input type="text" style="display:none" name="order[]" size="5" value="<?php echo $item->ordering; ?>" class="width-20 text-area-order ">
 									<?php endif; ?>
 								</td>
-								<td class="text-center" style="width:3%; display: none;">
+								<td class="text-center" style="width:3%;">
 									<?php echo JHtml::_('grid.id', $i, $item->id); ?>
 								</td>
   								<td class="text-center column-status" style="width:5%">
-									<div style="width: 66px;">
+									<div style="width: 86px;">
 										<?php echo JHtml::_('jgrid.published', $item->state, $i, 'articles.', $canChange, 'cb', $item->publish_up, $item->publish_down); ?>
 										<?php if ($item->checked_out) { ?>
 											<?php echo JHtml::_('jgrid.checkedout', $i, $item->editor, $item->checked_out_time, 'articles.', $canCheckin); ?>
 										<?php } else { ?>
 											<?php echo JHtml::_('contentadministrator.featured', $item->featured, $i, $canChange); ?>
 										<?php } ?>
+<!-- 										<div class="dropdown tools">
+										  <a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										    <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+										  </a>
+										  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+										    <a class="dropdown-item" href="javascript:void(0);" onclick="return listItemTask('cb2','articles.unpublish')" title="" data-original-title="Publish Item<br>Start: 2011-01-01 00:00:01">Unpublish</a>
+										    <a class="dropdown-item" href="#">Feature</a>
+										    <a class="dropdown-item" href="#">Trash</a>
+										    <a class="dropdown-item" href="#">Archive</a>
+										  </div>
+										</div> -->
 									</div>
 								</td>
-								<td style="width:3%" class="nowrap row-actions">
+								<td style="width:3%" class="nowrap text-center row-actions">
 									<div class="dropdown tools">
 									  <a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 									    <i class="fa fa-ellipsis-h" aria-hidden="true"></i>

@@ -37,8 +37,8 @@ $filters = $data['view']->filterForm->getGroup('filter');
 				<?php echo JText::_('JSEARCH_FILTER'); ?>
 			<?php endif; ?>
 		</label>
-		<div class="btn-toolbar" role="toolbar">
-			<div class="btn-group mr-2">
+		<div class="btn-toolbar" role="toolbar" style="width: 100%;">
+			<div class="btn-group mr-auto">
 				<div class="input-group">
 					<?php echo $filters['filter_search']->input; ?>
 					<?php if ($filters['filter_search']->description) : ?>
@@ -55,7 +55,7 @@ $filters = $data['view']->filterForm->getGroup('filter');
 				</div>
 			</div>
 			<?php if ($filterButton) : ?>
-				<div class="btn-group hidden-sm-down">
+				<div class="btn-group hidden-sm-down" style="float: right;">
 					<button type="button" class="btn btn-secondary hasTooltip js-stools-btn-filter" title="<?php echo JHtml::_('tooltipText', 'JSEARCH_TOOLS_DESC'); ?>">
 						<?php echo JText::_('JSEARCH_TOOLS'); ?> <span class="fa fa-caret-down"></span>
 					</button>

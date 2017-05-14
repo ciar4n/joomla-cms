@@ -10405,9 +10405,6 @@ iframe {
 .badge-association[href]:focus, .badge-association[href]:hover {
   background-color: #4b5257; }
 
-.js-stools {
-  padding: 0; }
-
 .js-stools-icons {
   float: right; }
 
@@ -10439,14 +10436,15 @@ tr {
 tr td:first-child {
   margin-left: 10px; }
 
-.tools:hover {
-  cursor: pointer; }
-
-.tools .dropdown-toggle::after {
-  display: none; }
-
-.tools .dropdown-menu::after {
-  left: 9px; }
+.tools {
+  display: inline-block;
+  margin: 0 4px; }
+  .tools:hover {
+    cursor: pointer; }
+  .tools .dropdown-toggle::after {
+    display: none; }
+  .tools .dropdown-menu::after {
+    left: 9px; }
 
 .column-status .btn {
   padding: 0 1px;
