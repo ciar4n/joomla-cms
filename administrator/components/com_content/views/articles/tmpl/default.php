@@ -60,16 +60,16 @@ $assoc = JLanguageAssociations::isEnabled();
 					<table class="table table-striped" id="articleList">
 						<thead>
 							<tr>
-								<th style="width:3%" class="nowrap text-center hidden-sm-down">
+								<th style="width:1%" class="nowrap text-center hidden-sm-down">
 									<?php echo JHtml::_('searchtools.sort', '', 'a.ordering', $listDirn, $listOrder, null, 'asc', 'JGRID_HEADING_ORDERING', 'icon-menu-2'); ?>
 								</th>
-								<th style="width:3%;" class="text-center">
+								<th style="width:1%;" class="text-center">
 									<?php echo JHtml::_('grid.checkall'); ?>
 								</th>
-   								<th style="width:5%" class="nowrap text-center">
+   								<th style="width:1%" class="nowrap text-center">
 									<?php echo JHtml::_('searchtools.sort', 'JSTATUS', 'a.state', $listDirn, $listOrder); ?>
 								</th>
-								<th style="width:3%" class="nowrap text-center row-actions-head">
+								<th style="width:1%" class="nowrap text-center row-actions-head">
 									<div class="dropdown tools">
 									  <a class="dropdown-toggle" style="color: #006898" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 									    Actions<span class="ml-1 fa fa-caret-down"></span>
@@ -146,7 +146,7 @@ $assoc = JLanguageAssociations::isEnabled();
 							$canChange  = $user->authorise('core.edit.state', 'com_content.article.' . $item->id) && $canCheckin;
 							?>
 							<tr class="row<?php echo $i % 2; ?> <?php if ($item->state) {echo 'published';} else {echo 'unpublished';} ?> <?php if ($item->featured) {echo 'featured';} ?>" data-dragable-group="<?php echo $item->catid; ?>">
-								<td class="order nowrap text-center hidden-sm-down" style="width:3%">
+								<td class="order nowrap text-center hidden-sm-down" style="width:1%">
 									<?php
 									$iconClass = '';
 									if (!$canChange)
@@ -165,11 +165,11 @@ $assoc = JLanguageAssociations::isEnabled();
 										<input type="text" style="display:none" name="order[]" size="5" value="<?php echo $item->ordering; ?>" class="width-20 text-area-order ">
 									<?php endif; ?>
 								</td>
-								<td class="text-center" style="width:3%;">
+								<td class="text-center" style="width:1%;">
 									<?php echo JHtml::_('grid.id', $i, $item->id); ?>
 								</td>
-  								<td class="text-center column-status" style="width:5%">
-									<div style="width: 86px;">
+  								<td class="text-center column-status" style="width:1%">
+									<div style="width: 62px;">
 										<?php echo JHtml::_('jgrid.published', $item->state, $i, 'articles.', $canChange, 'cb', $item->publish_up, $item->publish_down); ?>
 										<?php if ($item->checked_out) { ?>
 											<?php echo JHtml::_('jgrid.checkedout', $i, $item->editor, $item->checked_out_time, 'articles.', $canCheckin); ?>
