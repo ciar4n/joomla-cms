@@ -12,36 +12,37 @@ defined('_JEXEC') or die;
 <h3>System Configuration</h3>
 <div class="card-columns">
 	<?php if ($this->links['com_config']['enabled']) : ?>
-		<div class="card">
+		<figure class="j-card">
+			<h4 class="card-header"><?php echo JText::_($this->links['com_config']['label']); ?></h4>
 			<div class="card-block">
-				<h4 class="card-title"><?php echo JText::_($this->links['com_config']['label']); ?></h4>
 				<span class="fa fa-<?php echo $this->links['com_config']['icon']; ?> fa-5x"></span>
-				<p class="card-text"><?php echo JText::_($this->links['com_config']['desc']); ?></p>
-				<a href="<?php echo $this->links['com_config']['link']; ?>" class="btn btn-primary"><?php echo JText::_($this->links['com_config']['title']); ?></a>
+				<figcaption>
+					<!-- <p class="card-text"><?php echo JText::_($this->links['com_config']['desc']); ?></p> -->
+					<p class="card-text">Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis.</p>
+					<a href="<?php echo $this->links['com_config']['link']; ?>" class="btn btn-primary"><?php echo JText::_($this->links['com_config']['title']); ?></a>
+				</figcaption>
 			</div>
-		</div>
-		<div class="card">
+		</figure>
+		<figure class="j-card">
 			<div class="card-block">
 				<h4 class="card-title"><?php echo JText::_($this->links['sysinfo']['label']); ?></h4>
 				<span class="fa fa-<?php echo $this->links['sysinfo']['icon']; ?> fa-5x"></span>
 				<p class="card-text"><?php echo JText::_($this->links['sysinfo']['desc']); ?></p>
 				<a href="<?php echo $this->links['sysinfo']['link']; ?>" class="btn btn-primary"><?php echo JText::_($this->links['sysinfo']['title']); ?></a>
 			</div>
-		</div>
+		</figure>
 	<?php endif; ?>
 	<?php if ($this->links['com_postinstall']['enabled']) : ?>
-		<div class="card">
+		<figure class="j-card">
 			<div class="card-block">
 				<h4 class="card-title"><?php echo JText::_($this->links['com_postinstall']['label']); ?></h4>
 				<span class="fa fa-<?php echo $this->links['com_postinstall']['icon']; ?> fa-5x"></span>
 				<p class="card-text"><?php echo JText::_($this->links['com_postinstall']['desc']); ?></p>
 				<a href="<?php echo $this->links['com_postinstall']['link']; ?>" class="btn btn-primary"><?php echo JText::_($this->links['com_postinstall']['title']); ?></a>
 			</div>
-		</div>
+		</figure>
 	<?php endif; ?>
 </div>
-
-<hr>
 
 <h3>Maintenance</h3>
 <div class="card-columns">
