@@ -5,516 +5,561 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
-var Installation = function(_container, _base) {
-    var $, container, busy, baseUrl, view;
+Joomla = window.Joomla || {};
 
-    /**
-     * Initializes JavaScript events on each request, required for AJAX
-     */
-    var pageInit = function() {
-        // Attach the validator
-        $('form.form-validate').each(function(index, form) {
-            document.formvalidator.attachToForm(form);
-        });
+// Initialize the Installation object
+Joomla.installation = function(_container, _base) {
+	var container, busy, baseUrl, view,
+	    serialiseForm = function( form ) {
+		    var i, l, obj = [];
+		    var elements = form.querySelectorAll( "input, select, textarea" );
+		    for(i = 0, l = elements.length; i < l; i++) {
+			    var name = elements[i].name, value = elements[i].value;
+			    if(name) {
+				    obj.push(name.replace('[', '%5B').replace(']', '%5D') + '=' + value);
+			    }
+		    }
+		    return obj.join("&");
+	    },
 
-        // Create and append the loading layer.
-        Joomla.loadingLayer("load");
-    }
+	    /**
+	     * Initializes JavaScript events on each request, required for AJAX
+	     */
+	    pageInit = function() {
+		    // Attach the validator
+		    [].slice.call(document.querySelectorAll('form.form-validate')).forEach(function(form) {
+			    document.formvalidator.attachToForm(form);
+		    });
 
-    /**
-     * Method to submit a form from the installer via AJAX
-     *
-     * @return {Boolean}
-     */
-    var submitform = function() {
-        var $form = $('#adminForm');
+		    // Create and append the loading layer.
+		    Joomla.loadingLayer("load");
+	    },
 
-        if (busy) {
-            alert(Joomla.JText._('INSTL_PROCESS_BUSY', 'Process is in progress. Please wait...'));
-            return false;
-        }
+	    /**
+	     * Method to submit a form from the installer via AJAX
+	     *
+	     * @return {Boolean}
+	     */
+	    submitform = function() {
+		    var form = document.getElementById('adminForm');
 
-        Joomla.loadingLayer("show");
-        busy = true;
-        Joomla.removeMessages();
-        var data = $form.serialize();
+		    if (busy) {
+			    alert(Joomla.JText._('INSTL_PROCESS_BUSY', 'Process is in progress. Please wait...'));
+			    return false;
+		    }
 
-        $.ajax({
-            type: "POST",
-            url: baseUrl,
-            data: data,
-            dataType: 'json'
-        }).done(function (r) {
-            Joomla.replaceTokens(r.token);
+		    Joomla.loadingLayer("show");
+		    busy = true;
+		    Joomla.removeMessages();
+		    var data = serialiseForm(form);
 
-            if (r.messages) {
-                Joomla.renderMessages(r.messages);
-            }
+		    Joomla.request({
+			    type     : "POST",
+			    url      : baseUrl,
+			    data     : data,
+			    dataType : 'json',
+			    onSuccess: function (response, xhr) {
+			    	response = JSON.parse(response);
 
-            if (r.error) {
-                Joomla.renderMessages({'error': [r.message]});
-                Joomla.loadingLayer("hide");
-                busy = false;
-            } else {
-                var lang = $('html').attr('lang');
+				    if (response.messages) {
+					    Joomla.renderMessages(response.messages);
+				    }
 
-                if (r.lang !== null && lang.toLowerCase() === r.lang.toLowerCase()) {
-                    Install.goToPage(r.data.view, true);
-                } else {
-                    window.location = baseUrl + '?view=' + r.data.view;
-                }
-            }
-        }).fail(function (xhr) {
-            Joomla.loadingLayer("hide");
-            busy = false;
-            try {
-                var r = $.parseJSON(xhr.responseText);
-                Joomla.replaceTokens(r.token);
-                alert(r.message);
-            } catch (e) {
-            }
-        });
+				    if (response.error) {
+					    Joomla.renderMessages({'error': [response.message]});
+					    Joomla.loadingLayer("hide");
+					    busy = false;
+				    } else {
 
-        return false;
-    }
+					    var lang = document.getElementsByTagName('html')[0].getAttribute('lang');
 
-    /**
-     * Method to set the language for the installation UI via AJAX
-     *
-     * @return {Boolean}
-     */
-    var setlanguage = function() {
-        var $form = $('#languageForm');
+					    if (response.lang && lang.toLowerCase() === response.lang.toLowerCase()) {
+					    	if (response.data && response.data.view)
+							    Install.goToPage(response.data.view, true);
+					    } else {
+						    window.location = baseUrl + '?view=' + response.data.view + '&layout=default';
+					    }
+				    }
+			    },
+			    onError  : function (xhr) {
+				    Joomla.loadingLayer("hide");
+				    busy = false;
+				    try {
+					    var r = $.parseJSON(xhr.responseText);
+					    Joomla.replaceTokens(r.token);
+					    alert(r.message);
+				    } catch (e) {
+				    }
+			    }
+		    });
 
-        if (busy) {
-            alert(Joomla.JText._('INSTL_PROCESS_BUSY', 'Process is in progress. Please wait...'));
-            return false;
-        }
+		    return false;
+	    },
 
-        Joomla.loadingLayer("show");
-        busy = true;
-        Joomla.removeMessages();
-        var data = $form.serialize();
+	    /**
+	     * Method to set the language for the installation UI via AJAX
+	     *
+	     * @return {Boolean}
+	     */
+	    setlanguage = function() {
+		    var form = document.getElementById('languageForm');
 
-        $.ajax({
-            type: "POST",
-            url: baseUrl,
-            data: data,
-            dataType: 'json'
-        }).done(function (r) {
-            Joomla.replaceTokens(r.token);
+		    if (busy) {
+			    alert(Joomla.JText._('INSTL_PROCESS_BUSY', 'Process is in progress. Please wait...'));
+			    return false;
+		    }
 
-            if (r.messages) {
-                Joomla.renderMessages(r.messages);
-            }
+		    Joomla.loadingLayer("show");
+		    busy = true;
+		    Joomla.removeMessages();
+		    var data = serialiseForm(form);
 
-            if (r.error) {
-                Joomla.renderMessages({'error': [r.message]});
-                Joomla.loadingLayer("hide");
-                busy = false;
-            } else {
-                var lang = $('html').attr('lang');
+		    Joomla.request({
+			    url: baseUrl,
+			    method: 'POST',
+			    data: data,
+			    perform: true,
+			    onSuccess: function(response, xhr){
+				    response = JSON.parse(response);
 
-                if (lang.toLowerCase() === r.lang.toLowerCase()) {
-                    Install.goToPage(r.data.view, true);
-                } else {
-                    window.location = baseUrl + '?view=' + r.data.view;
-                }
-            }
-        }).fail(function (xhr) {
-            Joomla.loadingLayer("hide");
-            busy = false;
-            try {
-                var r = $.parseJSON(xhr.responseText);
-                Joomla.replaceTokens(r.token);
-                alert(r.message);
-            } catch (e) {
-            }
-        });
+				    Joomla.replaceTokens(response.token);
 
-        return false;
-    }
+				    if (response.messages) {
+					    Joomla.renderMessages(response.messages);
+				    }
 
-    /**
-     * Method to request a different page via AJAX
-     *
-     * @param  page        The name of the view to request
-     * @param  fromSubmit  Unknown use
-     *
-     * @return {Boolean}
-     */
-    var goToPage = function(page, fromSubmit) {
-        if (!fromSubmit) {
-            Joomla.removeMessages();
-            Joomla.loadingLayer("show");
-        }
+				    if (response.error) {
+					    Joomla.renderMessages({'error': [response.message]});
+					    Joomla.loadingLayer("hide");
+					    busy = false;
+				    } else {
 
-        $.ajax({
-            type : "GET",
-            url : baseUrl + '?tmpl=body&view=' + page,
-            dataType : 'html'
-        }).done(function(result) {
-            $('#' + container).html(result);
-            view = page;
+					    var lang = document.getElementsByTagName('html')[0].getAttribute('lang');
 
-            // Attach JS behaviors to the newly loaded HTML
-            pageInit();
+					    if (lang.toLowerCase() === response.lang.toLowerCase()) {
+						    Install.goToPage(response.data.view, true);
+					    } else {
+						    window.location = baseUrl + '?view=' + response.data.view + '&layout=default';
+					    }
+				    }
+			    },
+			    onError:   function(xhr){
+				    Joomla.loadingLayer("hide");
+				    busy = false;
+				    try {
+					    var r = $.parseJSON(xhr.responseText);
+					    Joomla.replaceTokens(r.token);
+					    alert(r.message);
+				    } catch (e) {}
+			    }
+		    });
 
-            Joomla.loadingLayer("hide");
-            busy = false;
+		    return false;
+	    },
 
-            initElements();
-        });
+	    /**
+	     * Method to request a different page via AJAX
+	     *
+	     * @param  page        The name of the view to request
+	     * @param  fromSubmit  Unknown use
+	     *
+	     * @return {Boolean}
+	     */
+	    goToPage = function(page, fromSubmit) {
+		    if (!fromSubmit) {
+			    Joomla.removeMessages();
+			    Joomla.loadingLayer("show");
+		    }
 
-        return false;
-    }
+		    Joomla.request({
+			    url      : baseUrl + '?tmpl=body&view=' + page + '&layout=default',
+			    method   : 'GET',
+			    perform  : true,
+			    onSuccess: function (result, xhr) {
+				    document.getElementById('container-installation').innerHTML = result;
+				    view = page;
 
-    /**
-     * Executes the required tasks to complete site installation
-     *
-     * @param tasks       An array of install tasks to execute
-     * @param step_width  The width of the progress bar element
-     */
-    var install = function(tasks, step_width) {
-        var $progressWrapper = $('#install_progress');
-		var $progress        = $progressWrapper.find('.progress-bar');
+				    // Attach JS behaviors to the newly loaded HTML
+				    pageInit();
 
-        if (!tasks.length) {
-            $progress.css('width', parseFloat($progress.get(0).style.width) + (step_width * 3) + '%');
-            $progressWrapper.val(parseFloat(($progress.get(0).style.width) + (step_width * 3)));
-            goToPage('complete');
-            return;
-        }
+				    Joomla.loadingLayer("hide");
+				    busy = false;
 
-        if (!step_width) {
-            var step_width = (100 / tasks.length) / 11;
-        }
+				    // initElements();
+			    }
+		    });
 
-        var task = tasks.shift();
-        var $form = $('#adminForm');
-        var $tr = $('#install_' + task);
-        var data = $form.serialize();
+		    return false;
+	    },
 
-        $progress.css('width', parseFloat($progress.get(0).style.width) + step_width + '%');
-		$progressWrapper.val(parseFloat(($progress.get(0).style.width) + step_width));
-        $tr.addClass('active');
-        Joomla.loadingLayer("show");
+	    /**
+	     * Executes the required tasks to complete site installation
+	     *
+	     * @param tasks       An array of install tasks to execute
+	     * @param step_width  The width of the progress bar element
+	     */
+	    install = function(tasks, step_width) {
+		    var progressWrapper = document.getElementById('install_progress');
+		    var $progress        = $(progressWrapper).find('.progress-bar');
 
-        $.ajax({
-            type: "POST",
-            url: baseUrl + '?format=json&task=Install' + task,
-            data: data,
-            dataType: 'json'
-        }).done(function (r) {
-            Joomla.replaceTokens(r.token);
-            if (r.messages) {
-                Joomla.renderMessages(r.messages);
-                Install.goToPage(r.data.view, true);
-            } else {
-                $progress.css('width', parseFloat($progress.get(0).style.width) + (step_width * 10) + '%');
-				$progressWrapper.val(parseFloat(($progress.get(0).style.width) + (step_width * 10)));
-                $tr.removeClass('active');
-                Joomla.loadingLayer('hide');
+		    if (!tasks.length) {
+			    $progress.css('width', parseFloat($progress.get(0).style.width) + (step_width * 3) + '%');
+			    progressWrapperesponse.value = parseFloat(($progress.get(0).style.width) + (step_width * 3));
+			    goToPage('complete');
+			    return;
+		    }
 
-                install(tasks, step_width);
-			}
-        }).fail(function (xhr) {
-            Joomla.renderMessages([['', Joomla.JText._('JLIB_DATABASE_ERROR_DATABASE_CONNECT', 'A Database error occurred.')]]);
-            Install.goToPage('summary');
+		    if (!step_width) {
+			    var step_width = (100 / tasks.length) / 11;
+		    }
 
-            try {
-                var r = $.parseJSON(xhr.responseText);
-                Joomla.replaceTokens(r.token);
-                alert(r.message);
-            } catch (e) {
-            }
-        });
-    }
+		    var task = tasks.shift();
+		    var $form = $('#adminForm');
+		    var $tr = $('#install_' + task);
+		    var data = $form.serialize();
 
-    /**
-     * Method to detect the FTP root via AJAX request.
-     *
-     * @param el  The page element requesting the event
-     */
-    var detectFtpRoot = function(el) {
-        var $el = $(el), data = $el.closest('form').serialize();
+		    $progress.css('width', parseFloat($progress.get(0).style.width) + step_width + '%');
+		    progressWrapper.value = parseFloat(($progress.get(0).style.width) + step_width);
+		    $tr.addClass('active');
+		    Joomla.loadingLayer("show");
 
-        $el.attr('disabled', 'disabled');
-        $.ajax({
-            type : "POST",
-            url : baseUrl + '?format=json&task=detectftproot',
-            data : data,
-            dataType : 'json'
-        }).done(function(r) {
-            if (r) {
-                Joomla.replaceTokens(r.token)
-                if (r.error == false) {
-                    $('#jform_ftp_root').val(r.data.root);
-                } else {
-                    alert(r.message);
-                }
-            }
-            $el.removeAttr('disabled');
-        }).fail(function(xhr) {
-            try {
-                var r = $.parseJSON(xhr.responseText);
-                Joomla.replaceTokens(r.token);
-                alert(xhr.status + ': ' + r.message);
-            } catch (e) {
-                alert(xhr.status + ': ' + xhr.statusText);
-            }
-        });
-    }
+		    Joomla.request({
+			    type: "POST",
+			    url : baseUrl + '?task=Install' + task  + '&layout=default',
+			    data: data,
+			    perform: true,
+			    onSuccess: function(response, xhr){
+				    response = JSON.parse(response);
 
-    /**
-     * Method to verify the supplied FTP settings are valid via AJAX request.
-     *
-     * @param el  The page element requesting the event
-     */
-    var verifyFtpSettings = function(el) {
-        // make the ajax call
-        var $el = $(el), data = $el.closest('form').serialize();
+				    Joomla.replaceTokens(response.token);
+				    if (response.messages) {
+					    Joomla.renderMessages(response.messages);
+					    Install.goToPage(response.data.view, true);
+				    } else {
+					    $progress.css('width', parseFloat($progress.get(0).style.width) + (step_width * 10) + '%');
+					    progressWrapper.value = parseFloat(($progress.get(0).style.width) + (step_width * 10));
+					    $tr.removeClass('active');
+					    Joomla.loadingLayer('hide');
 
-        $el.attr('disabled', 'disabled');
+					    install(tasks, step_width);
+				    }
+			    },
+			    onError:   function(xhr){
+				    Joomla.renderMessages([['', Joomla.JText._('JLIB_DATABASE_ERROR_DATABASE_CONNECT', 'A Database error occurred.')]]);
+				    Install.goToPage('summary');
 
-        $.ajax({
-            type : "POST",
-            url : baseUrl + '?format=json&task=verifyftpsettings',
-            data : data,
-            dataType : 'json'
-        }).done(function(r) {
-            if (r) {
-                Joomla.replaceTokens(r.token)
-                if (r.error == false) {
-                    alert(Joomla.JText._('INSTL_FTP_SETTINGS_CORRECT', 'Settings correct'));
-                } else {
-                    alert(r.message);
-                }
-            }
-            $el.removeAttr('disabled');
-        }).fail(function(xhr) {
-            try {
-                var r = $.parseJSON(xhr.responseText);
-                Joomla.replaceTokens(r.token);
-                alert(xhr.status + ': ' + r.message);
-            } catch (e) {
-                alert(xhr.status + ': ' + xhr.statusText);
-            }
-        });
-    }
+				    try {
+					    var r = $.parseJSON(xhr.responseText);
+					    Joomla.replaceTokens(r.token);
+					    alert(r.message);
+				    } catch (e) {
+				    }
+			    }
+		    });
+	    },
 
-    /**
-     * Method to remove the installation Folder after a successful installation.
-     *
-     * @param el  The page element requesting the event
-     */
-    var removeFolder = function(el) {
-        var $el = $(el), $languages = $("#languages"), $defaultError = $('#theDefaultError'), $defualtErrorMessage = $('#theDefaultErrorMessage'), data = 'format: json&' + $el.closest('form').serialize();
+	    /**
+	     * Method to detect the FTP root via AJAX request.
+	     *
+	     * @param el  The page element requesting the event
+	     */
+	    detectFtpRoot = function(el) {
+		    var $el = $(el), data = $el.closest('form').serialize();
 
-        if ($languages.length) {
-            $languages.fadeOut();
-        }
+		    $el.attr('disabled', 'disabled');
 
-        $el.attr('disabled', 'disabled');
-        $defaultError.hide();
+		    Joomla.request({
+			    type: "POST",
+			    url : baseUrl + '?task=Install' + task  + '&layout=default',
+			    data: data,
+			    perform: true,
+			    onSuccess: function(response, xhr){
+				    var r = JSON.parse(response);
 
-        $.ajax({
-            type : "POST",
-            url : baseUrl + '?task=removefolder',
-            data : data,
-            dataType : 'json'
-        }).done(function(r) {
-            if (r) {
-                Joomla.replaceTokens(r.token);
-                if (r.error === false) {
-                    $el.val(r.data.text);
-                    $el.attr('onclick', '').unbind('click');
-                    $el.attr('disabled', 'disabled');
-                    // Stop keep alive requests
-                    window.keepAlive = function() {
-                    };
-                } else {
-                    $defaultError.show();
-                    $defualtErrorMessage.html(r.message);
-                    $el.removeAttr('disabled');
-                }
-            } else {
-                $defaultError.show();
-                $defualtErrorMessage.html(r);
-                $el.attr('disabled', 'disabled');
-            }
-        }).fail(function(xhr) {
-            try {
-                var r = $.parseJSON(xhr.responseText);
-                Joomla.replaceTokens(r.token);
-                $('#theDefaultError').show();
-                $('#theDefaultErrorMessage').html(r.message);
-            } catch (e) {
-            }
-            $el.removeAttr('disabled');
-        });
-    }
+				    if (r) {
+					    Joomla.replaceTokens(r.token)
+					    if (r.error == false) {
+						    $('#jform_ftp_root').val(r.data.root);
+					    } else {
+						    alert(r.message);
+					    }
+				    }
+				    $el.removeAttr('disabled');
+			    },
+			    onError:   function(xhr){
+				    try {
+					    var r = $.parseJSON(xhr.responseText);
+					    Joomla.replaceTokens(r.token);
+					    alert(xhr.status + ': ' + r.message);
+				    } catch (e) {
+					    alert(xhr.status + ': ' + xhr.statusText);
+				    }
+			    }
+		    });
+	    },
 
-    var toggle = function(id, el, value) {
-        var val = $('input[name="jform[' + el + ']"]:checked').val(), 
-			$id = $('#' + id);
-        if (val === value.toString()) {
-            $id.show();
-        } else {
-            $id.hide();
-        }
-    }
+	    /**
+	     * Method to verify the supplied FTP settings are valid via AJAX request.
+	     *
+	     * @param el  The page element requesting the event
+	     */
+	    verifyFtpSettings = function(el) {
+		    // make the ajax call
+		    var $el = $(el), data = $el.closest('form').serialize();
 
-    /**
-     * Initializes the Installation class
-     *
-     * @param _container  The name of the container which the view is rendered in
-     * @param _base       The URL of the current page
-     */
-    var initialize = function(_container, _base) {
-        $ = jQuery.noConflict();
-        busy = false;
-        container = _container;
-        baseUrl = _base;
-        view = '';
+		    $el.attr('disabled', 'disabled');
 
-        pageInit();
-    }
-    initialize(_container, _base);
+		    Joomla.request({
+			    type : "POST",
+			    url : baseUrl + '?format=json&task=verifyftpsettings' + '&layout=default',
+			    data: data,
+			    perform: true,
+			    onSuccess: function(response, xhr){
+				    var r = JSON.parse(response);
 
-    return {
-        submitform : submitform,
-        setlanguage : setlanguage,
-        goToPage : goToPage,
-        install : install,
-        detectFtpRoot : detectFtpRoot,
-        verifyFtpSettings : verifyFtpSettings,
-        removeFolder : removeFolder,
-        toggle : toggle
-    }
-}
+				    if (r) {
+					    Joomla.replaceTokens(r.token)
+					    if (r.error == false) {
+						    alert(Joomla.JText._('INSTL_FTP_SETTINGS_CORRECT', 'Settings correct'));
+					    } else {
+						    alert(r.message);
+					    }
+				    }
+				    $el.removeAttr('disabled');
+			    },
+			    onError:   function(xhr){
+				    try {
+					    var r = $.parseJSON(xhr.responseText);
+					    Joomla.replaceTokens(r.token);
+					    alert(xhr.status + ': ' + r.message);
+				    } catch (e) {
+					    alert(xhr.status + ': ' + xhr.statusText);
+				    }
+			    }
+		    });
+	    },
 
-/**
- * Initializes the elements
- */
-function initElements()
-{
-	(function($){
-		$('.hasTooltip').tooltip({html:true});
+	    /**
+	     * Method to remove the installation Folder after a successful installation.
+	     *
+	     * @param el  The page element requesting the event
+	     */
+	    removeFolder = function(el) {
+		    var $el = $(el), $languages = $("#languages"), $defaultError = $('#theDefaultError'), $defualtErrorMessage = $('#theDefaultErrorMessage'), data = 'format: json&' + $el.closest('form').serialize();
 
-		// Turn radios into btn-group
-		$('.radio.btn-group label').addClass('btn');
+		    if ($languages.length) {
+			    $languages.fadeOut();
+		    }
 
-		$('fieldset.btn-group').each(function() {
-			var $self = $(this);
-			// Handle disabled, prevent clicks on the container, and add disabled style to each button
-			if ($self.prop('disabled'))
-			{
-				$self.css('pointer-events', 'none').off('click');
-				$self.find('.btn').addClass('disabled');
-			}
-		});
+		    $el.attr('disabled', 'disabled');
+		    $defaultError.hide();
 
-		$('.btn-group label:not(.active)').on('click', function()
-		{
-			var label = $(this),
-			    input = $('#' + label.attr('for'));
 
-			if (!input.prop('checked'))
-			{
-				label.closest('.btn-group').find('label').removeClass('active btn-success btn-danger btn-primary');
+		    Joomla.request({
+			    type : "POST",
+			    url : baseUrl + '?task=removefolder' + '&layout=default',
+			    data: data,
+			    dataType : 'json',
+			    perform: true,
+			    onSuccess: function(response, xhr){
+				    var r = JSON.parse(response);
 
-				if (label.closest('.btn-group').hasClass('btn-group-reverse'))
-				{
-					if (input.val() == '')
-					{
-						// Check for the sample data "No" button
-						if (input.attr('id') == 'jform_sample_file0')
-						{
-							label.addClass('active btn-danger');
-						}
-						else
-						{
-							label.addClass('active btn-primary');
-						}
-					}
-					else if (input.val() == 0)
-					{
-						label.addClass('active btn-danger');
-					}
-					else
-					{
-						label.addClass('active btn-success');
-					}
-				}
-				else
-				{
-					if (input.val() == '')
-					{
-						label.addClass('active btn-primary');
-					}
-					else if (input.val() == 0)
-					{
-						label.addClass('active btn-success');
-					}
-					else
-					{
-						label.addClass('active btn-danger');
-					}
-				}
-				input.prop('checked', true);
-			}
-		});
+				    if (r) {
+					    Joomla.replaceTokens(r.token);
+					    if (r.error === false) {
+						    $el.val(r.data.text);
+						    $el.attr('onclick', '').unbind('click');
+						    $el.attr('disabled', 'disabled');
+						    // Stop keep alive requests
+						    window.keepAlive = function() {
+						    };
+					    } else {
+						    $defaultError.show();
+						    $defualtErrorMessage.html(r.message);
+						    $el.removeAttr('disabled');
+					    }
+				    } else {
+					    $defaultError.show();
+					    $defualtErrorMessage.html(r);
+					    $el.attr('disabled', 'disabled');
+				    }
+			    },
+			    onError:   function(xhr){
+				    try {
+					    var r = $.parseJSON(xhr.responseText);
+					    Joomla.replaceTokens(r.token);
+					    $('#theDefaultError').show();
+					    $('#theDefaultErrorMessage').html(r.message);
+				    } catch (e) {
+				    }
+				    $el.removeAttr('disabled');
+			    }
+		    });
+	    },
 
-		$('.btn-group input[checked="checked"]').each(function()
-		{
-			var $self  = $(this),
-			    parent = $self.parents('.btn-group'),
-			    attrId = $self.attr('id');
+	    toggle = function(id, el, value) {
+		    var val = $('input[name="jform[' + el + ']"]:checked').val(),
+		        $id = $('#' + id);
+		    if (val === value.toString()) {
+			    $id.show();
+		    } else {
+			    $id.hide();
+		    }
+	    },
 
-			if (parent.hasClass('btn-group-reverse'))
-			{
-				if ($self.val() == '')
-				{
-					$('label[for="' + attrId + '"]').addClass('active btn-primary');
-				}
-				else if ($self.val() == 0)
-				{
-					$('label[for="' + attrId + '"]').addClass('active btn-danger');
-				}
-				else
-				{
-					$('label[for="' + attrId + '"]').addClass('active btn-success');
-				}
-			}
-			else
-			{
-				if ($self.val() == '')
-				{
-					$('label[for="' + attrId + '"]').addClass('active btn-primary');
-				}
-				else if ($self.val() == 0)
-				{
-					$('label[for="' + attrId + '"]').addClass('active btn-success');
-				}
-				else
-				{
-					$('label[for="' + attrId + '"]').addClass('active btn-danger');
-				}
-			}
-		});
-	})(jQuery);
-}
+	    options = {
+		    // The language used
+		    language: "",
+
+		    // Admin
+		    adminName: "",
+		    // adminPassword: "",
+		    adminEmail: "",
+
+		    // Site
+		    siteName: "",
+		    siteDescription: "",
+		    siteOffline: false,
+
+		    // Database
+		    dbType: "MySQLi",
+		    dbLocation: "localhost",
+		    dbPrefix: Joomla.makeRandomDbPrefix(),
+		    dbBackup: true,
+		    dbName: "",
+		    dbUsername: "",
+		    dbPassword: "",
+
+		    // Extra
+		    sampleData: false,
+		    extraLanguages: [],
+		    components: [],
+		    modules: [],
+		    plugins: [],
+		    templates: [],
+		    libraries: []
+	    },
+
+	    /**
+	     * Initializes the Installation class
+	     *
+	     * @param _container  The name of the container which the view is rendered in
+	     * @param _base       The URL of the current page
+	     */
+	    initialize = function(_container, _base) {
+		    busy = false;
+		    container = _container;
+		    baseUrl = _base;
+		    view = '';
+
+		    // Merge options from the session storage
+		    Joomla.extend(this.options, sessionStorage.getItem('installation-data'));
+
+		    pageInit();
+	    };
+
+	initialize(_container, _base);
+
+	return {
+		submitform : submitform,
+		setlanguage : setlanguage,
+		goToPage : goToPage,
+		install : install,
+		detectFtpRoot : detectFtpRoot,
+		verifyFtpSettings : verifyFtpSettings,
+		removeFolder : removeFolder,
+		toggle : toggle
+	}
+};
+
+// /**
+//  * Initializes the elements
+//  */
+// function initElements()
+// {
+// 	"use strict";
+// 	var hidables = document.querySelectorAll('.optional-entries');
+//
+// 	for (var i = 0; i < hidables.length; i++) {
+// 		hidables[i].style.display = 'none';
+// 	}
+//
+// 	var hideAble = document.querySelector('.hidables');
+// 	if (hideAble) {
+// 		hideAble.addEventListener('click', function(e) {
+//
+// 			hidables = document.querySelectorAll('.optional-entries');
+// 			for (var i = 0; i < hidables.length; i++) {
+// 				if (hidables[i].style.display === 'none') {
+// 					hidables[i].style.display = 'block';
+// 					e.target.innerHTML = '<span class="fa fa-eye-slash"></span> '  + e.target.getAttribute('data-simple');
+// 				} else {
+// 					hidables[i].style.display = 'none';
+// 					e.target.innerHTML = '<span class="fa fa-exclamation-triangle"></span> '  + e.target.getAttribute('data-advanced');
+// 				}
+// 			}
+// 		});
+// 	}
+// }
 
 // Init on dom content loaded event
 document.addEventListener('DOMContentLoaded', function() {
 
+	document.getElementById('container-installation').classList.remove('no-js');
+
+
 	// Init the elements
-	initElements();
+	// initElements();
+
+	Joomla.makeRandomDbPrefix = function() {
+		var symbols = '0123456789abcdefghijklmnopqrstuvwxyz', letters = 'abcdefghijklmnopqrstuvwxyz';
+		var prefix = letters[Math.floor(Math.random() * 24)];
+
+		for (var i = 0; i < 4; i++ ) {
+			prefix += symbols[Math.floor(Math.random() * 34)];
+		}
+
+		return prefix + '_';
+	};
+
+	// Initialize the installation data
+	Joomla.installation.data = {
+		// The language used
+		language: "",
+
+		// Admin
+		adminName: "",
+		// adminPassword: "",
+		adminEmail: "",
+
+		// Site
+		siteName: "",
+		siteDescription: "",
+		siteOffline: false,
+
+		// Database
+		dbType: "MySQLi",
+		dbLocation: "localhost",
+		dbPrefix: Joomla.makeRandomDbPrefix(),
+		dbBackup: true,
+		dbName: "",
+		dbUsername: "",
+		dbPassword: "",
+
+		// Extra
+		sampleData: false,
+		extraLanguages: [],
+		components: [],
+		modules: [],
+		plugins: [],
+		templates: [],
+		libraries: []
+	};
+
 
 	// Init installation
-	var installOptions  = Joomla.getOptions('system.installation'),
-	    installurl = installOptions.url ? installOptions.url.replace(/&amp;/g, '&') : 'index.php';
-
-	window.Install = new Installation('container-installation', installurl);
+	window.Install = new Joomla.installation(
+		Joomla.getOptions('system.installation'),
+		Joomla.getOptions('system.installation').url ? Joomla.getOptions('system.installation').url.replace(/&amp;/g, '&') : 'index.php'
+	);
 });

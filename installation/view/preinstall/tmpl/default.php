@@ -9,7 +9,6 @@
 defined('_JEXEC') or die;
 
 /* @var InstallationViewPreinstallHtml $this */
-var_dump('TEST');
 ?>
 <form action="index.php" method="post" id="languageForm">
 	<div class="btn-toolbar justify-content-end">

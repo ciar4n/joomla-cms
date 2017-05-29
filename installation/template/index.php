@@ -18,18 +18,14 @@ JHtml::_('stylesheet', 'media/vendor/font-awesome/css/font-awesome.min.css');
 // Output as HTML5
 $this->setHtml5(true);
 
-// Load the JavaScript behaviors
-JHtml::_('bootstrap.framework');
-
+JHtml::_('behavior.core');
 JHtml::_('behavior.keepalive');
 JHtml::_('behavior.formvalidator');
-JHtml::_('behavior.core');
 
 // Add installation js
 JHtml::_('script', 'installation/template/js/installation.js', array('version' => 'auto'));
 
 // Add Stylesheets
-JHtml::_('bootstrap.loadCss', true, $this->direction);
 JHtml::_('stylesheet', 'installation/template/css/template.css', array('version' => 'auto'));
 
 // Load JavaScript message titles
@@ -55,16 +51,8 @@ $this->addScriptOptions('system.installation', array('url' => JRoute::_('index.p
 <!DOCTYPE html>
 <html lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>">
 	<head>
-		<jdoc:include type="head" />
-		<script>
-			jQuery(function()
-			{
-				// Delay instantiation after document.formvalidation and other dependencies loaded
-				window.setTimeout(function(){
-					window.Install = new Installation('container-installation', '<?php echo JUri::current(); ?>');
-				}, 500);
-			});
-		</script>
+		<jdoc:include type="metas" />
+		<jdoc:include type="styles" />
 	</head>
 	<body data-basepath="<?php echo JUri::root(true); ?>">
 		<?php // Header ?>
@@ -83,15 +71,16 @@ $this->addScriptOptions('system.installation', array('url' => JRoute::_('index.p
 			<jdoc:include type="message" />
 			<div id="javascript-warning">
 				<noscript>
-					<div class="alert alert-danger">
+					<div class="alert alert-danger text-center">
 						<?php echo JText::_('INSTL_WARNJAVASCRIPT'); ?>
 					</div>
 				</noscript>
 			</div>
-			<div id="container-installation">
+			<div id="container-installation" class="container-installation flex no-js">
 				<jdoc:include type="component" />
 			</div>
 			<hr>
 		</div>
+		<jdoc:include type="scripts" />
 	</body>
 </html>

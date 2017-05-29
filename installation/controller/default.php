@@ -38,6 +38,9 @@ class InstallationControllerDefault extends JControllerBase
 			$defaultView = 'remove';
 		}
 
+		// Are we allowed to proceed?
+		$tmpModel = new InstallationModelSetup();
+
 		$vName   = $this->getInput()->getWord('view', $defaultView);
 		$vFormat = $app->getDocument()->getType();
 		$lName   = $this->getInput()->getWord('layout', 'default');
@@ -47,44 +50,39 @@ class InstallationControllerDefault extends JControllerBase
 			$this->getInput()->set('view', $defaultView);
 		}
 
-		switch ($vName)
+		if ($tmpModel->getOptions())
 		{
-			case 'preinstall':
-				$model        = new InstallationModelSetup;
-				$checkOptions = false;
-				$options      = $model->getOptions();
+			if ($vName !== 'preinstall')
+			{
+				$app->redirect('index.php?view=preinstall');
+			}
 
-				if ($model->getPhpOptionsSufficient())
-				{
-					$app->redirect('index.php');
-				}
-
-				break;
-
-			case 'languages':
-			case 'defaultlanguage':
-				$model        = new InstallationModelLanguages;
-				$checkOptions = false;
-				$options      = [];
-
-				break;
-
-			default:
-				$model        = new InstallationModelSetup;
-				$checkOptions = true;
-				$options      = $model->getOptions();
-
-				if (!$model->getPhpOptionsSufficient())
-				{
-					$app->redirect('index.php?view=preinstall');
-				}
-
-				break;
+			$vName = 'preinstall';
+			$model        = new InstallationModelSetup;
 		}
-
-		if ($vName != $defaultView && ($checkOptions && empty($options)))
+		else
 		{
-			$app->redirect('index.php');
+			switch ($vName)
+			{
+				case 'languages':
+				case 'defaultlanguage':
+					$model        = new InstallationModelLanguages;
+					$checkOptions = false;
+					$options      = [];
+
+					break;
+
+				default:
+					$model        = new InstallationModelSetup;
+					$checkOptions = true;
+
+					break;
+			}
+
+			if ($vName != $defaultView && ($checkOptions && empty($options)))
+			{
+				$app->redirect('index.php');
+			}
 		}
 
 		// Register the layout paths for the view
