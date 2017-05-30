@@ -57,17 +57,22 @@ $this->addScriptOptions('system.installation', array('url' => JRoute::_('index.p
 	<body data-basepath="<?php echo JUri::root(true); ?>">
 		<?php // Header ?>
 		<div class="header">
-			<img src="<?php echo $this->baseurl ?>/template/images/joomla.png" alt="Joomla">
-			<hr>
-			<h5>
-				<?php // Fix wrong display of Joomla!® in RTL language ?>
-				<?php $joomla  = '<a href="https://www.joomla.org" target="_blank">Joomla!</a><sup>' . (JFactory::getLanguage()->isRtl() ? '&#x200E;' : '') . '</sup>'; ?>
-				<?php $license = '<a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.html" target="_blank" rel="noopener noreferrer">' . JText::_('INSTL_GNU_GPL_LICENSE') . '</a>'; ?>
-				<?php echo JText::sprintf('JGLOBAL_ISFREESOFTWARE', $joomla, $license); ?>
-			</h5>
+			<div class="container container-header d-flex align-items-center justify-content-center">
+				<img src="<?php echo $this->baseurl ?>/template/images/logo.svg" alt="Joomla" class="logo"/>
+			</div>
 		</div>
 		<?php // Container ?>
-		<div class="container">
+		<div class="container container-main">
+			<ul class="nav-steps">
+				<li class="step" id="site " data-step="1">
+					<a class="nav-link" href="#">Configuration</a></li>
+				<li class="step" data-step="2">
+					<a class="nav-link"  id="database" href="#" >Database</a>
+				</li>
+				<li class="step disabled " id="summary " data-step="3">
+					<a class="nav-link disabled">Overview</a>
+				</li>
+			</ul>
 			<jdoc:include type="message" />
 			<div id="javascript-warning">
 				<noscript>
