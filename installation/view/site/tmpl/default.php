@@ -39,7 +39,11 @@ defined('_JEXEC') or die;
 				</div>
 				<div class="col-md-8 offset-md-2">
 					<?php // Disables autocomplete ?> <input type="password" style="display:none">
-					<?php echo $this->form->getInput('admin_password'); ?>
+					<div class="input-group">
+						<?php echo $this->form->getInput('admin_password'); ?>
+						<span class="input-group-addon fa fa-eye"></span>
+					</div>
+					
 					<p class="form-text text-muted small"><?php echo JText::_('INSTL_ADMIN_PASSWORD_DESC'); ?></p>
 				</div>
 			</div>

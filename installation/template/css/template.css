@@ -8713,21 +8713,19 @@ form {
 .container-header {
   position: relative;
   height: 230px;
-  background-color: #173149;
-  box-shadow: 0 0 80px rgba(0, 0, 0, 0.4); }
+  background-color: #1c3d5c; }
 
 .container-main {
   position: relative;
   z-index: 1060;
   padding-top: 100px;
-  margin-top: -20px;
   margin-bottom: 100px;
   background-color: #fff;
-  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.1), inset 0 7px 0 #e8e6e6; }
+  box-shadow: 0 0 80px rgba(0, 0, 0, 0.1), inset 0 7px 0 #e8e6e6; }
 
 .header {
   color: #fff;
-  background-color: #1b3956;
+  background-color: #1c3d5c;
   background-repeat: no-repeat;
   box-shadow: 0 7px 0 0 #2a5c8b; }
   .header .logo {
