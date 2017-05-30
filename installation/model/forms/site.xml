@@ -131,6 +131,7 @@
 					class="form-control"
 					label="INSTL_DATABASE_NAME_LABEL"
 					required="true"
+			        default="joomla_db"
 			/>
 		</fieldset>
 
