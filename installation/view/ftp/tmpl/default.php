@@ -10,7 +10,6 @@ defined('_JEXEC') or die;
 
 /* @var InstallationViewDefault $this */
 ?>
-<?php echo JHtml::_('InstallationHtml.helper.stepbar'); ?>
 <form action="index.php" method="post" id="adminForm" class="form-validate">
 	<div class="btn-toolbar justify-content-end">
 		<div class="btn-group">
