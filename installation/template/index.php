@@ -59,6 +59,17 @@ $this->addScriptOptions('system.installation', array('url' => JRoute::_('index.p
 		<div class="header">
 			<div class="container container-header d-flex align-items-center justify-content-center">
 				<img src="<?php echo $this->baseurl ?>/template/images/logo.svg" alt="Joomla" class="logo"/>
+
+				<form class="lang-select">
+				  <label for="jform_language" class="control-label"><?php echo JText::_('INSTL_SELECT_LANGUAGE_TITLE'); ?></label>
+				  <select id="jform_language" class="custom-select required ml-2">
+				    <option selected>Choose...</option>
+				    <option value="1">One</option>
+				    <option value="2">Two</option>
+				    <option value="3">Three</option>
+				  </select>
+				</form>
+
 			</div>
 		</div>
 		<?php // Container ?>

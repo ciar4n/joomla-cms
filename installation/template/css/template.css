@@ -8857,3 +8857,14 @@ form {
     transform: translateY(-50%); }
   .preinstall-alert p {
     margin-bottom: 0; }
+
+.lang-select {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: auto;
+  padding: 10px; }
+  .lang-select .custom-select {
+    height: 30px;
+    padding: .3rem 1.75rem .3rem .75rem;
+    line-height: 1; }

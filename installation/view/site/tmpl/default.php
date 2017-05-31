@@ -11,7 +11,19 @@ defined('_JEXEC') or die;
 
 /* @var InstallationViewDefault $this */
 ?>
-
+<!-- <form action="index.php" method="post" id="languageForm">
+	<div class="col-md-11 col-lg-12 container">
+		<div class="form-group row">
+			<div class="col-md-8 offset-md-2">
+				<label for="jform_language"><?php echo JText::_('INSTL_SELECT_LANGUAGE_TITLE'); ?></label>
+				<?php echo $this->form->getInput('language'); ?>
+			</div>
+		</div>
+		<input type="hidden" name="task" value="setlanguage">
+		<input type="hidden" name="format" value="json">
+		<?php echo JHtml::_('form.token'); ?>
+	</div>
+</form> -->
 <form action="index.php" method="post" id="adminForm" class="form-validate">
 	<div class="row">
 		<div class="col-md-11 col-lg-12 container">
