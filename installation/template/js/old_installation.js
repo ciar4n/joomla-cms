@@ -548,13 +548,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		// The language used
 		language: "",
 
-		// FTP
-		ftpUsername: "",
-		ftpPassword: "",
-		ftpHost: "",
-		ftpPort: 21,
-		ftpRoot: "/",
-
 		// Admin
 		adminName: "",
 		// adminPassword: "",

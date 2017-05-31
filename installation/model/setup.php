@@ -292,7 +292,7 @@ class InstallationModelSetup extends JModelBase
 
 		$option = new stdClass;
 		$option->label  = JText::sprintf('INSTL_WRITABLE', 'configuration.php');
-		$option->state  = false; //$writable;
+		$option->state  = $writable;
 		$option->notice = $option->state ? null : JText::_('INSTL_NOTICEYOUCANSTILLINSTALL');
 		$options[] = $option;
 

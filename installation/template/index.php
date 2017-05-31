@@ -19,6 +19,7 @@ JHtml::_('stylesheet', 'media/vendor/font-awesome/css/font-awesome.min.css');
 $this->setHtml5(true);
 
 JHtml::_('behavior.core');
+JHtml::_('jquery.framework');
 JHtml::_('behavior.keepalive');
 JHtml::_('behavior.formvalidator');
 
@@ -63,10 +64,6 @@ $this->addScriptOptions('system.installation', array('url' => JRoute::_('index.p
 				<form class="lang-select">
 				  <label for="jform_language" class="control-label"><?php echo JText::_('INSTL_SELECT_LANGUAGE_TITLE'); ?></label>
 				  <select id="jform_language" class="custom-select required ml-2">
-				    <option selected>Choose...</option>
-				    <option value="1">One</option>
-				    <option value="2">Two</option>
-				    <option value="3">Three</option>
 				  </select>
 				</form>
 

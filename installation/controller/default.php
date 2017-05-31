@@ -50,7 +50,7 @@ class InstallationControllerDefault extends JControllerBase
 			$this->getInput()->set('view', $defaultView);
 		}
 
-		if ($tmpModel->getOptions())
+		if (!$tmpModel->getPhpOptionsSufficient())
 		{
 			if ($vName !== 'preinstall')
 			{
