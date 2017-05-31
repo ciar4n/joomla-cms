@@ -109,21 +109,23 @@ defined('_JEXEC') or die;
 				</thead>
 				<tbody>
 					<?php foreach ($this->settings as $setting) : ?>
-					<tr>
-						<td>
-							<?php echo $setting->label; ?>
-						</td>
-						<td>
-							<span class="badge badge-success disabled">
-								<?php echo JText::_($setting->recommended ? 'JON' : 'JOFF'); ?>
-							</span>
-						</td>
-						<td>
-							<span class="badge badge-<?php echo ($setting->state === $setting->recommended) ? 'success' : 'warning'; ?>">
-								<?php echo JText::_($setting->state ? 'JON' : 'JOFF'); ?>
-							</span>
-						</td>
-					</tr>
+						<?php if ($setting->state !== $setting->recommended) : ?>
+							<tr>
+								<td>
+									<?php echo $setting->label; ?>
+								</td>
+								<td>
+									<span class="badge badge-success disabled">
+										<?php echo JText::_($setting->recommended ? 'JON' : 'JOFF'); ?>
+									</span>
+								</td>
+								<td>
+									<span class="badge badge-<?php echo ($setting->state === $setting->recommended) ? 'success' : 'warning'; ?>">
+										<?php echo JText::_($setting->state ? 'JON' : 'JOFF'); ?>
+									</span>
+								</td>
+							</tr>
+							<?php endif; ?>
 				<?php endforeach; ?>
 				</tbody>
 				<tfoot>
