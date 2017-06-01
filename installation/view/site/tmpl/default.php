@@ -11,23 +11,23 @@ defined('_JEXEC') or die;
 
 /* @var InstallationViewDefault $this */
 ?>
-<form action="index.php" method="post" id="languageForm" class="lang-select">
-	<div class="col-md-11 col-lg-12 container">
-		<div class="form-group row">
-			<div class="col-md-8 offset-md-2">
-				<label for="jform_language"><?php echo JText::_('INSTL_SELECT_LANGUAGE_TITLE'); ?></label>
-				<?php echo $this->form->getInput('language'); ?>
-			</div>
-		</div>
-		<input type="hidden" name="task" value="setlanguage">
-		<input type="hidden" name="format" value="json">
-		<?php echo JHtml::_('form.token'); ?>
-	</div>
-</form>
+
 <form action="index.php" method="post" id="adminForm" class="form-validate">
 	<div class="row">
 		<div class="col-md-11 col-lg-12 container">
 			<div id="installStep1" class="install-step active">
+				<form action="index.php" method="post" id="languageForm" class="lang-select">
+					<div class="form-group row">
+						<div class="col-md-8 offset-md-2">
+							<label for="jform_language"><?php echo JText::_('INSTL_SELECT_LANGUAGE_TITLE'); ?></label>
+							<?php echo $this->form->getInput('language'); ?>
+							<p class="form-text text-muted small"><?php echo JText::_('INSTL_SELECT_LANGUAGE_DESC'); ?></p>
+						</div>
+					</div>
+					<input type="hidden" name="task" value="setlanguage">
+					<input type="hidden" name="format" value="json">
+					<?php echo JHtml::_('form.token'); ?>
+				</form>
 				<div class="form-group row">
 					<div class="col-md-8 offset-md-2">			
 						<?php echo $this->form->getLabel('site_name'); ?>
@@ -35,8 +35,8 @@ defined('_JEXEC') or die;
 						<p class="form-text text-muted small"><?php echo JText::_('INSTL_SITE_NAME_DESC'); ?></p>
 					</div>
 				</div>
-				<div class="col-md-8 offset-md-2 justify-content-end d-flex">
-					<a class="btn btn-success" id="step1" href="#installStep2"><?php echo JText::_('JNEXT'); ?> <span class="fa fa-chevron-right" aria-hidden="true"></span></a>
+				<div class="col-md-8 offset-md-2 justify-content-end d-flex form-group">
+					<button class="btn btn-success" id="step1"><?php echo JText::_('JNEXT'); ?> <span class="fa fa-chevron-right" aria-hidden="true"></span></button>
 				</div>
 			</div>
 			<div id="installStep2" class="install-step" data-scroll>
@@ -65,8 +65,8 @@ defined('_JEXEC') or die;
 						<p class="form-text text-muted small"><?php echo JText::_('INSTL_ADMIN_PASSWORD_DESC'); ?></p>
 					</div>
 				</div>
-				<div class="col-md-8 offset-md-2 justify-content-end d-flex">
-					<a class="btn btn-success" href="#installStep3" id="step2"><?php echo JText::_('JNEXT'); ?> <span class="fa fa-chevron-right" aria-hidden="true"></span></a>
+				<div class="col-md-8 offset-md-2 justify-content-end d-flex form-group">
+					<button class="btn btn-success" id="step2"><?php echo JText::_('JNEXT'); ?> <span class="fa fa-chevron-right" aria-hidden="true"></span></button>
 				</div>
 			</div>
 			<div id="installStep3" class="install-step" data-scroll>
@@ -105,7 +105,7 @@ defined('_JEXEC') or die;
 						<p class="form-text text-muted small"><?php echo JText::_('INSTL_DATABASE_NAME_DESC'); ?></p>
 					</div>
 				</div>
-				<div class="col-md-8 offset-md-2 justify-content-end d-flex">
+				<div class="col-md-8 offset-md-2 justify-content-end d-flex form-group">
 					<button class="btn btn-success" onclick="Joomla.checkInputs()" ?><?php echo JText::_('Install'); ?> <span class="fa fa-chevron-right" aria-hidden="true"></span></button>
 				</div>
 			</div>

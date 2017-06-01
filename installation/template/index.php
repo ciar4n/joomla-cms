@@ -58,22 +58,22 @@ $this->addScriptOptions('system.installation', array('url' => JRoute::_('index.p
 	<body data-basepath="<?php echo JUri::root(true); ?>">
 		<?php // Header ?>
 		<div class="header">
-			<div id="top-header" class="container container-header d-flex align-items-center justify-content-center">
+			<div id="top-header" class="container container-header d-flex justify-content-center">
 				<img src="<?php echo $this->baseurl ?>/template/images/logo.svg" alt="Joomla" class="logo"/>
+				<ul class="nav-steps">
+					<li class="step active" id="site" data-step="1">
+						<a class="nav-link" href="#"></a></li>
+					<li class="step" data-step="2">
+						<a class="nav-link"  id="database" href="#" ></a>
+					</li>
+					<li class="step disabled " id="summary " data-step="3">
+						<a class="nav-link disabled"></a>
+					</li>
+				</ul>
 			</div>
 		</div>
 		<?php // Container ?>
 		<div class="container container-main">
-			<ul class="nav-steps">
-				<li class="step" id="site " data-step="1">
-					<a class="nav-link" href="#">Configuration</a></li>
-				<li class="step" data-step="2">
-					<a class="nav-link"  id="database" href="#" >Database</a>
-				</li>
-				<li class="step disabled " id="summary " data-step="3">
-					<a class="nav-link disabled">Overview</a>
-				</li>
-			</ul>
 			<jdoc:include type="message" />
 			<div id="javascript-warning">
 				<noscript>
