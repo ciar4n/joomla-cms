@@ -48,20 +48,25 @@ defined('_JEXEC') or die;
 	<?php echo JHtml::_('form.token'); ?>
 </form>
 
-<script type="text/javascript">
+<?php
+$tasks = implode("','", $this->tasks);
+JFactory::getDocument()->addScriptDeclaration(
+<<<JS
 	jQuery(function()
 	{
-		doInstall();
+		Install.install(['Config']); //
+		window.location = window.location.replace(/installation\/index\?view=install/g) + '?view=remove'
 	});
-	function doInstall()
-	{
-		if (document.getElementById('install_progress') != null)
-		{
-			Install.install(['<?php echo implode("','", $this->tasks); ?>']);
-		}
-		else
-		{
-			(function(){doInstall();}).delay(500);
-		}
-	}
-</script>
+	// function doInstall()
+	// {
+	// 	if (document.getElementById('install_progress'))
+	// 	{
+	// 		Install.install(['Database', 'Config']);
+	// 	}
+	// 	else
+	// 	{
+	// 		(function(){doInstall();}).delay(500);
+	// 	}
+	// }
+JS
+);

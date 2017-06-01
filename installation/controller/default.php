@@ -71,6 +71,7 @@ class InstallationControllerDefault extends JControllerBase
 
 					break;
 				case 'summary':
+				case 'install':
 					$model        = new InstallationModelSetup;
 //					InstallationModelConfiguration;
 					$checkOptions = true;
@@ -87,14 +88,14 @@ class InstallationControllerDefault extends JControllerBase
 				default:
 					$model        = new InstallationModelSetup;
 					$checkOptions = true;
-					$options      = [];
+					$options      = $model->getOptions();
 
 					break;
 			}
 
 			if ($vName != $defaultView && ($checkOptions && empty($options)))
 			{
-				$app->redirect('index.php');
+//				$app->redirect('index.php');
 			}
 		}
 

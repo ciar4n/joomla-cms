@@ -510,7 +510,7 @@ console.log(data)
 // Init on dom content loaded event
 document.addEventListener('DOMContentLoaded', function() {
 
-	var url = document.location;
+	var url = Joomla.getOptions('system.installation').url ? Joomla.getOptions('system.installation').url.replace(/&amp;/g, '&') : 'index.php';
 	// Show the container
 	if (document.getElementById('container-installation')) {
 		document.getElementById('container-installation').classList.remove('no-js');
@@ -645,10 +645,26 @@ document.addEventListener('DOMContentLoaded', function() {
 		document.getElementById('jform_db_prefix').value = Joomla.makeRandomDbPrefix();
 console.log(Joomla.makeRandomDbPrefix())
 
-		Install.install(['config', 'database'])
+		window.location = url + '?view=install'
+		// Install.goToPage('summary');
+		// Install.install(['Config']);
 
 		//if (state === true) Install.install(['config']);
 	};
+
+
+	if (document.getElementById('submitForm')) {
+		document.getElementById('submitForm').addEventListener('click', function(e) {
+			e.preventDefault();
+			Joomla.checkInputs();
+
+		})
+	}
+
+	var langSel = document.getElementById('languageForm');
+
+	if (langSel)
+		document.getElementById('top-header').appendChild(langSel);
 
 	var inputs = [].slice.call(document.querySelectorAll('input[type="password"], input[type="text"], input[type="email"], select'));
 	console.log(inputs)

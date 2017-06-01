@@ -350,11 +350,24 @@ $prev = $useftp ? 'ftp' : 'database';
 	<?php echo JHtml::_('form.token'); ?>
 </form>
 
-<script type="text/javascript">
-	jQuery('input[name="jform[summary_email]"]').each(function(index, el) {
-        jQuery(el).parent().on('click', function() {
-            Install.toggle('email_passwords', 'summary_email', 0);
-        });
-        Install.toggle('email_passwords', 'summary_email', 1);
-    });
-</script>
+<?php
+JFactory::getDocument()->addScriptDeclaration(
+	<<<JS
+	jQuery(function()
+	{
+		Install.submitform();
+		window.location = window.location.replace(/installation\/index\?view=install/g) + '?view=remove'
+	});
+	// function doInstall()
+	// {
+	// 	if (document.getElementById('install_progress'))
+	// 	{
+	// 		Install.install(['Database', 'Config']);
+	// 	}
+	// 	else
+	// 	{
+	// 		(function(){doInstall();}).delay(500);
+	// 	}
+	// }
+JS
+);

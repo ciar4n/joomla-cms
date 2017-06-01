@@ -63,7 +63,7 @@ class InstallationModelConfiguration extends JModelBase
 		$registry = new Registry;
 
 		// Site settings.
-		$registry->set('offline', $options->site_offline);
+		$registry->set('offline', '0');
 		$registry->set('offline_message', JText::_('INSTL_STD_OFFLINE_MSG'));
 		$registry->set('display_offline_message', 1);
 		$registry->set('offline_image', '');
@@ -121,7 +121,7 @@ class InstallationModelConfiguration extends JModelBase
 		$registry->set('cache_platformprefix', 0);
 
 		// Meta settings.
-		$registry->set('MetaDesc', $options->site_metadesc);
+		$registry->set('MetaDesc', '');
 		$registry->set('MetaKeys', '');
 		$registry->set('MetaTitle', 1);
 		$registry->set('MetaAuthor', 1);
