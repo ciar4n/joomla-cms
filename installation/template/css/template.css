@@ -3269,8 +3269,10 @@ tbody.collapse.show {
 
 @media (min-width: 576px) {
   .card-columns {
-    column-count: 3;
-    column-gap: 1.25rem; }
+    -moz-column-count: 3;
+         column-count: 3;
+    -moz-column-gap: 1.25rem;
+         column-gap: 1.25rem; }
     .card-columns .card {
       display: inline-block;
       width: 100%;
@@ -8717,6 +8719,7 @@ form {
   position: relative;
   z-index: 1060;
   padding-top: 100px;
+  padding-bottom: 80px;
   margin-bottom: 100px;
   background-color: #fff;
   box-shadow: 0 0 80px rgba(0, 0, 0, 0.1), inset 0 7px 0 #e8e6e6; }
@@ -8869,3 +8872,8 @@ form {
 
 .hidden {
   display: none; }
+
+.install-step {
+  display: none; }
+  .install-step.active {
+    display: block; }
