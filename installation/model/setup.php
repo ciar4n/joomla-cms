@@ -313,7 +313,7 @@ class InstallationModelSetup extends JModelBase
 
 		foreach ($options as $option)
 		{
-			if (is_null($option->notice))
+			if (!is_null($option->notice))
 			{
 				$result = ($result && $option->state);
 			}

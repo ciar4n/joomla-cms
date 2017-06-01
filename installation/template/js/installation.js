@@ -170,24 +170,28 @@ Joomla.installation = function(_container, _base) {
 			    Joomla.removeMessages();
 			    Joomla.loadingLayer("show");
 		    }
+console.log(page)
+		    if (page === 'summary') {
+			    window.location = baseUrl + '?view=' + page + '&layout=default';
+		    } else {
+			    Joomla.request({
+			       url      : baseUrl + '?tmpl=body&view=' + page + '&layout=default',
+			       method   : 'GET',
+			       perform  : true,
+			       onSuccess: function (result, xhr) {
+			        document.getElementById('container-installation').innerHTML = result;
+			        view = page;
 
-		    Joomla.request({
-			    url      : baseUrl + '?tmpl=body&view=' + page + '&layout=default',
-			    method   : 'GET',
-			    perform  : true,
-			    onSuccess: function (result, xhr) {
-				    document.getElementById('container-installation').innerHTML = result;
-				    view = page;
+			        // Attach JS behaviors to the newly loaded HTML
+			        pageInit();
 
-				    // Attach JS behaviors to the newly loaded HTML
-				    pageInit();
+			        Joomla.loadingLayer("hide");
+			        busy = false;
 
-				    Joomla.loadingLayer("hide");
-				    busy = false;
-
-				    // initElements();
-			    }
-		    });
+			        // initElements();
+			       }
+			    });
+		    }
 
 		    return false;
 	    },
@@ -203,9 +207,9 @@ Joomla.installation = function(_container, _base) {
 		    var $progress        = jQuery(progressWrapper).find('.progress-bar');
 
 		    if (!tasks.length) {
-			    $progress.css('width', parseFloat($progress.get(0).style.width) + (step_width * 3) + '%');
-			    progressWrapperesponse.value = parseFloat(($progress.get(0).style.width) + (step_width * 3));
-			    goToPage('complete');
+			    // $progress.css('width', parseFloat($progress.get(0).style.width) + (step_width * 3) + '%');
+			    // progressWrapperesponse.value = parseFloat(($progress.get(0).style.width) + (step_width * 3));
+			    goToPage('summary');
 			    return;
 		    }
 
@@ -218,9 +222,9 @@ Joomla.installation = function(_container, _base) {
 		    var $tr = jQuery('#install_' + task);
 		    var data = $form.serialize();
 
-		    $progress.css('width', parseFloat($progress.get(0).style.width) + step_width + '%');
-		    progressWrapper.value = parseFloat(($progress.get(0).style.width) + step_width);
-		    $tr.addClass('active');
+		    // $progress.css('width', parseFloat($progress.get(0).style.width) + step_width + '%');
+		    // progressWrapper.value = parseFloat(($progress.get(0).style.width) + step_width);
+		    // $tr.addClass('active');
 		    Joomla.loadingLayer("show");
 
 		    Joomla.request({
@@ -230,15 +234,16 @@ Joomla.installation = function(_container, _base) {
 			    perform: true,
 			    onSuccess: function(response, xhr){
 				    response = JSON.parse(response);
-
+				    console.log(response.data.view)
 				    Joomla.replaceTokens(response.token);
 				    if (response.messages) {
 					    Joomla.renderMessages(response.messages);
+					    console.log(response.data.view)
 					    Install.goToPage(response.data.view, true);
 				    } else {
-					    $progress.css('width', parseFloat($progress.get(0).style.width) + (step_width * 10) + '%');
-					    progressWrapper.value = parseFloat(($progress.get(0).style.width) + (step_width * 10));
-					    $tr.removeClass('active');
+					    // $progress.css('width', parseFloat($progress.get(0).style.width) + (step_width * 10) + '%');
+					    // progressWrapper.value = parseFloat(($progress.get(0).style.width) + (step_width * 10));
+					    // $tr.removeClass('active');
 					    Joomla.loadingLayer('hide');
 
 					    install(tasks, step_width);
@@ -584,6 +589,48 @@ document.addEventListener('DOMContentLoaded', function() {
 		libraries: []
 	};
 
+	// Are we in the main form?
+	if (document.getElementById('jform_admin_password')) {
+		var elemmm = document.getElementById('jform_admin_password').parentNode;
+		elemmm.querySelector('span.input-group-addon').addEventListener('click', function(e) {
+			var input = document.getElementById('jform_admin_password');
+			if (e.target.classList.contains('fa-eye')) {
+				e.target.classList.remove('fa-eye');
+				e.target.classList.add('fa-eye-slash');
+				input.type = 'text';
+			} else {
+				e.target.classList.add('fa-eye');
+				e.target.classList.remove('fa-eye-slash');
+				input.type = 'password';
+			}
+		})
+	}
+
+	Joomla.checkInputs = function() {
+		var inputs = [].slice.call(document.querySelectorAll('input[type="password"], input[type="text"], input[type="email"], select')),
+		    state = true;
+		inputs.forEach(function(item) {
+			if (!item.valid) state = false;
+		});
+
+		document.getElementById('jform_admin_password2').value = document.getElementById('jform_admin_password').value;
+		// document.getElementById('jform_admin_password2').type = 'text';
+		document.getElementById('jform_db_prefix').value = Joomla.makeRandomDbPrefix();
+console.log(Joomla.makeRandomDbPrefix())
+
+		Install.install(['config', 'database'])
+
+		//if (state === true) Install.install(['config']);
+	};
+
+	var langSel = document.getElementById('languageForm');
+
+	if (langSel)
+		document.getElementById('top-header').appendChild(langSel);
+
+	var inputs = [].slice.call(document.querySelectorAll('input[type="password"], input[type="text"], input[type="email"], select'));
+	console.log(inputs)
+	//<select id="jform_language" class="custom-select required ml-2"></select>
 
 	// Init installation
 	window.Install = new Joomla.installation(

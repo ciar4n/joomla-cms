@@ -39,7 +39,7 @@ class InstallationControllerDefault extends JControllerBase
 		}
 
 		// Are we allowed to proceed?
-		$tmpModel = new InstallationModelSetup();
+		$model = new InstallationModelSetup;
 
 		$vName   = $this->getInput()->getWord('view', $defaultView);
 		$vFormat = $app->getDocument()->getType();
@@ -50,7 +50,7 @@ class InstallationControllerDefault extends JControllerBase
 			$this->getInput()->set('view', $defaultView);
 		}
 
-		if (!$tmpModel->getPhpOptionsSufficient())
+		if (!$model->getPhpOptionsSufficient())
 		{
 			if ($vName !== 'preinstall')
 			{
@@ -58,7 +58,6 @@ class InstallationControllerDefault extends JControllerBase
 			}
 
 			$vName = 'preinstall';
-			$model        = new InstallationModelSetup;
 		}
 		else
 		{
@@ -71,10 +70,24 @@ class InstallationControllerDefault extends JControllerBase
 					$options      = [];
 
 					break;
+				case 'summary':
+					$model        = new InstallationModelSetup;
+//					InstallationModelConfiguration;
+					$checkOptions = true;
+					$options      = $model->getOptions();
 
+					break;
+				case 'remove':
+					$model        = new InstallationModelSetup;
+//					InstallationModelConfiguration;
+					$checkOptions = true;
+					$options      = $model->getOptions();
+
+					break;
 				default:
 					$model        = new InstallationModelSetup;
 					$checkOptions = true;
+					$options      = [];
 
 					break;
 			}
