@@ -510,6 +510,7 @@ console.log(data)
 // Init on dom content loaded event
 document.addEventListener('DOMContentLoaded', function() {
 
+	var url = document.location;
 	// Show the container
 	if (document.getElementById('container-installation')) {
 		document.getElementById('container-installation').classList.remove('no-js');
@@ -602,6 +603,32 @@ document.addEventListener('DOMContentLoaded', function() {
 				e.target.classList.add('fa-eye');
 				e.target.classList.remove('fa-eye-slash');
 				input.type = 'password';
+			}
+		})
+	}
+
+	if (document.getElementById('step1')) {
+		document.getElementById('step1').addEventListener('click', function(e) {
+			e.preventDefault();
+			if (document.getElementById('installStep2')) {
+				document.getElementById('installStep2').classList.add('active');
+				document.getElementById('step1').parentNode.removeChild(document.getElementById('step1'));
+
+				document.getElementById('installStep2').scrollIntoView();
+
+
+			}
+		})
+	}
+
+	if (document.getElementById('step2')) {
+		document.getElementById('step2').addEventListener('click', function(e) {
+			// e.preventDefault();
+			if (document.getElementById('installStep3')) {
+				document.getElementById('installStep3').classList.add('active');
+				document.getElementById('step2').parentNode.removeChild(document.getElementById('step2'))
+
+				document.getElementById('installStep3').scrollIntoView();
 			}
 		})
 	}

@@ -36,10 +36,10 @@ defined('_JEXEC') or die;
 					</div>
 				</div>
 				<div class="col-md-8 offset-md-2 justify-content-end d-flex">
-					<button class="btn btn-success" ?><?php echo JText::_('Next'); ?> <span class="fa fa-chevron-right" aria-hidden="true"></span></button>
+					<a class="btn btn-success" id="step1" href="#installStep2"><?php echo JText::_('JNEXT'); ?> <span class="fa fa-chevron-right" aria-hidden="true"></span></a>
 				</div>
 			</div>
-			<div id="installStep2" class="install-step">
+			<div id="installStep2" class="install-step" data-scroll>
 				<div class="form-group row">
 					<div class="col-md-8 offset-md-2">
 						<?php echo $this->form->getLabel('admin_user'); ?>
@@ -66,10 +66,10 @@ defined('_JEXEC') or die;
 					</div>
 				</div>
 				<div class="col-md-8 offset-md-2 justify-content-end d-flex">
-					<button class="btn btn-success" ?><?php echo JText::_('Next'); ?> <span class="fa fa-chevron-right" aria-hidden="true"></span></button>
+					<a class="btn btn-success" href="#installStep3" id="step2"><?php echo JText::_('JNEXT'); ?> <span class="fa fa-chevron-right" aria-hidden="true"></span></a>
 				</div>
 			</div>
-			<div id="installStep3" class="install-step">
+			<div id="installStep3" class="install-step" data-scroll>
 				<div class="form-group row">
 					<div class="col-md-8 offset-md-2">
 						<?php echo $this->form->getLabel('db_type'); ?>
