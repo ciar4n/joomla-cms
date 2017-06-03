@@ -1,4 +1,39 @@
-@charset "UTF-8";#flying-focus{position:absolute;margin:0;background:0 0;transition-property:left,top,width,height;transition-timing-function:cubic-bezier(0,1,0,1);visibility:hidden;pointer-events:none;box-shadow:0 0 2px 3px #78aeda,0 0 2px #78aeda inset;border-radius:2px}#flying-focus.flying-focus_visible{visibility:visible;z-index:9999}@media screen and (-webkit-min-device-pixel-ratio:0){#flying-focus #flying-focus{box-shadow:none;outline:5px auto -webkit-focus-ring-color;outline-offset:-3px}}.flying-focus_target{outline:0!important}.flying-focus_target::-moz-focus-inner{border:0!important}/*!
+@charset "UTF-8";#flying-focus{position:absolute;margin:0;background:0 0;transition-property:left,top,width,height;transition-timing-function:cubic-bezier(0,1,0,1);visibility:hidden;pointer-events:none;box-shadow:0 0 2px 3px #78aeda,0 0 2px #78aeda inset;border-radius:2px}#flying-focus.flying-focus_visible{visibility:visible;z-index:9999}@media screen and (-webkit-min-device-pixel-ratio:0){#flying-focus #flying-focus{box-shadow:none;outline:5px auto -webkit-focus-ring-color;outline-offset:-3px}}.flying-focus_target{outline:0!important}.flying-focus_target::-moz-focus-inner{border:0!important}
+
+
+#content-grid {
+	max-width: 1040px;
+	margin: 0 auto;
+  display: grid;
+  grid-template-areas: "top-a top-a top-a top-a"
+  					   				 "top-b top-b top-b top-b"
+  					   				 "side-l main-t main-t side-r"
+  					   				 "side-l comp comp side-r"
+  					   				 "side-l bread bread side-r"
+  					   				 "side-l main-b main-b side-r"
+  					   				 "bot-a bot-a bot-a bot-a"
+  					   				 "bot-b bot-b bot-b bot-b"
+  					   				 "footer footer footer footer";
+  grid-template-columns: 25% 25% 25% 25%;
+}
+
+#top-a    				{ grid-area: top-a }
+#top-b    				{ grid-area: top-b }
+#sidebar-left    	{ grid-area: side-l }
+#sidebar-right    { grid-area: side-r }
+#component			 	{ grid-area: comp }
+#main-top			   	{ grid-area: main-t }
+#main-bottom		 	{ grid-area: main-b }
+#bradcrumbs			 	{ grid-area: bread }
+#bottom-a			 		{ grid-area: bot-a }
+#bottom-b			 		{ grid-area: bot-b }
+#footer			 			{ grid-area: footer }
+
+.grid-block {
+	padding: 8px;
+}
+
+/*!
  * Bootstrap v4.0.0-alpha.6 (https://getbootstrap.com)
  * Copyright 2011-2017 The Bootstrap Authors
  * Copyright 2011-2017 Twitter, Inc.

@@ -64,3 +64,14 @@
 .btn:focus {
   cursor: pointer;
 }
+
+//CSS Grid
+.content-grid {
+  display: grid;
+  grid-template-areas: "top-a top-a top-a top-a"
+                       "top-b top-b top-b top-b"
+                       "board board"
+                       "ctrls ctrls";
+  // grid-template-columns: auto 1fr;
+  // grid-template-rows: 1fr;
+}

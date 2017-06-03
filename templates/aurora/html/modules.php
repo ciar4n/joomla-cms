@@ -36,6 +36,8 @@ function modChrome_no($module, &$params, &$attribs)
 
 function modChrome_default($module, &$params, &$attribs)
 {
+	// var_dump($module);
+	$modulePos	   = $module->position;
 	$moduleTag     = $params->get('module_tag', 'div');
 	$bootstrapSize = (int) $params->get('bootstrap_size', 12);
 	$bootstrapSize   = ($bootstrapSize) ? 'col-md-' . $bootstrapSize : 'col-md-12';
@@ -44,7 +46,7 @@ function modChrome_default($module, &$params, &$attribs)
 
 	if ($module->content)
 	{
-		echo '<' . $moduleTag . ' class="' . $bootstrapSize . ' mb-3">';
+		echo '<' . $moduleTag . ' class="' . $modulePos . ' grid-block">';
 		echo '<div class="card' . htmlspecialchars($params->get('moduleclass_sfx')) . '">';
 		if ($module->showtitle && $headerClass !== 'card-title')
 		{
@@ -64,6 +66,7 @@ function modChrome_default($module, &$params, &$attribs)
 
 function modChrome_cardGrey($module, &$params, &$attribs)
 {
+	$modulePos	   = $module->position;
 	$moduleTag     = $params->get('module_tag', 'div');
 	$bootstrapSize = (int) $params->get('bootstrap_size', 12);
 	$bootstrapSize   = ($bootstrapSize) ? 'col-md-' . $bootstrapSize : 'col-md-12';
@@ -72,7 +75,7 @@ function modChrome_cardGrey($module, &$params, &$attribs)
 
 	if ($module->content)
 	{
-		echo '<' . $moduleTag . ' class="' . $bootstrapSize . ' mb-3">';
+		echo '<' . $moduleTag . ' class="' . $modulePos . ' grid-block">';
 		echo '<div class="card card-grey' . htmlspecialchars($params->get('moduleclass_sfx')) . '">';
 		if ($module->showtitle && $headerClass !== 'card-title')
 		{
