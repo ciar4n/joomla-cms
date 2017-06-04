@@ -61,6 +61,11 @@ class InstallationControllerDefault extends JControllerBase
 		}
 		else
 		{
+			if ($vName === 'preinstall')
+			{
+				$app->redirect('index.php?view=site');
+			}
+
 			switch ($vName)
 			{
 				case 'languages':
@@ -86,7 +91,8 @@ class InstallationControllerDefault extends JControllerBase
 
 					break;
 				default:
-					$model        = new InstallationModelSetup;
+
+;					$model        = new InstallationModelSetup;
 					$checkOptions = true;
 					$options      = $model->getOptions();
 
@@ -95,7 +101,7 @@ class InstallationControllerDefault extends JControllerBase
 
 			if ($vName != $defaultView && ($checkOptions && empty($options)))
 			{
-//				$app->redirect('index.php');
+				$app->redirect('index.php');
 			}
 		}
 

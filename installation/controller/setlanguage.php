@@ -56,7 +56,7 @@ class InstallationControllerSetlanguage extends JControllerBase
 
 		// Get the posted values from the request and validate them.
 		$data   = $this->getInput()->post->get('jform', [], 'array');
-		$return = $model->validate($data, 'preinstall');
+		$return = $data;//$model->validate($data, 'preinstall');
 
 		$r = new stdClass;
 

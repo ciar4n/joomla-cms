@@ -19,6 +19,7 @@ Joomla.installation = function(_container, _base) {
 				    obj.push(name.replace('[', '%5B').replace(']', '%5D') + '=' + value);
 			    }
 		    }
+		    //name.replace('[', '%5B').replace(']', '%5D')
 		    return obj.join("&");
 	    },
 
@@ -109,11 +110,14 @@ Joomla.installation = function(_container, _base) {
 			    return false;
 		    }
 
+		    var sel = document.getElementById('jform_language');
+
+		    console.log(sel.value)
 		    Joomla.loadingLayer("show");
 		    busy = true;
 		    Joomla.removeMessages();
 		    var data = serialiseForm(form);
-
+console.log(data)
 		    Joomla.request({
 			    url: baseUrl,
 			    method: 'POST',
@@ -121,12 +125,12 @@ Joomla.installation = function(_container, _base) {
 			    perform: true,
 			    onSuccess: function(response, xhr){
 				    response = JSON.parse(response);
-
+console.log(response)
 				    Joomla.replaceTokens(response.token);
 
-				    if (response.messages) {
-					    Joomla.renderMessages(response.messages);
-				    }
+				    // if (response.messages) {
+					 //    Joomla.renderMessages(response.messages);
+				    // }
 
 				    if (response.error) {
 					    Joomla.renderMessages({'error': [response.message]});
@@ -135,11 +139,12 @@ Joomla.installation = function(_container, _base) {
 				    } else {
 
 					    var lang = document.getElementsByTagName('html')[0].getAttribute('lang');
-
+console.log(response.data.view)
+					    window.location = baseUrl + '?view=' + response.data.view + '&layout=default';
 					    if (lang.toLowerCase() === response.lang.toLowerCase()) {
-						    Install.goToPage(response.data.view, true);
+						   // Install.goToPage(response.data.view, true);
 					    } else {
-						    window.location = baseUrl + '?view=' + response.data.view + '&layout=default';
+						   // window.location = baseUrl + '?view=' + response.data.view + '&layout=default';
 					    }
 				    }
 			    },
@@ -653,21 +658,21 @@ console.log(Joomla.makeRandomDbPrefix())
 	};
 
 
-	if (document.getElementById('submitForm')) {
-		document.getElementById('submitForm').addEventListener('click', function(e) {
-			e.preventDefault();
-			Joomla.checkInputs();
+	// if (document.getElementById('submitForm')) {
+	// 	document.getElementById('submitForm').addEventListener('click', function(e) {
+	// 		e.preventDefault();
+	// 		Joomla.checkInputs();
+	//
+	// 	})
+	// }
 
-		})
-	}
+	// var langSel = document.getElementById('languageForm');
+	//
+	// if (langSel)
+	// 	document.getElementById('top-header').appendChild(langSel);
 
-	var langSel = document.getElementById('languageForm');
-
-	if (langSel)
-		document.getElementById('top-header').appendChild(langSel);
-
-	var inputs = [].slice.call(document.querySelectorAll('input[type="password"], input[type="text"], input[type="email"], select'));
-	console.log(inputs)
+	// var inputs = [].slice.call(document.querySelectorAll('input[type="password"], input[type="text"], input[type="email"], select'));
+	// console.log(inputs)
 	//<select id="jform_language" class="custom-select required ml-2"></select>
 
 	// Init installation

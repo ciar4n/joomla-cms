@@ -85,51 +85,6 @@ defined('_JEXEC') or die;
 					</div>
 				<?php endif; ?>
 			</div>
-			<div class="col-md-12">
-				<h3 class="text-center"><?php echo JText::_('INSTL_PRECHECK_RECOMMENDED_SETTINGS_TITLE'); ?></h3>
-<!--				<p class="install-text">--><?php //echo JText::_('INSTL_PRECHECK_RECOMMENDED_SETTINGS_DESC'); ?><!--</p>-->
-				<table class="table table-striped table-sm">
-					<thead>
-					<tr>
-						<th>
-							<?php echo JText::_('INSTL_PRECHECK_DIRECTIVE'); ?>
-						</th>
-						<th>
-							<?php echo JText::_('INSTL_PRECHECK_RECOMMENDED'); ?>
-						</th>
-						<th>
-							<?php echo JText::_('INSTL_PRECHECK_ACTUAL'); ?>
-						</th>
-					</tr>
-					</thead>
-					<tbody>
-					<?php foreach ($this->settings as $setting) : ?>
-						<?php if ($setting->state !== $setting->recommended) : ?>
-							<tr>
-								<td>
-									<?php echo $setting->label; ?>
-								</td>
-								<td>
-									<span class="badge badge-success disabled">
-										<?php echo JText::_($setting->recommended ? 'JON' : 'JOFF'); ?>
-									</span>
-								</td>
-								<td>
-									<span class="badge badge-<?php echo ($setting->state === $setting->recommended) ? 'success' : 'warning'; ?>">
-										<?php echo JText::_($setting->state ? 'JON' : 'JOFF'); ?>
-									</span>
-								</td>
-							</tr>
-						<?php endif; ?>
-					<?php endforeach; ?>
-					</tbody>
-					<tfoot>
-					<tr>
-						<td colspan="3"></td>
-					</tr>
-					</tfoot>
-				</table>
-			</div>
 		</div>
 <!--		<div class="btn-toolbar justify-content-end">-->
 <!--			<div class="btn-group">-->

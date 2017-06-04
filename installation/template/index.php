@@ -85,7 +85,6 @@ $this->addScriptOptions('system.installation', array('url' => JRoute::_('index.p
 			<div id="container-installation" class="container-installation flex no-js">
 				<jdoc:include type="component" />
 			</div>
-			<hr>
 		</div>
 		<jdoc:include type="scripts" />
 	</body>
