@@ -8712,49 +8712,32 @@ form {
 
 .container-header {
   position: relative;
-  height: 230px;
+  height: 140px;
   background-color: #1c3d5c; }
 
-.container-main {
-  position: relative;
-  z-index: 1060;
-  padding-top: 100px;
-  padding-bottom: 80px;
-  margin-bottom: 100px;
-  background-color: #fff;
-  box-shadow: 0 0 80px rgba(0, 0, 0, 0.1), inset 0 7px 0 #e8e6e6; }
-
 .header {
+  position: fixed;
+  z-index: 1080;
+  width: 100%;
   color: #fff;
   background-color: #1c3d5c;
   background-repeat: no-repeat;
   box-shadow: 0 7px 0 0 #2a5c8b; }
   .header .logo {
     width: 100%;
-    max-width: 380px;
-    margin-bottom: 20px; }
+    max-width: 280px;
+    margin-bottom: 15px; }
   .header a {
     color: #00afff; }
 
-.install-form {
-  padding: 0 42px; }
-  .install-form form {
-    margin: 30px 0 0; }
-  .install-form input, .install-form textarea, .install-form select {
-    border-color: #b6bcc2; }
-  .install-form .progress {
-    margin-top: 10px; }
-  .install-form .text-muted {
-    color: #2a5c8b !important; }
-
 .nav-steps {
   position: absolute;
-  top: -20px;
+  bottom: -51px;
   left: 0;
   display: table;
-  width: 100%;
+  width: 960px;
   padding: 0 140px;
-  margin: 0;
+  margin: 0 auto;
   color: #182c3e;
   list-style: none;
   table-layout: fixed; }
@@ -8778,16 +8761,22 @@ form {
       height: 3rem;
       margin: 0 auto;
       margin-bottom: .25rem;
+      font-family: "FontAwesome";
       font-size: 1.2rem;
       font-weight: bold;
       line-height: 2.3rem;
       text-align: center;
-      content: attr(data-step);
       background-color: #4882b7;
       background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.1) 100%);
       border: .4rem solid #e8e6e6;
       border-radius: 100%;
       box-shadow: 0 0 1px rgba(0, 0, 0, 0.3), inset 0 0 1px rgba(0, 0, 0, 0.3), inset 1px 1px 1px rgba(255, 255, 255, 0.3); }
+    .nav-steps > li[data-step="1"]::before {
+      content: "\f015"; }
+    .nav-steps > li[data-step="2"]::before {
+      content: "\f007"; }
+    .nav-steps > li[data-step="3"]::before {
+      content: "\f1e6"; }
     .nav-steps > li::after {
       position: absolute;
       top: 1.2rem;
@@ -8800,16 +8789,28 @@ form {
       background: #4882b7; }
     .nav-steps > li:first-child::after {
       display: none; }
-    .nav-steps > li.complete::before, .nav-steps > li.complete::after {
+    .nav-steps > li.active::before, .nav-steps > li.active::after {
       background-color: #7ac143; }
-    .nav-steps > li.active::before {
-      color: #fff;
-      background-color: #f9a541; }
-    .nav-steps > li.disabled {
-      color: #1b3956; }
-      .nav-steps > li.disabled::before, .nav-steps > li.disabled::after {
-        color: #fff;
-        background-color: #4882b7; }
+
+.container-main {
+  position: relative;
+  z-index: 1060;
+  padding-top: 200px;
+  padding-bottom: 80px;
+  margin-bottom: 100px;
+  background-color: #fff;
+  box-shadow: 0 0 80px rgba(0, 0, 0, 0.1), inset 0 7px 0 #e8e6e6; }
+
+.install-form {
+  padding: 0 42px; }
+  .install-form form {
+    margin: 30px 0 0; }
+  .install-form input, .install-form textarea, .install-form select {
+    border-color: #b6bcc2; }
+  .install-form .progress {
+    margin-top: 10px; }
+  .install-form .text-muted {
+    color: #2a5c8b !important; }
 
 .languageForm {
   padding: 0 0 30px; }
@@ -8874,6 +8875,33 @@ form {
   display: none; }
 
 .install-step {
-  display: none; }
-  .install-step.active {
-    display: block; }
+  padding-top: 200px;
+  margin-top: -200px; }
+  .install-step .form-group {
+    opacity: 0;
+    transition: all .3s ease;
+    transform: translateY(30px); }
+  .install-step select {
+    width: 100%;
+    margin-left: 0 !important; }
+
+.active .form-group {
+  opacity: 1;
+  transform: translateY(0); }
+  .active .form-group:first-of-type {
+    transition-delay: .1s; }
+  .active .form-group:nth-of-type(2) {
+    transition-delay: .15s; }
+  .active .form-group:nth-of-type(3) {
+    transition-delay: .2s; }
+  .active .form-group:nth-of-type(4) {
+    transition-delay: .25s; }
+  .active .form-group:nth-of-type(5) {
+    transition-delay: .3s; }
+  .active .form-group:nth-of-type(6) {
+    transition-delay: .35s; }
+
+.btn-success {
+  color: #fff;
+  background-color: #75b544;
+  border-color: #75b544; }

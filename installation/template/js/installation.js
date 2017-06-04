@@ -650,11 +650,6 @@ console.log(Joomla.makeRandomDbPrefix())
 		//if (state === true) Install.install(['config']);
 	};
 
-	var langSel = document.getElementById('languageForm');
-
-	if (langSel)
-		document.getElementById('top-header').appendChild(langSel);
-
 	var inputs = [].slice.call(document.querySelectorAll('input[type="password"], input[type="text"], input[type="email"], select'));
 	console.log(inputs)
 	//<select id="jform_language" class="custom-select required ml-2"></select>
