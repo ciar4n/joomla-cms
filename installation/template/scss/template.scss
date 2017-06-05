@@ -227,7 +227,6 @@ form {
 }
 
 .lang-select {
-  position: absolute;
   top: 0;
   right: 0;
   width: auto;
@@ -240,6 +239,9 @@ form {
 }
 
 .hidden {
+  display: none;
+}
+[hidden="hidden"] {
   display: none;
 }
 

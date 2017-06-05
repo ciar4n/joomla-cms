@@ -45,8 +45,7 @@ Joomla.installation = function(_container, _base) {
 	     * @return {Boolean}
 	     */
 	    submitform = function() {
-		    var form = document.getElementById('adminForm'),
-		        data = serialiseForm(form);
+		    var form = document.getElementById('adminForm');
 
 		    if (busy) {
 			    alert(Joomla.JText._('INSTL_PROCESS_BUSY', 'Process is in progress. Please wait...'));
@@ -56,6 +55,7 @@ Joomla.installation = function(_container, _base) {
 		    Joomla.loadingLayer("show");
 		    busy = true;
 		    Joomla.removeMessages();
+		    var data = serialiseForm(form);
 
 		    Joomla.request({
 			    type     : "POST",
@@ -63,7 +63,7 @@ Joomla.installation = function(_container, _base) {
 			    data     : data,
 			    dataType : 'json',
 			    onSuccess: function (response, xhr) {
-			    	response = JSON.parse(response);
+				    response = JSON.parse(response);
 
 				    if (response.messages) {
 					    Joomla.renderMessages(response.messages);
@@ -76,13 +76,13 @@ Joomla.installation = function(_container, _base) {
 				    } else {
 
 					    var lang = document.getElementsByTagName('html')[0].getAttribute('lang');
-console.log(response.data.view)
+					    console.log(response.data.view)
 					    window.location = baseUrl + '?view=' + response.data.view + '&layout=default';
 					    // if (response.lang && lang.toLowerCase() === response.lang.toLowerCase()) {
 					    // 	if (response.data && response.data.view)
-							//     Install.goToPage(response.data.view, true);
+					    //     Install.goToPage(response.data.view, true);
 					    // } else {
-						 //    window.location = baseUrl + '?view=' + response.data.view + '&layout=default';
+					    //    window.location = baseUrl + '?view=' + response.data.view + '&layout=default';
 					    // }
 				    }
 			    },
@@ -121,7 +121,7 @@ console.log(response.data.view)
 		    busy = true;
 		    Joomla.removeMessages();
 		    var data = serialiseForm(form);
-console.log(data)
+		    console.log(data)
 		    Joomla.request({
 			    url: baseUrl,
 			    method: 'POST',
@@ -129,11 +129,11 @@ console.log(data)
 			    perform: true,
 			    onSuccess: function(response, xhr){
 				    response = JSON.parse(response);
-console.log(response)
+				    console.log(response)
 				    Joomla.replaceTokens(response.token);
 
 				    // if (response.messages) {
-					 //    Joomla.renderMessages(response.messages);
+				    //    Joomla.renderMessages(response.messages);
 				    // }
 
 				    if (response.error) {
@@ -143,12 +143,12 @@ console.log(response)
 				    } else {
 
 					    var lang = document.getElementsByTagName('html')[0].getAttribute('lang');
-console.log(response.data.view)
+					    console.log(response.data.view)
 					    window.location = baseUrl + '?view=' + response.data.view + '&layout=default';
 					    if (lang.toLowerCase() === response.lang.toLowerCase()) {
-						   // Install.goToPage(response.data.view, true);
+						    // Install.goToPage(response.data.view, true);
 					    } else {
-						   // window.location = baseUrl + '?view=' + response.data.view + '&layout=default';
+						    // window.location = baseUrl + '?view=' + response.data.view + '&layout=default';
 					    }
 				    }
 			    },
@@ -179,7 +179,7 @@ console.log(response.data.view)
 			    Joomla.removeMessages();
 			    Joomla.loadingLayer("show");
 		    }
-console.log(page)
+		    console.log(page)
 		    if (page === 'summary') {
 			    window.location = baseUrl + '?view=' + page + '&layout=default';
 		    } else {
@@ -274,61 +274,188 @@ console.log(page)
 		    });
 	    },
 
-	    resolveDatabase = new Promise((resolve, reject) => {
-				    // We call resolve(...) when what we were doing made async successful, and reject(...) when it failed.
-				    // In this example, we use setTimeout(...) to simulate async code.
-				    // In reality, you will probably be using something like XHR or an HTML5 API.
-				    setTimeout(() => {
-					    resolve(JustAlert()); // Yay! Everything went well!
-				    }, 250);
-	    }),
+	    /**
+	     * Method to detect the FTP root via AJAX request.
+	     *
+	     * @param el  The page element requesting the event
+	     */
+	    detectFtpRoot = function(el) {
+		    var $el = jQuery(el), data = $el.closest('form').serialize();
 
-	    checkDbCredentials = () => {
-		    Joomla.loadingLayer("show");
-
-		    var form = document.getElementById('adminForm'),
-		        data = serialiseForm(form);
-
-		    console.log(data)
-		    console.log(baseUrl)
+		    $el.attr('disabled', 'disabled');
+		    var task = 'detectftproot';
 		    Joomla.request({
 			    type: "POST",
-			    url : baseUrl + '?task=Database',
+			    url : baseUrl + '?task=Install' + task  + '&layout=default',
 			    data: data,
 			    perform: true,
 			    onSuccess: function(response, xhr){
-				    response = JSON.parse(response);
+				    var r = JSON.parse(response);
 
-				    Joomla.replaceTokens(response.token);
-				    if (response.messages) {
-					    Joomla.renderMessages(response.messages);
-					    Install.goToPage(response.data.view, true);
-				    } else {
-					    $progress.css('width', parseFloat($progress.get(0).style.width) + (step_width * 10) + '%');
-					    progressWrapper.value = parseFloat(($progress.get(0).style.width) + (step_width * 10));
-					    $tr.removeClass('active');
-					    Joomla.loadingLayer('hide');
-
-					    install(tasks, step_width);
+				    if (r) {
+					    Joomla.replaceTokens(r.token)
+					    if (r.error == false) {
+						    jQuery('#jform_ftp_root').val(r.data.root);
+					    } else {
+						    alert(r.message);
+					    }
 				    }
+				    $el.removeAttr('disabled');
 			    },
 			    onError:   function(xhr){
-				    Joomla.renderMessages([['', Joomla.JText._('JLIB_DATABASE_ERROR_DATABASE_CONNECT', 'A Database error occurred.')]]);
-				    Install.goToPage('summary');
-
 				    try {
 					    var r = $.parseJSON(xhr.responseText);
 					    Joomla.replaceTokens(r.token);
-					    alert(r.message);
+					    alert(xhr.status + ': ' + r.message);
 				    } catch (e) {
+					    alert(xhr.status + ': ' + xhr.statusText);
 				    }
 			    }
 		    });
 	    },
 
-	    JustAlert = () => {
-	    	alert('Yay');
+	    /**
+	     * Method to verify the supplied FTP settings are valid via AJAX request.
+	     *
+	     * @param el  The page element requesting the event
+	     */
+	    verifyFtpSettings = function(el) {
+		    // make the ajax call
+		    var $el = jQuery(el), data = $el.closest('form').serialize();
+		    console.log(data)
+		    $el.attr('disabled', 'disabled');
+
+		    Joomla.request({
+			    type : "POST",
+			    url : baseUrl + '?format=json&task=verifyftpsettings' + '&layout=default',
+			    data: data,
+			    perform: true,
+			    onSuccess: function(response, xhr){
+				    var r = JSON.parse(response);
+
+				    if (r) {
+					    Joomla.replaceTokens(r.token)
+					    if (r.error == false) {
+						    alert(Joomla.JText._('INSTL_FTP_SETTINGS_CORRECT', 'Settings correct'));
+					    } else {
+						    alert(r.message);
+					    }
+				    }
+				    $el.removeAttr('disabled');
+			    },
+			    onError:   function(xhr){
+				    try {
+					    var r = $.parseJSON(xhr.responseText);
+					    Joomla.replaceTokens(r.token);
+					    alert(xhr.status + ': ' + r.message);
+				    } catch (e) {
+					    alert(xhr.status + ': ' + xhr.statusText);
+				    }
+			    }
+		    });
 	    },
+
+	    /**
+	     * Method to remove the installation Folder after a successful installation.
+	     *
+	     * @param el  The page element requesting the event
+	     */
+	    removeFolder = function(el) {
+		    var $el = jQuery(el), $languages = jQuery("#languages"), $defaultError = jQuery('#theDefaultError'), $defualtErrorMessage = jQuery('#theDefaultErrorMessage'), data = 'format: json&' + $el.closest('form').serialize();
+
+		    if ($languages.length) {
+			    $languages.fadeOut();
+		    }
+
+		    $el.attr('disabled', 'disabled');
+		    $defaultError.hide();
+
+
+		    Joomla.request({
+			    type : "POST",
+			    url : baseUrl + '?task=removefolder' + '&layout=default',
+			    data: data,
+			    dataType : 'json',
+			    perform: true,
+			    onSuccess: function(response, xhr){
+				    var r = JSON.parse(response);
+
+				    if (r) {
+					    Joomla.replaceTokens(r.token);
+					    if (r.error === false) {
+						    $el.val(r.data.text);
+						    $el.attr('onclick', '').unbind('click');
+						    $el.attr('disabled', 'disabled');
+						    // Stop keep alive requests
+						    window.keepAlive = function() {
+						    };
+					    } else {
+						    $defaultError.show();
+						    $defualtErrorMessage.html(r.message);
+						    $el.removeAttr('disabled');
+					    }
+				    } else {
+					    $defaultError.show();
+					    $defualtErrorMessage.html(r);
+					    $el.attr('disabled', 'disabled');
+				    }
+			    },
+			    onError:   function(xhr){
+				    try {
+					    var r = $.parseJSON(xhr.responseText);
+					    Joomla.replaceTokens(r.token);
+					    jQuery('#theDefaultError').show();
+					    jQuery('#theDefaultErrorMessage').html(r.message);
+				    } catch (e) {
+				    }
+				    $el.removeAttr('disabled');
+			    }
+		    });
+	    },
+
+	    toggle = function(id, el, value) {
+		    var val = jQuery('input[name="jform[' + el + ']"]:checked').val(),
+		        $id = jQuery('#' + id);
+		    if (val === value.toString()) {
+			    $id.show();
+		    } else {
+			    $id.hide();
+		    }
+	    },
+
+	    options = {
+		    // The language used
+		    language: "",
+
+		    // Admin
+		    adminName: "",
+		    // adminPassword: "",
+		    adminEmail: "",
+
+		    // Site
+		    siteName: "",
+		    siteDescription: "",
+		    siteOffline: false,
+
+		    // Database
+		    dbType: "MySQLi",
+		    dbLocation: "localhost",
+		    dbPrefix: Joomla.makeRandomDbPrefix(),
+		    dbBackup: true,
+		    dbName: "",
+		    dbUsername: "",
+		    dbPassword: "",
+
+		    // Extra
+		    sampleData: false,
+		    extraLanguages: [],
+		    components: [],
+		    modules: [],
+		    plugins: [],
+		    templates: [],
+		    libraries: []
+	    },
+
 	    /**
 	     * Initializes the Installation class
 	     *
@@ -344,7 +471,7 @@ console.log(page)
 		    // Merge options from the session storage
 		    Joomla.extend(this.options, sessionStorage.getItem('installation-data'));
 
-		    // pageInit();
+		    pageInit();
 	    };
 
 	initialize(_container, _base);
@@ -354,18 +481,42 @@ console.log(page)
 		setlanguage : setlanguage,
 		goToPage : goToPage,
 		install : install,
-		resolveDatabase : resolveDatabase,
-		checkDbCredentials: checkDbCredentials
-
+		detectFtpRoot : detectFtpRoot,
+		verifyFtpSettings : verifyFtpSettings,
+		removeFolder : removeFolder,
+		toggle : toggle
 	}
-
-// 	myFirstPromise.then((successMessage) => {
-// 		// successMessage is whatever we passed in the resolve(...) function above.
-// 		// It doesn't have to be a string, but if it is only a succeed message, it probably will be.
-// 		alert("Yay! " + successMessage);
-// 	});
-// }
 };
+
+// /**
+//  * Initializes the elements
+//  */
+// function initElements()
+// {
+// 	"use strict";
+// 	var hidables = document.querySelectorAll('.optional-entries');
+//
+// 	for (var i = 0; i < hidables.length; i++) {
+// 		hidables[i].style.display = 'none';
+// 	}
+//
+// 	var hideAble = document.querySelector('.hidables');
+// 	if (hideAble) {
+// 		hideAble.addEventListener('click', function(e) {
+//
+// 			hidables = document.querySelectorAll('.optional-entries');
+// 			for (var i = 0; i < hidables.length; i++) {
+// 				if (hidables[i].style.display === 'none') {
+// 					hidables[i].style.display = 'block';
+// 					e.target.innerHTML = '<span class="fa fa-eye-slash"></span> '  + e.target.getAttribute('data-simple');
+// 				} else {
+// 					hidables[i].style.display = 'none';
+// 					e.target.innerHTML = '<span class="fa fa-exclamation-triangle"></span> '  + e.target.getAttribute('data-advanced');
+// 				}
+// 			}
+// 		});
+// 	}
+// }
 
 // Init on dom content loaded event
 document.addEventListener('DOMContentLoaded', function() {
@@ -421,6 +572,25 @@ document.addEventListener('DOMContentLoaded', function() {
 		ftpPort: 21,
 		ftpRoot: "/",
 
+		// Admin
+		adminName: "",
+		// adminPassword: "",
+		adminEmail: "",
+
+		// Site
+		siteName: "",
+		siteDescription: "",
+		siteOffline: false,
+
+		// Database
+		dbType: "MySQLi",
+		dbLocation: "localhost",
+		dbPrefix: Joomla.makeRandomDbPrefix(),
+		dbBackup: true,
+		dbName: "",
+		dbUsername: "",
+		dbPassword: "",
+
 		// Extra
 		sampleData: false,
 		extraLanguages: [],
@@ -467,7 +637,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		document.getElementById('step2').addEventListener('click', function(e) {
 			// e.preventDefault();
 			if (document.getElementById('installStep3')) {
-				document.getElementById('installStep3').removeAttribute('hidden');
+				document.getElementById('installStep2').removeAttribute('hidden');
 				document.getElementById('installStep3').classList.add('active');
 				document.getElementById('step2').parentNode.removeChild(document.getElementById('step2'))
 
@@ -477,8 +647,6 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 
 	Joomla.checkInputs = function() {
-		alert('yo');
-		return false;
 		var inputs = [].slice.call(document.querySelectorAll('input[type="password"], input[type="text"], input[type="email"], select')),
 		    state = true;
 		inputs.forEach(function(item) {
@@ -488,9 +656,9 @@ document.addEventListener('DOMContentLoaded', function() {
 		document.getElementById('jform_admin_password2').value = document.getElementById('jform_admin_password').value;
 		// document.getElementById('jform_admin_password2').type = 'text';
 		document.getElementById('jform_db_prefix').value = Joomla.makeRandomDbPrefix();
-console.log(Joomla.makeRandomDbPrefix())
-//
-// 		window.location = url + '?view=install'
+		console.log(Joomla.makeRandomDbPrefix())
+
+		window.location = url + '?view=install'
 		// Install.goToPage('summary');
 		// Install.install(['Config']);
 

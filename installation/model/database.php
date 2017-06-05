@@ -26,6 +26,11 @@ class InstallationModelDatabase extends JModelBase
 	 */
 	protected static $userId = 0;
 
+	public function getOptions()
+	{
+		return JFactory::getSession()->get('setup.options', array());
+	}
+
 	/**
 	 * Generates the user ID.
 	 *

@@ -12,10 +12,8 @@ defined('_JEXEC') or die;
 /* @var InstallationViewDefault $this */
 ?>
 
-<form action="index.php" method="post" id="adminForm" class="form-validate">
 	<div class="row">
 		<div class="col-md-11 col-lg-12 container">
-			<div id="installStep1" class="install-step active">
 				<form action="index.php" method="post" id="languageForm" class="lang-select">
 					<div class="form-group row">
 						<div class="col-md-8 offset-md-2">
@@ -28,6 +26,9 @@ defined('_JEXEC') or die;
 					<input type="hidden" name="format" value="json">
 					<?php echo JHtml::_('form.token'); ?>
 				</form>
+
+		<form action="index.php" method="post" id="adminForm" class="form-validate">
+			<div id="installStep1" class="install-step active">
 				<div class="form-group row">
 					<div class="col-md-8 offset-md-2">			
 						<?php echo $this->form->getLabel('site_name'); ?>
@@ -39,7 +40,7 @@ defined('_JEXEC') or die;
 					<button class="btn btn-success" id="step1"><?php echo JText::_('JNEXT'); ?> <span class="fa fa-chevron-right" aria-hidden="true"></span></button>
 				</div>
 			</div>
-			<div id="installStep2" class="install-step" data-scroll>
+			<div id="installStep2" class="install-step">
 				<div class="form-group row">
 					<div class="col-md-8 offset-md-2">
 						<?php echo $this->form->getLabel('admin_user'); ?>
@@ -69,7 +70,7 @@ defined('_JEXEC') or die;
 					<button class="btn btn-success" id="step2"><?php echo JText::_('JNEXT'); ?> <span class="fa fa-chevron-right" aria-hidden="true"></span></button>
 				</div>
 			</div>
-			<div id="installStep3" class="install-step" data-scroll>
+			<div id="installStep3" class="install-step" >
 				<div class="form-group row">
 					<div class="col-md-8 offset-md-2">
 						<?php echo $this->form->getLabel('db_type'); ?>

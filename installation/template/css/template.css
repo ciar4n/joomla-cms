@@ -3269,10 +3269,8 @@ tbody.collapse.show {
 
 @media (min-width: 576px) {
   .card-columns {
-    -moz-column-count: 3;
-         column-count: 3;
-    -moz-column-gap: 1.25rem;
-         column-gap: 1.25rem; }
+    column-count: 3;
+    column-gap: 1.25rem; }
     .card-columns .card {
       display: inline-block;
       width: 100%;
@@ -8861,7 +8859,6 @@ form {
     margin-bottom: 0; }
 
 .lang-select {
-  position: absolute;
   top: 0;
   right: 0;
   width: auto;
@@ -8872,6 +8869,9 @@ form {
     line-height: 1; }
 
 .hidden {
+  display: none; }
+
+[hidden="hidden"] {
   display: none; }
 
 .install-step {
