@@ -213,7 +213,7 @@ console.log(page)
 	     * @param tasks       An array of install tasks to execute
 	     * @param step_width  The width of the progress bar element
 	     */
-	    install = function(tasks, step_width) {
+	    install = function(tasks) {
 		    var progressWrapper = document.getElementById('install_progress');
 		    var $progress        = jQuery(progressWrapper).find('.progress-bar');
 
@@ -224,9 +224,9 @@ console.log(page)
 			    return;
 		    }
 
-		    if (!step_width) {
-			    var step_width = (100 / tasks.length) / 11;
-		    }
+		    // if (!step_width) {
+			 //    var step_width = (100 / tasks.length) / 11;
+		    // }
 
 		    var task = tasks.shift();
 		    var $form = jQuery('#adminForm');
@@ -257,7 +257,7 @@ console.log(page)
 					    // $tr.removeClass('active');
 					    Joomla.loadingLayer('hide');
 
-					    install(tasks, step_width);
+					    install(tasks);
 				    }
 			    },
 			    onError:   function(xhr){
@@ -304,12 +304,8 @@ console.log(page)
 					    Joomla.renderMessages(response.messages);
 					    Install.goToPage(response.data.view, true);
 				    } else {
-					    $progress.css('width', parseFloat($progress.get(0).style.width) + (step_width * 10) + '%');
-					    progressWrapper.value = parseFloat(($progress.get(0).style.width) + (step_width * 10));
-					    $tr.removeClass('active');
 					    Joomla.loadingLayer('hide');
-
-					    install(tasks, step_width);
+					    install(['Database', 'Config']);
 				    }
 			    },
 			    onError:   function(xhr){
@@ -477,8 +473,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 
 	Joomla.checkInputs = function() {
-		alert('yo');
-		return false;
+
 		var inputs = [].slice.call(document.querySelectorAll('input[type="password"], input[type="text"], input[type="email"], select')),
 		    state = true;
 		inputs.forEach(function(item) {
@@ -489,8 +484,11 @@ document.addEventListener('DOMContentLoaded', function() {
 		// document.getElementById('jform_admin_password2').type = 'text';
 		document.getElementById('jform_db_prefix').value = Joomla.makeRandomDbPrefix();
 console.log(Joomla.makeRandomDbPrefix())
+
+		Install.checkDbCredentials();
+		Install.install(['config']);
 //
-// 		window.location = url + '?view=install'
+ 		window.location = url + '?view=install'
 		// Install.goToPage('summary');
 		// Install.install(['Config']);
 

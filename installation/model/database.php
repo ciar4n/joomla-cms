@@ -40,7 +40,7 @@ class InstallationModelDatabase extends JModelBase
 	 */
 	protected static function generateRandUserId()
 	{
-		$session    = JFactory::getSession();
+		$session    = JFactory::getApplication()->getSession();
 		$randUserId = $session->get('randUserId');
 
 		if (empty($randUserId))
