@@ -113,52 +113,59 @@ $this->setMetaData('viewport', 'width=device-width, initial-scale=1');
 			<?php endif; ?>
 		</div>
 
+		<?php if ($this->countModules('menu')) : ?>
+			<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="<?php echo JText::_('TPL_AURORA_TOGGLE'); ?>">
+				<span class="fa fa-bars"></span>
+			</button>
 			<div class="collapse navbar-collapse" id="navbar">
 				<jdoc:include type="modules" name="menu" style="none" />
-	<div class="form-inline">
-		<jdoc:include type="modules" name="search" style="none" />
-	</div>
+				<?php if ($this->countModules('search')) : ?>
+					<div class="form-inline">
+						<jdoc:include type="modules" name="search" style="none" />
+					</div>
+				<?php endif; ?>
+			</div>
+		<?php endif; ?>
+	</nav>
 </header>
 
 <jdoc:include type="modules" name="banner" style="xhtml" />
 
-<div id="content-grid">
-	<div id="top-a" class="d-flex">
-		<jdoc:include type="modules" name="top-a" style="cardGrey" />
-	</div>
-	<div id="top-b" class="d-flex">
-		<jdoc:include type="modules" name="top-b" style="card" />
-	</div>
-	<div id="sidebar-left">
-		<jdoc:include type="modules" name="sidebar-left" style="default" />
-	</div>
-	<div id="main-top">
-		<jdoc:include type="modules" name="main-top" style="cardGrey" />
-	</div>
-	<div id="component" class="grid-block">
-		<jdoc:include type="message" />
-		<jdoc:include type="component" />
-	</div>
-	<div id="bradcrumbs">
-		<jdoc:include type="modules" name="breadcrumbs" style="none" />
-	</div>
-	<div id="main-bottom">
-		<jdoc:include type="modules" name="main-bottom" style="cardGrey" />
-	</div>
-	<div id="sidebar-right">
-		<jdoc:include type="modules" name="sidebar-right" style="default" />
-	</div>
-	<div id="bottom-a" class="d-flex">
-		<jdoc:include type="modules" name="bottom-a" style="cardGrey" />
-	</div>
-	<div id="bottom-b" class="d-flex">
-		<jdoc:include type="modules" name="bottom-b" style="card" />
-	</div>
-	<div id="footer">
-		<jdoc:include type="modules" name="footer" style="none" />
-	</div>
-	<jdoc:include type="modules" name="debug" style="none" />
+<div id="top-a" class="d-flex">
+	<jdoc:include type="modules" name="top-a" style="cardGrey" />
 </div>
+<div id="top-b" class="d-flex">
+	<jdoc:include type="modules" name="top-b" style="card" />
+</div>
+<div id="sidebar-left">
+	<jdoc:include type="modules" name="sidebar-left" style="default" />
+</div>
+<div id="main-top">
+	<jdoc:include type="modules" name="main-top" style="cardGrey" />
+</div>
+<div id="component" class="grid-block">
+	<jdoc:include type="message" />
+	<jdoc:include type="component" />
+</div>
+<div id="bradcrumbs">
+	<jdoc:include type="modules" name="breadcrumbs" style="none" />
+</div>
+<div id="main-bottom">
+	<jdoc:include type="modules" name="main-bottom" style="cardGrey" />
+</div>
+<div id="sidebar-right">
+	<jdoc:include type="modules" name="sidebar-right" style="default" />
+</div>
+<div id="bottom-a" class="d-flex">
+	<jdoc:include type="modules" name="bottom-a" style="cardGrey" />
+</div>
+<div id="bottom-b" class="d-flex">
+	<jdoc:include type="modules" name="bottom-b" style="card" />
+</div>
+<div id="footer">
+	<jdoc:include type="modules" name="footer" style="none" />
+</div>
+<jdoc:include type="modules" name="debug" style="none" />
 
 <a href="#top" id="back-top" class="back-top">
 	<span class="icon-arrow-up-4"><span class="sr-only"><?php echo JText::_('TPL_AURORA_BACKTOTOP'); ?></span></span>
