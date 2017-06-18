@@ -12,6 +12,7 @@ defined('_JEXEC') or die;
 /** @var JDocumentHtml $this */
 
 $app = JFactory::getApplication();
+$doc = JFactory::getDocument();
 
 // Getting params from template
 $params = $app->getTemplate(true)->params;
@@ -43,26 +44,18 @@ JHtml::_('script', 'user.js', array('version' => 'auto', 'relative' => true));
 //JHtml::_('bootstrap.loadCss', false, $this->direction);
 
 // Adjusting content width
-if ($this->countModules('sidebar-left') && $this->countModules('sidebar-right'))
-{
-	$col = $this->params->get('sidebarLeftWidth', 3) + $this->params->get('sidebarLeftWidth', 3);
-	$col = 12 - $col;
-	$col = 'col-md-' . $col;
-}
-elseif (!$this->countModules('sidebar-left') && $this->countModules('sidebar-right'))
-{
-	$col = 12 - $this->params->get('sidebarRightWidth', 3);
-	$col = 'col-md-' . $col;
-}
-elseif ($this->countModules('sidebar-left') && !$this->countModules('sidebar-right'))
-{
-	$col = 12 - $this->params->get('sidebarLeftWidth', 3);
-	$col = 'col-md-' . $col;
-}
-else
-{
-	$col = 'col-md-12';
-}
+// if ($this->countModules('sidebar-left') && $this->countModules('sidebar-right'))
+// {
+// 	$doc->addStyleDeclaration('.container-component {grid-column: 2 / 4}');
+// }
+// elseif (!$this->countModules('sidebar-left') && $this->countModules('sidebar-right'))
+// {
+// 	$doc->addStyleDeclaration('.container-component {grid-column: 1 / 4}');
+// }
+// elseif ($this->countModules('sidebar-left') && !$this->countModules('sidebar-right'))
+// {
+// 	$doc->addStyleDeclaration('.container-component {grid-column: 2 / 5}');
+// }
 
 // Logo file or site title param
 if ($this->params->get('logoFile'))
@@ -102,69 +95,65 @@ $this->setMetaData('viewport', 'width=device-width, initial-scale=1');
 	echo ($this->direction == 'rtl' ? ' rtl' : '');
 ?>">
 
-<header class="header<?php echo $headerMargin; ?>">
-	<nav class="navbar navbar-toggleable-md navbar-full <?php echo $container; ?>">
-		<div class="navbar-brand">
-			<a href="<?php echo $this->baseurl; ?>/">
-				<?php echo $logo; ?>
-			</a>
-			<?php if ($this->params->get('siteDescription')) : ?>
-				<div class="site-description"><?php echo htmlspecialchars($this->params->get('siteDescription')); ?></div>
-			<?php endif; ?>
-		</div>
-
-		<?php if ($this->countModules('menu')) : ?>
-			<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="<?php echo JText::_('TPL_AURORA_TOGGLE'); ?>">
-				<span class="fa fa-bars"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbar">
-				<jdoc:include type="modules" name="menu" style="none" />
-				<?php if ($this->countModules('search')) : ?>
-					<div class="form-inline">
-						<jdoc:include type="modules" name="search" style="none" />
-					</div>
+<div class="header">
+	<header>
+		<nav class="navbar navbar-toggleable-md navbar-full">
+			<div class="navbar-brand">
+				<a href="<?php echo $this->baseurl; ?>/">
+					<?php echo $logo; ?>
+				</a>
+				<?php if ($this->params->get('siteDescription')) : ?>
+					<div class="site-description"><?php echo htmlspecialchars($this->params->get('siteDescription')); ?></div>
 				<?php endif; ?>
 			</div>
-		<?php endif; ?>
-	</nav>
-</header>
 
-<jdoc:include type="modules" name="banner" style="xhtml" />
+			<?php if ($this->countModules('menu')) : ?>
+				<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="<?php echo JText::_('TPL_AURORA_TOGGLE'); ?>">
+					<span class="fa fa-bars"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbar">
+					<jdoc:include type="modules" name="menu" style="none" />
+					<?php if ($this->countModules('search')) : ?>
+						<div class="form-inline">
+							<jdoc:include type="modules" name="search" style="none" />
+						</div>
+					<?php endif; ?>
+				</div>
+			<?php endif; ?>
+		</nav>
+	</header>
+</div>
 
-<div id="top-a" class="d-flex">
-	<jdoc:include type="modules" name="top-a" style="cardGrey" />
+	<!-- <jdoc:include type="modules" name="banner" style="xhtml" /> -->
+<div class="site-main">
+	<div class="container-top-a">
+		<jdoc:include type="modules" name="top-a" style="cardGrey" />
+	</div>
+	<div class="container-top-b">
+		<jdoc:include type="modules" name="top-b" style="card" />
+	</div>
+	<div class="container-main">
+		<div class="container-sidebar-left"><jdoc:include type="modules" name="sidebar-left" style="default" /></div>
+		<div class="container-component">
+			<jdoc:include type="modules" name="main-top" style="cardGrey" />
+			<jdoc:include type="message" />
+			<jdoc:include type="component" />
+			<jdoc:include type="modules" name="breadcrumbs" style="none" />
+			<jdoc:include type="modules" name="main-bottom" style="cardGrey" />
+		</div>
+		<div class="container-sidebar-right"><jdoc:include type="modules" name="sidebar-right" style="default" /></div>
+	</div>
+	<div class="container-bottom-a">
+		<jdoc:include type="modules" name="bottom-a" style="cardGrey" />
+	</div>
+	<div class="container-bottom-b">
+		<jdoc:include type="modules" name="bottom-b" style="card" />
+	</div>
+	<div class="container-footer">
+		<jdoc:include type="modules" name="footer" style="none" />
+	</div>
 </div>
-<div id="top-b" class="d-flex">
-	<jdoc:include type="modules" name="top-b" style="card" />
-</div>
-<div id="sidebar-left">
-	<jdoc:include type="modules" name="sidebar-left" style="default" />
-</div>
-<div id="main-top">
-	<jdoc:include type="modules" name="main-top" style="cardGrey" />
-</div>
-<div id="component" class="grid-block">
-	<jdoc:include type="message" />
-	<jdoc:include type="component" />
-</div>
-<div id="bradcrumbs">
-	<jdoc:include type="modules" name="breadcrumbs" style="none" />
-</div>
-<div id="main-bottom">
-	<jdoc:include type="modules" name="main-bottom" style="cardGrey" />
-</div>
-<div id="sidebar-right">
-	<jdoc:include type="modules" name="sidebar-right" style="default" />
-</div>
-<div id="bottom-a" class="d-flex">
-	<jdoc:include type="modules" name="bottom-a" style="cardGrey" />
-</div>
-<div id="bottom-b" class="d-flex">
-	<jdoc:include type="modules" name="bottom-b" style="card" />
-</div>
-<div id="footer">
-	<jdoc:include type="modules" name="footer" style="none" />
-</div>
+
 <jdoc:include type="modules" name="debug" style="none" />
 
 <a href="#top" id="back-top" class="back-top">
