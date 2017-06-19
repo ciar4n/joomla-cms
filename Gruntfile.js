@@ -460,7 +460,7 @@ module.exports = function(grunt) {
 	grunt.registerTask('compile', 'Compiles the stylesheet files.', function() {
 		grunt.task.run([
 			'uglify:templates',
-			// 'scsslint',
+			'scsslint',
 			'sass:dist',
 			'postcss',
 			'cssmin:adminTemplate',
