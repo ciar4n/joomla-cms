@@ -9256,7 +9256,3 @@ header {
   display: grid;
   grid-gap: 15px;
   grid-auto-flow: column; }
-
-@media (max-width: 991px) {
-  .site-main {
-    grid-template-areas: "side-l comp comp side-r" "top-a top-a top-a top-a" "top-b top-b top-b top-b" "bot-a bot-a bot-a bot-a" "bot-b bot-b bot-b bot-b" "footer footer footer footer"; } }
