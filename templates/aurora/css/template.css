@@ -8730,8 +8730,19 @@ header {
   flex: 1;
   margin: 7.5px; }
 
+@media (max-width: 575px) {
+  .container-top-a,
+  .container-top-b,
+  .container-bottom-a,
+  .container-bottom-b {
+    flex-direction: column; } }
+
 .container-main > div {
   margin: 7.5px; }
+
+@media (max-width: 575px) {
+  .container-main {
+    flex-direction: column; } }
 
 .container-component {
   flex: 1; }
@@ -8750,6 +8761,11 @@ header {
     .container-sidebar-left > div:last-of-type,
     .container-sidebar-right > div:last-of-type {
       margin-bottom: 0; }
+  @media (max-width: 575px) {
+    .container-sidebar-left,
+    .container-sidebar-right {
+      width: calc(100% - 15px);
+      order: 1; } }
 
 /* autoprefixer: off */
 @supports (display: grid) {
@@ -8766,9 +8782,13 @@ header {
     body .container-top-b > div,
     body .container-bottom-a > div,
     body .container-bottom-b > div {
+      display: inline-grid;
       margin: 0; }
     body > .full-width {
       grid-column: full-start / full-end; }
+    @media (max-width: 575px) {
+      body {
+        grid-template-areas: ". head head head head ." ". banner banner banner banner ." ". main main main main ." ". top-a top-a top-a top-a ." ". top-b top-b top-b top-b ." ". bot-a bot-a bot-a bot-a ." ". bot-b bot-b bot-b bot-b ." ". footer footer footer footer ."; } }
   header {
     margin-bottom: 0; }
   .container-banner {
@@ -8792,8 +8812,7 @@ header {
   grid-area: main; }
 
 .container-component {
-  grid-area: comp;
-  grid-column: auto 2fr; }
+  grid-area: comp; }
 
 .container-sidebar-left {
   grid-area: side-l; }
@@ -8819,13 +8838,19 @@ header {
 .container-footer {
   grid-area: footer; }
 
+.container-component {
+  grid-column: auto 2fr; }
+
 .container-top-a,
 .container-top-b,
 .container-bottom-a,
 .container-bottom-b {
   display: grid;
   grid-gap: 15px;
-  grid-auto-flow: column; }
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+
+.container-footer {
+  display: block; }
 
 .modal .btn {
   margin-right: .5rem; }
