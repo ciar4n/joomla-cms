@@ -8705,6 +8705,128 @@ iframe {
 .modal iframe {
   width: 100%; }
 
+body > div, body header > nav, body footer {
+  display: flex;
+  width: 100%;
+  max-width: 1140px;
+  margin-right: auto;
+  margin-left: auto; }
+
+body > .full-width {
+  max-width: none; }
+
+header {
+  margin-bottom: 10px; }
+
+.container-banner {
+  display: block;
+  margin: -15px 0 -5px;
+  grid-gap: 0; }
+
+.container-top-a > div,
+.container-top-b > div,
+.container-bottom-a > div,
+.container-bottom-b > div {
+  flex: 1;
+  margin: 7.5px; }
+
+.container-main > div {
+  margin: 7.5px; }
+
+.container-component {
+  flex: 1; }
+  .container-component > div {
+    margin-bottom: 15px; }
+    .container-component > div:last-of-type {
+      margin-bottom: 0; }
+
+.container-sidebar-left,
+.container-sidebar-right {
+  flex: 0 0 auto;
+  width: calc(25% - 15px); }
+  .container-sidebar-left > div,
+  .container-sidebar-right > div {
+    margin-bottom: 15px; }
+    .container-sidebar-left > div:last-of-type,
+    .container-sidebar-right > div:last-of-type {
+      margin-bottom: 0; }
+
+/* autoprefixer: off */
+@supports (display: grid) {
+  body {
+    display: grid;
+    grid-template-areas: ". head head head head ." ". banner banner banner banner ." ". top-a top-a top-a top-a ." ". top-b top-b top-b top-b ." ". main main main main ." ". bot-a bot-a bot-a bot-a ." ". bot-b bot-b bot-b bot-b ." ". footer footer footer footer .";
+    grid-template-columns: [full-start] minmax(0, 1fr) [main-start] repeat(4, minmax(0, 270px)) [main-end] minmax(0, 1fr) [full-end];
+    grid-gap: 15px; }
+    body > div {
+      width: auto;
+      max-width: none;
+      margin: 0; }
+    body .container-top-a > div,
+    body .container-top-b > div,
+    body .container-bottom-a > div,
+    body .container-bottom-b > div {
+      margin: 0; }
+    body > .full-width {
+      grid-column: full-start / full-end; }
+  header {
+    margin-bottom: 0; }
+  .container-banner {
+    margin-bottom: -15px; }
+  .container-main {
+    margin: -7.5px; } }
+
+header {
+  grid-area: head; }
+
+.container-banner {
+  grid-area: banner; }
+
+.container-top-a {
+  grid-area: top-a; }
+
+.container-top-b {
+  grid-area: top-b; }
+
+.container-main {
+  grid-area: main; }
+
+.container-component {
+  grid-area: comp;
+  grid-column: auto 2fr; }
+
+.container-sidebar-left {
+  grid-area: side-l; }
+
+.container-sidebar-right {
+  grid-area: side-r; }
+
+.container-main-top {
+  grid-area: main-t; }
+
+.container-main-bottom {
+  grid-area: main-b; }
+
+.container-bradcrumbs {
+  grid-area: bread; }
+
+.container-bottom-a {
+  grid-area: bot-a; }
+
+.container-bottom-b {
+  grid-area: bot-b; }
+
+.container-footer {
+  grid-area: footer; }
+
+.container-top-a,
+.container-top-b,
+.container-bottom-a,
+.container-bottom-b {
+  display: grid;
+  grid-gap: 15px;
+  grid-auto-flow: column; }
+
 .modal .btn {
   margin-right: .5rem; }
 
@@ -9134,125 +9256,3 @@ iframe {
 .btn:hover,
 .btn:focus {
   cursor: pointer; }
-
-body > div, body header > nav, body footer {
-  display: flex;
-  width: 100%;
-  max-width: 1140px;
-  margin-left: auto;
-  margin-right: auto; }
-
-body > .full-width {
-  max-width: none; }
-
-header {
-  margin-bottom: 10px; }
-
-.container-banner {
-  display: block;
-  grid-gap: 0;
-  margin: -15px 0 -5px; }
-
-.container-top-a > div,
-.container-top-b > div,
-.container-bottom-a > div,
-.container-bottom-b > div {
-  flex: 1;
-  margin: 7.5px; }
-
-.container-main > div {
-  margin: 7.5px; }
-
-.container-component {
-  flex: 1; }
-  .container-component > div {
-    margin-bottom: 15px; }
-    .container-component > div:last-of-type {
-      margin-bottom: 0; }
-
-.container-sidebar-left,
-.container-sidebar-right {
-  flex: 0 0 auto;
-  width: calc(25% - 15px); }
-  .container-sidebar-left > div,
-  .container-sidebar-right > div {
-    margin-bottom: 15px; }
-    .container-sidebar-left > div:last-of-type,
-    .container-sidebar-right > div:last-of-type {
-      margin-bottom: 0; }
-
-/* autoprefixer: off */
-@supports (display: grid) {
-  body {
-    display: grid;
-    grid-template-areas: ". head head head head ." ". banner banner banner banner ." ". top-a top-a top-a top-a ." ". top-b top-b top-b top-b ." ". main main main main ." ". bot-a bot-a bot-a bot-a ." ". bot-b bot-b bot-b bot-b ." ". footer footer footer footer .";
-    grid-template-columns: [full-start] minmax(0, 1fr) [main-start] repeat(4, minmax(0, 270px)) [main-end] minmax(0, 1fr) [full-end];
-    grid-gap: 15px; }
-    body > div {
-      width: auto;
-      max-width: none;
-      margin: 0; }
-    body .container-top-a > div,
-    body .container-top-b > div,
-    body .container-bottom-a > div,
-    body .container-bottom-b > div {
-      margin: 0; }
-    body > .full-width {
-      grid-column: full-start / full-end; }
-  header {
-    margin-bottom: 0; }
-  .container-banner {
-    margin-bottom: -15px; }
-  .container-main {
-    margin: -7.5px; } }
-
-header {
-  grid-area: head; }
-
-.container-banner {
-  grid-area: banner; }
-
-.container-top-a {
-  grid-area: top-a; }
-
-.container-top-b {
-  grid-area: top-b; }
-
-.container-main {
-  grid-area: main; }
-
-.container-component {
-  grid-area: comp;
-  grid-column: auto 2fr; }
-
-.container-sidebar-left {
-  grid-area: side-l; }
-
-.container-sidebar-right {
-  grid-area: side-r; }
-
-.container-main-top {
-  grid-area: main-t; }
-
-.container-main-bottom {
-  grid-area: main-b; }
-
-.container-bradcrumbs {
-  grid-area: bread; }
-
-.container-bottom-a {
-  grid-area: bot-a; }
-
-.container-bottom-b {
-  grid-area: bot-b; }
-
-.container-footer {
-  grid-area: footer; }
-
-.container-top-a,
-.container-top-b,
-.container-bottom-a,
-.container-bottom-b {
-  display: grid;
-  grid-gap: 15px;
-  grid-auto-flow: column; }
