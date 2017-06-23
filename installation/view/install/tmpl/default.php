@@ -52,7 +52,7 @@ defined('_JEXEC') or die;
 $tasks = implode("','", $this->tasks);
 JFactory::getDocument()->addScriptDeclaration(
 <<<JS
-	jQuery(function()
+	document.addEventListener('DOMContentLoaded', function()
 	{
 		Install.install(['Config']); //
 		window.location = window.location.replace(/installation\/index\?view=install/g) + '?view=remove'

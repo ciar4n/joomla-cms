@@ -96,7 +96,7 @@ class InstallationModelConfiguration extends JModelBase
 		$registry->set('ftp_user', (isset($options->ftp_save) && $options->ftp_save && isset($options->ftp_user)) ? $options->ftp_user : '');
 		$registry->set('ftp_pass', (isset($options->ftp_save) && $options->ftp_save && isset($options->ftp_pass)) ? $options->ftp_pass : '');
 		$registry->set('ftp_root', (isset($options->ftp_save) && $options->ftp_save && isset($options->ftp_root)) ? $options->ftp_root : '');
-		$registry->set('ftp_enable', isset($options->ftp_host) ? $options->ftp_enable : 0);
+		$registry->set('ftp_enable', (isset($options->ftp_host) && null === $options->ftp_host) ? $options->ftp_enable : 0);
 
 		// Locale settings.
 		$registry->set('offset', 'UTC');
@@ -215,8 +215,8 @@ class InstallationModelConfiguration extends JModelBase
 			}
 			else
 			{
-				// Set the config string to the session.
-				$session->set('setup.config', $buffer);
+				// If we cannot write the configuration.php, setup fails!
+				return false;
 			}
 		}
 

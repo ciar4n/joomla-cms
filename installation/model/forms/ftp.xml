@@ -3,19 +3,6 @@
 	<fieldset>
 		<fieldset name="basic">
 			<field
-				name="ftp_enable"
-				type="radio"
-				id="ftp_enable"
-				class="btn-group btn-group-reverse"
-				label="INSTL_FTP_ENABLE_LABEL"
-				default="0"
-				filter="int"
-				required="true"
-			>
-				<option value="1">JYES</option>
-				<option value="0">JNO</option>
-			</field>
-			<field
 				name="ftp_user"
 				type="text"
 				id="ftp_user"
@@ -58,19 +45,6 @@
 				default="21"
 				filter="int"
 			/>
-			<field
-				name="ftp_save"
-				type="radio"
-				id="ftp_save"
-				class="btn-group btn-group-reverse"
-				label="INSTL_FTP_SAVE_LABEL"
-				default="0"
-				required="true"
-				filter="int"
-			>
-				<option value="1">JYES</option>
-				<option value="0">JNO</option>
-			</field>
 		</fieldset>
 	</fieldset>
 </form>

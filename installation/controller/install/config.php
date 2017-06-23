@@ -36,12 +36,12 @@ class InstallationControllerInstallConfig extends JControllerBase
 		$options = (new InstallationModelSetup)->getOptions();
 
 		$r = new stdClass;
-		$r->view = 'summary';
+		$r->view = 'remove';
 
 		// Attempt to setup the configuration.
 		if (!(new InstallationModelConfiguration)->setup($options))
 		{
-			$r->view = 'site';
+			$r->view = 'setup';
 		}
 
 		$app->sendJsonResponse($r);

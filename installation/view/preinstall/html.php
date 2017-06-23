@@ -25,14 +25,6 @@ class InstallationViewPreinstallHtml extends InstallationViewDefault
 	protected $options;
 
 	/**
-	 * Array of PHP settings
-	 *
-	 * @var    array
-	 * @since  3.1
-	 */
-	protected $settings;
-
-	/**
 	 * Method to render the view.
 	 *
 	 * @return  string  The rendered view.
@@ -42,7 +34,6 @@ class InstallationViewPreinstallHtml extends InstallationViewDefault
 	public function render()
 	{
 		$this->options  = $this->model->getPhpOptions();
-		$this->settings = $this->model->getPhpSettings();
 
 		return parent::render();
 	}

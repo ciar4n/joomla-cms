@@ -30,7 +30,7 @@ class InstallationControllerDetectftproot extends JControllerBase
 		$app = $this->getApplication();
 
 		// Check for request forgeries.
-		JSession::checkToken() or $app->sendJsonResponse(new Exception(JText::_('JINVALID_TOKEN'), 403));
+//		JSession::checkToken() or $app->sendJsonResponse(new Exception(JText::_('JINVALID_TOKEN'), 403));
 
 		// Get the data
 		$data = $app->input->post->get('jform', array(), 'array');
@@ -43,7 +43,7 @@ class InstallationControllerDetectftproot extends JControllerBase
 
 		// Build the response object
 		$r = new stdClass;
-		$r->view = 'ftp';
+		$r->view = 'preinstall';
 
 		// If we got a FTP root, add it to the response object
 		if ($return)

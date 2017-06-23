@@ -19,12 +19,11 @@ JHtml::_('stylesheet', 'media/vendor/font-awesome/css/font-awesome.min.css');
 $this->setHtml5(true);
 
 JHtml::_('behavior.core');
-JHtml::_('jquery.framework');
 JHtml::_('behavior.keepalive');
 JHtml::_('behavior.formvalidator');
 
 // Add installation js
-JHtml::_('script', 'installation/template/js/installation.js', array('version' => 'auto'));
+JHtml::_('script', 'installation/template/js/template.js', array('version' => 'auto'));
 
 // Add Stylesheets
 JHtml::_('stylesheet', 'installation/template/css/template.css', array('version' => 'auto'));
@@ -57,10 +56,10 @@ $this->addScriptOptions('system.installation', array('url' => JRoute::_('index.p
 	</head>
 	<body data-basepath="<?php echo JUri::root(true); ?>">
 		<?php // Header ?>
-		<div class="header">
+		<header class="header" role="banner">
 			<div id="top-header" class="container container-header d-flex justify-content-center">
 				<img src="<?php echo $this->baseurl ?>/template/images/logo.svg" alt="Joomla" class="logo"/>
-				<ul class="nav-steps">
+				<ul class="nav-steps hidden">
 					<li class="step active" id="site" data-step="1">
 						<a class="nav-link" href="#"></a></li>
 					<li class="step" data-step="2">
@@ -71,9 +70,9 @@ $this->addScriptOptions('system.installation', array('url' => JRoute::_('index.p
 					</li>
 				</ul>
 			</div>
-		</div>
+		</header>
 		<?php // Container ?>
-		<div class="container container-main">
+		<section class="container container-main" role="main">
 			<jdoc:include type="message" />
 			<div id="javascript-warning">
 				<noscript>
@@ -82,10 +81,10 @@ $this->addScriptOptions('system.installation', array('url' => JRoute::_('index.p
 					</div>
 				</noscript>
 			</div>
-			<div id="container-installation" class="container-installation flex no-js">
+			<div id="container-installation" class="container-installation flex no-js" data-base-url="<?php echo JUri::root(); ?>" style="display:none">
 				<jdoc:include type="component" />
 			</div>
-		</div>
+		</section>
 		<jdoc:include type="scripts" />
 	</body>
 </html>

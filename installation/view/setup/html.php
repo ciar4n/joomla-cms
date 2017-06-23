@@ -14,15 +14,15 @@ defined('_JEXEC') or die;
  *
  * @since  3.1
  */
-class InstallationViewCompleteHtml extends JViewHtml
+class InstallationViewSetupHtml extends JViewHtml
 {
 	/**
-	 * The JConfiguration data if present
+	 * The JForm object
 	 *
-	 * @var    \Joomla\Registry\Registry
+	 * @var    JForm
 	 * @since  3.1
 	 */
-	protected $config;
+	protected $form;
 
 	/**
 	 * Redefine the model so the correct type hinting is available.
@@ -33,14 +33,6 @@ class InstallationViewCompleteHtml extends JViewHtml
 	protected $model;
 
 	/**
-	 * The session options
-	 *
-	 * @var    array
-	 * @since  3.1
-	 */
-	protected $options;
-
-	/**
 	 * Method to render the view.
 	 *
 	 * @return  string  The rendered view.
@@ -49,10 +41,7 @@ class InstallationViewCompleteHtml extends JViewHtml
 	 */
 	public function render()
 	{
-		$this->options = $this->model->getOptions();
-
-		// Get the config string from the session.
-		$this->config = JFactory::getSession()->get('setup.config', null);
+		$this->form = $this->model->getForm();
 
 		return parent::render();
 	}

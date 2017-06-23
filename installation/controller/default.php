@@ -29,7 +29,7 @@ class InstallationControllerDefault extends JControllerBase
 		/** @var InstallationApplicationWeb $app */
 		$app = $this->getApplication();
 
-		$defaultView = 'site';
+		$defaultView = 'setup';
 
 		// If the app has already been installed, default to the remove view
 		if (file_exists(JPATH_CONFIGURATION . '/configuration.php') && (filesize(JPATH_CONFIGURATION . '/configuration.php') > 10)
@@ -39,13 +39,13 @@ class InstallationControllerDefault extends JControllerBase
 		}
 
 		// Are we allowed to proceed?
-		$model = new InstallationModelSetup;
+		$model = new InstallationModelChecks;
 
 		$vName   = $this->getInput()->getWord('view', $defaultView);
 		$vFormat = $app->getDocument()->getType();
 		$lName   = $this->getInput()->getWord('layout', 'default');
 
-		if (strcmp($vName, $defaultView) == 0)
+		if (strcmp($vName, $defaultView) === 0)
 		{
 			$this->getInput()->set('view', $defaultView);
 		}
@@ -63,7 +63,7 @@ class InstallationControllerDefault extends JControllerBase
 		{
 			if ($vName === 'preinstall')
 			{
-				$app->redirect('index.php?view=site');
+				$app->redirect('index.php?view=setup');
 			}
 
 			switch ($vName)
@@ -75,7 +75,6 @@ class InstallationControllerDefault extends JControllerBase
 					$options      = [];
 
 					break;
-				case 'summary':
 				case 'install':
 					$model        = new InstallationModelSetup;
 //					InstallationModelConfiguration;
@@ -92,14 +91,14 @@ class InstallationControllerDefault extends JControllerBase
 					break;
 				default:
 
-;					$model        = new InstallationModelSetup;
+					$model        = new InstallationModelSetup;
 					$checkOptions = true;
 					$options      = $model->getOptions();
 
 					break;
 			}
 
-			if ($vName != $defaultView && ($checkOptions && empty($options)))
+			if ($vName !== $defaultView && ($checkOptions && empty($options)))
 			{
 				$app->redirect('index.php');
 			}
@@ -113,7 +112,7 @@ class InstallationControllerDefault extends JControllerBase
 
 		if (!class_exists($vClass))
 		{
-			$vClass = 'InstallationViewDefault';
+			$vClass = 'InstallationViewError';
 		}
 
 		/** @var JViewHtml $view */

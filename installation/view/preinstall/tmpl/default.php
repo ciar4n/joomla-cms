@@ -10,24 +10,11 @@ defined('_JEXEC') or die;
 
 /* @var InstallationViewPreinstallHtml $this */
 ?>
-<div id="prerequisites">
-	<form action="index.php" method="post" id="languageForm">
-		<!-- 	<div class="form-group row">
-		<label for="jform_language" class="control-label"><?php echo JText::_('INSTL_SELECT_LANGUAGE_TITLE'); ?></label>
-		<?php echo $this->form->getInput('language'); ?>
-	</div>
-	<input type="hidden" name="view" value="preinstall">
-	<input type="hidden" name="task" value="setlanguage">
-	 -->
-	</form>
-	<form action="index.php" method="post" id="adminForm">
+<div id="installer-view" class="container" data-page-name="preinstall">
 		<div class="row">
 			<div class="col-md-12 mb-4">
 				<h3 class="text-center"><?php echo JText::_('INSTL_PRECHECK_TITLE'); ?></h3>
 				<hr>
-<!--				<p class="install-text">-->
-<!--					--><?php //echo JText::_('INSTL_PRECHECK_DESC'); ?>
-<!--				</p>-->
 				<div class="row">
 					<div class="col-md-8 offset-md-2">
 						<?php foreach ($this->options as $option) : ?>
@@ -42,7 +29,7 @@ defined('_JEXEC') or die;
 				</div>
 				<?php if ($option->state === false && preg_match('$configuration.php$', $option->label)) : ?>
 					<div id="ftpOptions" class="ftp-options mb-4 hidden">
-						<form action="index.php" method="post" id="adminForm" class="form-validate">
+						<form action="index.php" method="post" id="ftpForm" class="form-validate">
 							<!-- 					<h3><?php echo JText::_('INSTL_FTP'); ?></h3>
 					<hr> -->
 							<div class="form-group row">
@@ -63,7 +50,7 @@ defined('_JEXEC') or die;
 								<div class="col-md-8 offset-md-2">
 									<?php echo $this->form->getLabel('ftp_host'); ?>
 									<div class="input-append d-flex">
-										<?php echo $this->form->getInput('ftp_host'); ?><button id="findbutton" class="btn btn-secondary ml-2" onclick="Install.detectFtpRoot(this);"><span class="icon-folder-open"></span> <?php echo JText::_('INSTL_AUTOFIND_FTP_PATH'); ?></button>
+										<?php echo $this->form->getInput('ftp_host'); ?><button id="findbutton" class="btn btn-secondary ml-2" onclick="Joomla.installation.detectFtpRoot(this);"><span class="icon-folder-open"></span> <?php echo JText::_('INSTL_AUTOFIND_FTP_PATH'); ?></button>
 									</div>
 								</div>
 							</div>
@@ -75,10 +62,9 @@ defined('_JEXEC') or die;
 							</div>
 							<div class="form-group row">
 								<div class="col-md-8 offset-md-2 justify-content-end d-flex">
-									<button id="verifybutton" class="btn btn-success" onclick="Install.verifyFtpSettings(this);"><span class="icon-ok icon-white"></span> <?php echo JText::_('INSTL_VERIFY_FTP_SETTINGS'); ?></button>
+									<button id="verifybutton" class="btn btn-success"><span class="icon-ok icon-white"></span> <?php echo JText::_('INSTL_VERIFY_FTP_SETTINGS'); ?></button>
 								</div>
 							</div>
-							<input type="hidden" name="task" value="ftp">
 							<input type="hidden" name="format" value="json">
 							<?php echo JHtml::_('form.token'); ?>
 						</form>
@@ -86,12 +72,4 @@ defined('_JEXEC') or die;
 				<?php endif; ?>
 			</div>
 		</div>
-<!--		<div class="btn-toolbar justify-content-end">-->
-<!--			<div class="btn-group">-->
-<!--				<a href="#" class="btn btn-primary" onclick="Install.submitform();" title="--><?php //echo JText::_('JCHECK_AGAIN'); ?><!--"><span class="icon-refresh icon-white"></span> --><?php //echo JText::_('JCHECK_AGAIN'); ?><!--</a>-->
-<!--			</div>-->
-<!--		</div>-->
-		<input type="hidden" name="task" value="preinstall">
-		<?php echo JHtml::_('form.token'); ?>
-	</form>
 </div>

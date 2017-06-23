@@ -1,44 +1,6 @@
-/**
- * @package     Joomla.Installation
- * @subpackage  JavaScript
- * @copyright   Copyright (C) 2005 - 2017 Open Source Matters. All rights reserved.
- * @license     GNU General Public License version 2 or later; see LICENSE.txt
- */
-
-Joomla = window.Joomla || {};
-
-window.nothing = function() {
-
-};
-
 // Initialize the Installation object
 Joomla.installation = function(_container, _base) {
 	var container, busy, baseUrl, view,
-	    serialiseForm = function( form ) {
-		    var i, l, obj = [];
-		    var elements = form.querySelectorAll( "input, select, textarea" );
-		    for(i = 0, l = elements.length; i < l; i++) {
-			    var name = elements[i].name, value = elements[i].value;
-			    if(name) {
-				    obj.push(name.replace('[', '%5B').replace(']', '%5D') + '=' + value);
-			    }
-		    }
-		    return obj.join("&");
-	    },
-
-	    /**
-	     * Initializes JavaScript events on each request, required for AJAX
-	     */
-	    pageInit = function() {
-		    // Attach the validator
-		    [].slice.call(document.querySelectorAll('form.form-validate')).forEach(function(form) {
-			    document.formvalidator.attachToForm(form);
-		    });
-
-		    // Create and append the loading layer.
-		    Joomla.loadingLayer("load");
-	    },
-
 	    /**
 	     * Method to submit a form from the installer via AJAX
 	     *
@@ -46,7 +8,7 @@ Joomla.installation = function(_container, _base) {
 	     */
 	    submitform = function() {
 		    var form = document.getElementById('adminForm'),
-		        data = serialiseForm(form);
+		        data = Joomla.serialiseForm(form);
 
 		    if (busy) {
 			    alert(Joomla.JText._('INSTL_PROCESS_BUSY', 'Process is in progress. Please wait...'));
@@ -63,7 +25,7 @@ Joomla.installation = function(_container, _base) {
 			    data     : data,
 			    dataType : 'json',
 			    onSuccess: function (response, xhr) {
-			    	response = JSON.parse(response);
+				    response = JSON.parse(response);
 
 				    if (response.messages) {
 					    Joomla.renderMessages(response.messages);
@@ -76,13 +38,13 @@ Joomla.installation = function(_container, _base) {
 				    } else {
 
 					    var lang = document.getElementsByTagName('html')[0].getAttribute('lang');
-console.log(response.data.view)
+					    console.log(response.data.view)
 					    window.location = baseUrl + '?view=' + response.data.view + '&layout=default';
 					    // if (response.lang && lang.toLowerCase() === response.lang.toLowerCase()) {
 					    // 	if (response.data && response.data.view)
-							//     Install.goToPage(response.data.view, true);
+					    //     Install.goToPage(response.data.view, true);
 					    // } else {
-						 //    window.location = baseUrl + '?view=' + response.data.view + '&layout=default';
+					    //    window.location = baseUrl + '?view=' + response.data.view + '&layout=default';
 					    // }
 				    }
 			    },
@@ -120,8 +82,8 @@ console.log(response.data.view)
 		    Joomla.loadingLayer("show");
 		    busy = true;
 		    Joomla.removeMessages();
-		    var data = serialiseForm(form);
-console.log(data)
+		    var data = Joomla.serialiseForm(form);
+		    console.log(data)
 		    Joomla.request({
 			    url: baseUrl,
 			    method: 'POST',
@@ -129,11 +91,11 @@ console.log(data)
 			    perform: true,
 			    onSuccess: function(response, xhr){
 				    response = JSON.parse(response);
-console.log(response)
+				    console.log(response)
 				    Joomla.replaceTokens(response.token);
 
 				    // if (response.messages) {
-					 //    Joomla.renderMessages(response.messages);
+				    //    Joomla.renderMessages(response.messages);
 				    // }
 
 				    if (response.error) {
@@ -143,12 +105,12 @@ console.log(response)
 				    } else {
 
 					    var lang = document.getElementsByTagName('html')[0].getAttribute('lang');
-console.log(response.data.view)
+					    console.log(response.data.view)
 					    window.location = baseUrl + '?view=' + response.data.view + '&layout=default';
 					    if (lang.toLowerCase() === response.lang.toLowerCase()) {
-						   // Install.goToPage(response.data.view, true);
+						    // Install.goToPage(response.data.view, true);
 					    } else {
-						   // window.location = baseUrl + '?view=' + response.data.view + '&layout=default';
+						    // window.location = baseUrl + '?view=' + response.data.view + '&layout=default';
 					    }
 				    }
 			    },
@@ -179,7 +141,7 @@ console.log(response.data.view)
 			    Joomla.removeMessages();
 			    Joomla.loadingLayer("show");
 		    }
-console.log(page)
+		    console.log(page)
 		    if (page === 'summary') {
 			    window.location = baseUrl + '?view=' + page + '&layout=default';
 		    } else {
@@ -193,12 +155,10 @@ console.log(page)
 						    view                                                        = page;
 
 						    // Attach JS behaviors to the newly loaded HTML
-						    pageInit();
+						    Joomla.pageInit();
 
 						    Joomla.loadingLayer("hide");
 						    busy = false;
-
-						    // initElements();
 					    }
 				    });
 			    }
@@ -225,13 +185,13 @@ console.log(page)
 		    }
 
 		    // if (!step_width) {
-			 //    var step_width = (100 / tasks.length) / 11;
+		    //    var step_width = (100 / tasks.length) / 11;
 		    // }
 
 		    var task = tasks.shift();
 		    var form = document.getElementById('adminForm');
-		    var data = serialiseForm(form);
-console.log(task)
+		    var data = Joomla.serialiseForm(form);
+		    console.log(task)
 		    // $progress.css('width', parseFloat($progress.get(0).style.width) + step_width + '%');
 		    // progressWrapper.value = parseFloat(($progress.get(0).style.width) + step_width);
 		    // $tr.addClass('active');
@@ -274,20 +234,11 @@ console.log(task)
 		    });
 	    },
 
-	    resolveDatabase = new Promise((resolve, reject) => {
-				    // We call resolve(...) when what we were doing made async successful, and reject(...) when it failed.
-				    // In this example, we use setTimeout(...) to simulate async code.
-				    // In reality, you will probably be using something like XHR or an HTML5 API.
-				    setTimeout(() => {
-					    resolve(JustAlert()); // Yay! Everything went well!
-				    }, 250);
-	    }),
-
 	    checkDbCredentials = () => {
 		    Joomla.loadingLayer("show");
 
 		    var form = document.getElementById('adminForm'),
-		        data = serialiseForm(form);
+		        data = Joomla.serialiseForm(form);
 
 		    console.log(data)
 		    console.log(baseUrl)
@@ -301,7 +252,7 @@ console.log(task)
 				    Joomla.replaceTokens(response.token);
 				    if (response.messages) {
 					    Joomla.renderMessages(response.messages);
-					  //  Install.goToPage(response.data.view, true);
+					    //  Install.goToPage(response.data.view, true);
 				    } else {
 					    Joomla.loadingLayer('hide');
 					    // install(['Database', 'Config']);
@@ -320,10 +271,6 @@ console.log(task)
 			    }
 		    });
 	    },
-
-	    JustAlert = () => {
-	    	//alert('Yay');
-	    },
 	    /**
 	     * Initializes the Installation class
 	     *
@@ -339,7 +286,11 @@ console.log(task)
 		    // Merge options from the session storage
 		    Joomla.extend(this.options, sessionStorage.getItem('installation-data'));
 
-		    // pageInit();
+		    Joomla.pageInit();
+		    var el = document.querySelector('.nav-steps.hidden');
+		    if (el) {
+		    	el.classList.remove('hidden');
+		    }
 	    };
 
 	initialize(_container, _base);
@@ -349,49 +300,15 @@ console.log(task)
 		setlanguage : setlanguage,
 		goToPage : goToPage,
 		install : install,
-		resolveDatabase : resolveDatabase,
 		checkDbCredentials: checkDbCredentials
 
 	}
-
-// 	myFirstPromise.then((successMessage) => {
-// 		// successMessage is whatever we passed in the resolve(...) function above.
-// 		// It doesn't have to be a string, but if it is only a succeed message, it probably will be.
-// 		alert("Yay! " + successMessage);
-// 	});
-// }
 };
 
 // Init on dom content loaded event
-document.addEventListener('DOMContentLoaded', function() {
+// document.addEventListener('DOMContentLoaded', function() {
 
 	var url = Joomla.getOptions('system.installation').url ? Joomla.getOptions('system.installation').url.replace(/&amp;/g, '&') : 'index.php';
-	// Show the container
-	if (document.getElementById('container-installation')) {
-		document.getElementById('container-installation').classList.remove('no-js');
-	} else {
-		throw new Error('Javascript required to be enabled!')
-	}
-
-	// We don't match the base requirements
-	if (document.getElementById('prerequisites')) {
-		console.log(document.getElementById('prerequisites'))
-		console.log(document.getElementById('showFtp'))
-		console.log(document.getElementById('prerequisites'))
-		if (document.getElementById('showFtp')) {
-			document.getElementById('showFtp').addEventListener('click', function(e) {
-				e.preventDefault();
-				if (document.getElementById('ftpOptions').classList.contains('hidden')) {
-					document.getElementById('ftpOptions').classList.remove('hidden')
-				} else {
-					document.getElementById('ftpOptions').classList.add('hidden')
-				}
-			})
-		}
-	}
-
-	// Init the elements
-	// initElements();
 
 	Joomla.makeRandomDbPrefix = function() {
 		var symbols = '0123456789abcdefghijklmnopqrstuvwxyz', letters = 'abcdefghijklmnopqrstuvwxyz';
@@ -402,28 +319,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 
 		return prefix + '_';
-	};
-
-	// Initialize the installation data
-	Joomla.installation.data = {
-		// The language used
-		language: "",
-
-		// FTP
-		ftpUsername: "",
-		ftpPassword: "",
-		ftpHost: "",
-		ftpPort: 21,
-		ftpRoot: "/",
-
-		// Extra
-		sampleData: false,
-		extraLanguages: [],
-		components: [],
-		modules: [],
-		plugins: [],
-		templates: [],
-		libraries: []
 	};
 
 	// Are we in the main form?
@@ -452,8 +347,6 @@ document.addEventListener('DOMContentLoaded', function() {
 				document.getElementById('step1').parentNode.removeChild(document.getElementById('step1'));
 
 				document.getElementById('installStep2').scrollIntoView();
-
-
 			}
 		})
 	}
@@ -484,7 +377,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		});
 
 
-console.log(Joomla.makeRandomDbPrefix())
+		console.log(Joomla.makeRandomDbPrefix())
 
 		Install.checkDbCredentials();
 		Install.install(['Config']);
@@ -520,4 +413,4 @@ console.log(Joomla.makeRandomDbPrefix())
 		Joomla.getOptions('system.installation'),
 		Joomla.getOptions('system.installation').url ? Joomla.getOptions('system.installation').url.replace(/&amp;/g, '&') : 'index.php'
 	);
-});
+// });

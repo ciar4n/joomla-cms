@@ -13,13 +13,12 @@ defined('_JEXEC') or die;
 ?>
 
 	<div class="row">
-		<div class="col-md-11 col-lg-12 container">
+		<div id="installer-view" class="col-md-11 col-lg-12 container" data-page-name="setup">
 				<form action="index.php" method="post" id="languageForm" class="lang-select">
 					<div class="form-group row">
 						<div class="col-md-8 offset-md-2">
-							<label for="jform_language"><?php echo JText::_('INSTL_SELECT_LANGUAGE_TITLE'); ?></label>
+							<?php echo $this->form->getLabel('language'); ?>
 							<?php echo $this->form->getInput('language'); ?>
-							<p class="form-text text-muted small"><?php echo JText::_('INSTL_SELECT_LANGUAGE_DESC'); ?></p>
 						</div>
 					</div>
 					<input type="hidden" name="task" value="setlanguage">
@@ -33,7 +32,6 @@ defined('_JEXEC') or die;
 					<div class="col-md-8 offset-md-2">			
 						<?php echo $this->form->getLabel('site_name'); ?>
 						<?php echo $this->form->getInput('site_name'); ?>
-						<p class="form-text text-muted small"><?php echo JText::_('INSTL_SITE_NAME_DESC'); ?></p>
 					</div>
 				</div>
 				<div class="col-md-8 offset-md-2 justify-content-end d-flex form-group">
@@ -45,14 +43,12 @@ defined('_JEXEC') or die;
 					<div class="col-md-8 offset-md-2">
 						<?php echo $this->form->getLabel('admin_user'); ?>
 						<?php echo $this->form->getInput('admin_user'); ?>
-						<p class="form-text text-muted small"><?php echo JText::_('INSTL_ADMIN_USER_DESC'); ?></p>
 					</div>
 				</div>
 				<div class="form-group row">
 					<div class="col-md-8 offset-md-2">
 						<?php echo $this->form->getLabel('admin_email'); ?>
 						<?php echo $this->form->getInput('admin_email'); ?>
-						<p class="form-text text-muted small"><?php echo JText::_('INSTL_ADMIN_EMAIL_DESC'); ?></p>
 					</div>
 				</div>
 				<div class="form-group row">
@@ -62,8 +58,6 @@ defined('_JEXEC') or die;
 							<?php echo $this->form->getInput('admin_password'); ?>
 							<span class="input-group-addon fa fa-eye"></span>
 						</div>
-						
-						<p class="form-text text-muted small"><?php echo JText::_('INSTL_ADMIN_PASSWORD_DESC'); ?></p>
 					</div>
 				</div>
 				<div class="col-md-8 offset-md-2 justify-content-end d-flex form-group">
@@ -82,49 +76,43 @@ defined('_JEXEC') or die;
 					<div class="col-md-8 offset-md-2">
 						<?php echo $this->form->getLabel('db_host'); ?>
 						<?php echo $this->form->getInput('db_host'); ?>
-						<p class="form-text text-muted small"><?php echo JText::_('INSTL_DATABASE_HOST_DESC'); ?></p>
 					</div>
 				</div>
 				<div class="form-group row">
 					<div class="col-md-8 offset-md-2">
 						<?php echo $this->form->getLabel('db_user'); ?>
 						<?php echo $this->form->getInput('db_user'); ?>
-						<p class="form-text text-muted small"><?php echo JText::_('INSTL_DATABASE_USER_DESC'); ?></p>
 					</div>
 				</div>
 				<div class="form-group row">
 					<div class="col-md-8 offset-md-2">
 						<?php echo $this->form->getLabel('db_pass'); ?>
 						<?php echo $this->form->getInput('db_pass'); ?>
-						<p class="form-text text-muted small"><?php echo JText::_('INSTL_DATABASE_PASSWORD_DESC'); ?></p>
 					</div>
 				</div>
 				<div class="form-group row">
 					<div class="col-md-8 offset-md-2">
 						<?php echo $this->form->getLabel('db_name'); ?>
 						<?php echo $this->form->getInput('db_name'); ?>
-						<p class="form-text text-muted small"><?php echo JText::_('INSTL_DATABASE_NAME_DESC'); ?></p>
 					</div>
 				</div>
-				<div class="col-md-8 offset-md-2 justify-content-end d-flex form-group">
-					<button class="btn btn-success" onclick="Joomla.checkInputs()" ?><?php echo JText::_('Install'); ?> <span class="fa fa-chevron-right" aria-hidden="true"></span></button>
+				<div class="form-group">
+					<?php //echo $this->form->getLabel('db_prefix'); ?>
+					<?php echo $this->form->getInput('db_prefix'); ?>
+				</div>
+				<div class="form-group">
+					<?php //echo $this->form->getLabel('db_old'); ?>
+					<?php echo $this->form->getInput('db_old'); ?>
 				</div>
 			</div>
-		</div>
-		<div class="form-group">
-<!--			--><?php //echo $this->form->getLabel('db_prefix'); ?>
-			<?php echo $this->form->getInput('db_prefix'); ?>
+
+			<div class="col-md-8 offset-md-2 justify-content-end d-flex form-group">
+				<button class="btn btn-success" onclick="Joomla.checkInputs()" ?><?php echo JText::_('Install'); ?> <span class="fa fa-chevron-right" aria-hidden="true"></span></button>
+			</div>
 
 		</div>
-		<div class="form-group">
-<!--			--><?php //echo $this->form->getLabel('db_old'); ?>
-			<?php echo $this->form->getInput('db_old'); ?>
-		</div>
-	</div>
-	</div>
 
-	<input type="hidden" name="admin_password2" id="jform_admin_password2">
-	<input type="hidden" name="task" value="site">
-	<input type="hidden" name="format" value="json">
-	<?php echo JHtml::_('form.token'); ?>
-</form>
+			<input type="hidden" name="admin_password2" id="jform_admin_password2">
+			<?php echo JHtml::_('form.token'); ?>
+		</form>
+</div>

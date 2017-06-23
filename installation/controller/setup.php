@@ -14,7 +14,7 @@ defined('_JEXEC') or die;
  *
  * @since  3.1
  */
-class InstallationControllerSite extends JControllerBase
+class InstallationControllerSetup extends JControllerBase
 {
 	/**
 	 * Execute the controller.
@@ -30,16 +30,16 @@ class InstallationControllerSite extends JControllerBase
 		$app = $this->getApplication();
 
 		// Check for request forgeries.
-		JSession::checkToken() or $app->sendJsonResponse(new Exception(JText::_('JINVALID_TOKEN'), 403));
+//		JSession::checkToken() or $app->sendJsonResponse(new Exception(JText::_('JINVALID_TOKEN'), 403));
 
-		// Set the page redirect.
+		// Redirect to the page.
 		$r = new stdClass;
-		$r->view = 'database';
+		$r->view = 'remove';
 
 		// Check the form
-		if ((new InstallationModelSetup)->checkForm('site') === false)
+		if ((new InstallationModelSetup)->checkForm('setup') === false)
 		{
-			$r->view = 'site';
+			$r->view = 'setup';
 		}
 
 		$app->sendJsonResponse($r);

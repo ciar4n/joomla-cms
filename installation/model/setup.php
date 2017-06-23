@@ -33,7 +33,10 @@ class InstallationModelSetup extends JModelBase
 	 */
 	public function getOptions()
 	{
-		return JFactory::getSession()->get('setup.options', array());
+		if (!empty(JFactory::getSession()->get('setup.options', array())))
+		{
+			return JFactory::getSession()->get('setup.options', array());
+		}
 	}
 
 	/**
@@ -80,7 +83,7 @@ class InstallationModelSetup extends JModelBase
 	{
 		if (!$view)
 		{
-			$view = JFactory::getApplication()->input->getWord('view', 'site');
+			$view = JFactory::getApplication()->input->getWord('view', 'setup');
 		}
 
 		// Get the form.
@@ -118,7 +121,7 @@ class InstallationModelSetup extends JModelBase
 	 *
 	 * @since   3.1
 	 */
-	public function checkForm($page = 'site')
+	public function checkForm($page = 'setup')
 	{
 		// Get the posted values from the request and validate them.
 		$data   = JFactory::getApplication()->input->post->get('jform', array(), 'array');
@@ -1035,7 +1038,7 @@ class InstallationModelSetup extends JModelBase
 		// Handle default backend language setting. This feature is available for localized versions of Joomla.
 		$languages = JFactory::getApplication()->getLocaliseAdmin($db);
 
-		if (in_array($options->language, $languages['admin']) || in_array($options->language, $languages['site']))
+		if (in_array($options->language, $languages['admin']) || in_array($options->language, $languages['setup']))
 		{
 			// Build the language parameters for the language manager.
 			$params = array();

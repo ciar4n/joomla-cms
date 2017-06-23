@@ -138,7 +138,7 @@ class InstallationModelDatabase extends JModelBase
 		}
 
 		// Validate database table prefix.
-		if (!preg_match('#^[a-zA-Z]+[a-zA-Z0-9_]*$#', $options->db_prefix))
+		if (isset($options->db_prefix) && !preg_match('#^[a-zA-Z]+[a-zA-Z0-9_]*$#', $options->db_prefix))
 		{
 			JFactory::getApplication()->enqueueMessage(JText::_('INSTL_DATABASE_PREFIX_MSG'), 'warning');
 
@@ -146,7 +146,7 @@ class InstallationModelDatabase extends JModelBase
 		}
 
 		// Validate length of database table prefix.
-		if (strlen($options->db_prefix) > 15)
+		if (isset($options->db_prefix) && strlen($options->db_prefix) > 15)
 		{
 			JFactory::getApplication()->enqueueMessage(JText::_('INSTL_DATABASE_FIX_TOO_LONG'), 'warning');
 
@@ -164,7 +164,7 @@ class InstallationModelDatabase extends JModelBase
 		// Workaround for UPPERCASE table prefix for postgresql
 		if ($options->db_type == 'postgresql')
 		{
-			if (strtolower($options->db_prefix) != $options->db_prefix)
+			if (isset($options->db_prefix) && strtolower($options->db_prefix) != $options->db_prefix)
 			{
 				JFactory::getApplication()->enqueueMessage(JText::_('INSTL_DATABASE_FIX_LOWERCASE'), 'warning');
 

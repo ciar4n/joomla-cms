@@ -67,7 +67,7 @@ class InstallationControllerSetlanguage extends JControllerBase
 			 * The validate method enqueued all messages for us, so we just need to
 			 * redirect back to the site setup screen.
 			 */
-			$r->view = $this->getInput()->getWord('view', 'site');
+			$r->view = $this->getInput()->getWord('view', 'setup');
 			$app->sendJsonResponse($r);
 		}
 
@@ -78,7 +78,7 @@ class InstallationControllerSetlanguage extends JControllerBase
 		JFactory::$language = JLanguage::getInstance($return['language']);
 
 		// Redirect to the page.
-		$r->view = $this->getInput()->getWord('view', 'site');
+		$r->view = $this->getInput()->getWord('view', 'setup');
 		$app->sendJsonResponse($r);
 	}
 }

@@ -6,7 +6,7 @@
 				type="installation.language"
 				id="language"
 				class="custom-select required ml-2"
-				label="INSTL_LANGUAGE_LABEL"
+				label="INSTL_SELECT_LANGUAGE_TITLE"
 				default="en-GB"
 				onchange="Install.setlanguage();"
 		/>
@@ -16,7 +16,7 @@
 				type="text"
 				id="site_name"
 				class="form-control"
-				label="INSTL_SITE_NAME_LABEL"
+				label="INSTL_SITE_NAME_DESC"
 				required="true"
 		/>
 
@@ -25,7 +25,7 @@
 				type="email"
 				id="admin_email"
 				class="form-control"
-				label="INSTL_ADMIN_EMAIL_LABEL"
+				label="INSTL_ADMIN_EMAIL_DESC"
 				validate="email"
 				required="true"
 		/>
@@ -35,7 +35,7 @@
 				type="text"
 				id="admin_user"
 				class="form-control"
-				label="INSTL_ADMIN_USER_LABEL"
+				label="INSTL_ADMIN_USER_DESC"
 				required="true"
 		/>
 
@@ -44,7 +44,7 @@
 				type="password"
 				id="admin_password"
 				class="form-control validate-password-strength"
-				label="INSTL_ADMIN_PASSWORD_LABEL"
+				label="INSTL_ADMIN_PASSWORD_DESC"
 				required="true"
 				autocomplete="off"
 		/>
@@ -54,7 +54,7 @@
 				type="textarea"
 				id="site_metadesc"
 				class="form-control text_area noResize"
-				label="INSTL_SITE_METADESC_LABEL"
+				label="INSTL_SITE_METADESC_DESC"
 				rows="3"
 		/>
 
@@ -64,7 +64,7 @@
 				id="site_offline"
 				class="btn-group"
 				default="0"
-				label="INSTL_SITE_OFFLINE_LABEL"
+				label="INSTL_SITE_OFFLINE_DESC"
 				filter="integer"
 		>
 			<option value="1">JYES</option>
@@ -76,7 +76,7 @@
 				type="databaseconnection"
 				id="db_type"
 				class="custom-select form-control"
-				label="INSTL_DATABASE_TYPE_LABEL"
+				label="INSTL_DATABASE_TYPE_DESC"
 				supported="mysqli,pdomysql,postgresql"
 				required="true"
 				default="mysqli"
@@ -87,7 +87,7 @@
 				type="text"
 				id="db_host"
 				class="form-control"
-				label="INSTL_DATABASE_HOST_LABEL"
+				label="INSTL_DATABASE_HOST_DESC"
 				default="localhost"
 				required="true"
 		/>
@@ -96,7 +96,7 @@
 				type="text"
 				id="db_user"
 				class="form-control"
-				label="INSTL_DATABASE_USER_LABEL"
+				label="INSTL_DATABASE_USER_DESC"
 				required="true"
 		/>
 		<field
@@ -104,7 +104,7 @@
 				type="password"
 				id="db_pass"
 				class="form-control"
-				label="INSTL_DATABASE_PASSWORD_LABEL"
+				label="INSTL_DATABASE_PASSWORD_DESC"
 				autocomplete="off"
 				filter="raw"
 		/>
@@ -113,21 +113,25 @@
 				type="text"
 				id="db_name"
 				class="form-control"
-				label="INSTL_DATABASE_NAME_LABEL"
+				label="INSTL_DATABASE_NAME_DESC"
 				required="true"
 				default="joomla_db"
 		/>
+	</fieldset>
 
-		<field
-				name="db_old"
-				type="hidden"
-				id="db_old"
-		        default="backup"
-		/>
+	<!-- Advanced Settings -->
+	<fieldset name="advanced">
 		<field
 				name="db_prefix"
 				type="hidden"
 				id="db_prefix"
+				default=""
+		/>
+		<field
+				name="db_old"
+				type="hidden"
+				id="db_old"
+				default="backup"
 		/>
 	</fieldset>
 </form>
