@@ -87,6 +87,12 @@ $doc->setMetaData('theme-color', '#1c3d5c');
 					<img src="<?php echo $logoLg; ?>" class="logo" alt="<?php echo $sitename;?>">
 				</a>
 			</div>
+			<div class="menu-collapse">
+				<a id="menu-collapse" class="menu-toggle ml-auto" href="#">
+					<span class="menu-toggle-icon fa fa-chevron-left fa-fw" aria-hidden="true"></span>
+					<span class="sr-only"><?php echo JText::_('TPL_ATUM_CONTROL_PANEL_MENU'); ?></span>
+				</a>
+			</div>
 			<jdoc:include type="modules" name="menu" style="none" />
 		</div>
 		<?php endif; ?>
@@ -96,12 +102,6 @@ $doc->setMetaData('theme-color', '#1c3d5c');
 			<div class="container-fluid">
 				<div class="d-flex justify-content-end">
 					<div class="d-flex col">
-						<div class="menu-collapse">
-							<a id="menu-collapse" class="menu-toggle" href="#">
-								<span class="menu-toggle-icon fa fa-chevron-left fa-fw" aria-hidden="true"></span>
-								<span class="sr-only"><?php echo JText::_('TPL_ATUM_CONTROL_PANEL_MENU'); ?></span>
-							</a>
-						</div>
 
 						<div class="container-title">
 							<jdoc:include type="modules" name="title" />
