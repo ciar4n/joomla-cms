@@ -101,7 +101,9 @@ Desktop.ini
 /libraries/vendor/defuse/php-encryption/.php_cs
 /libraries/vendor/defuse/php-encryption/composer.json
 /libraries/vendor/defuse/php-encryption/README.md
+/libraries/vendor/defuse/php-encryption/psalm.xml
 /libraries/vendor/defuse/php-encryption/test.sh
+/libraries/vendor/joomla/*/.appveyor.yml
 /libraries/vendor/joomla/*/.gitattributes
 /libraries/vendor/joomla/*/.github
 /libraries/vendor/joomla/*/.gitignore
@@ -117,6 +119,7 @@ Desktop.ini
 /libraries/vendor/joomla/*/composer.json
 /libraries/vendor/joomla/*/phpunit.xml.dist
 /libraries/vendor/joomla/*/phpunit.travis.xml
+/libraries/vendor/joomla/*/phpunit.appveyor.xml
 /libraries/vendor/joomla/*/README.md
 /libraries/vendor/leafo/lessphp/docs
 /libraries/vendor/leafo/lessphp/tests
@@ -206,3 +209,18 @@ Desktop.ini
 /libraries/vendor/zendframework/zend-diactoros/CONTRIBUTING.md
 /libraries/vendor/zendframework/zend-diactoros/mkdocs.yml
 /libraries/vendor/zendframework/zend-diactoros/README.md
+
+# System Test related files
+tests/codeception/acceptance.suite.yml
+tests/codeception/_support/_generated/*TesterActions.php
+tests/codeception/joomla-cms*
+tests/codeception/_output*
+selenium-server-standalone.jar
+selenium.log
+tests/codeception/cache
+tests/codeception/_output
+tests/codeception/vendor
+composer.phar
+
+# Build related
+RoboFile.ini

@@ -31,6 +31,7 @@ return array(
     'Joomla\\Http\\' => array($vendorDir . '/joomla/http/src'),
     'Joomla\\Filter\\' => array($vendorDir . '/joomla/filter/src'),
     'Joomla\\Event\\' => array($vendorDir . '/joomla/event/src'),
+    'Joomla\\Database\\' => array($vendorDir . '/joomla/database/src'),
     'Joomla\\Data\\' => array($vendorDir . '/joomla/data/src'),
     'Joomla\\DI\\' => array($vendorDir . '/joomla/di/src'),
     'Joomla\\Crypt\\' => array($vendorDir . '/joomla/crypt/src'),
@@ -38,5 +39,6 @@ return array(
     'Joomla\\Application\\' => array($vendorDir . '/joomla/application/src'),
     'Joomla\\' => array($baseDir . '/libraries/src'),
     'Fig\\Link\\' => array($vendorDir . '/fig/link-util/src'),
+    'Defuse\\Crypto\\' => array($vendorDir . '/defuse/php-encryption/src'),
     'Composer\\CaBundle\\' => array($vendorDir . '/composer/ca-bundle/src'),
 );
