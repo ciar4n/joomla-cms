@@ -75,26 +75,15 @@ class InstallationControllerDefault extends JControllerBase
 					$options      = [];
 
 					break;
-				case 'install':
-					$model        = new InstallationModelSetup;
-//					InstallationModelConfiguration;
-					$checkOptions = true;
-					$options      = $model->getOptions();
-
-					break;
 				case 'remove':
+					$options      = (new InstallationModelChecks)->getOptions();
 					$model        = new InstallationModelSetup;
-//					InstallationModelConfiguration;
 					$checkOptions = true;
-					$options      = $model->getOptions();
-
 					break;
 				default:
-
+					$options      = (new InstallationModelChecks)->getOptions();
 					$model        = new InstallationModelSetup;
 					$checkOptions = true;
-					$options      = $model->getOptions();
-
 					break;
 			}
 

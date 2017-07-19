@@ -25,7 +25,7 @@ Joomla.installation.detectFtpRoot = function(el) {
 
 	Joomla.request({
 		type: "POST",
-		url : Joomla.installation.baseUrl + '?task=' + task + '&format=json',
+		url : Joomla.installationBaseUrl + '?task=' + task + '&format=json',
 		data: data,
 		perform: true,
 		headers: {'Content-Type': 'application/x-www-form-urlencoded'},

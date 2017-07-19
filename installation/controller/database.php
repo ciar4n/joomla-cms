@@ -32,8 +32,9 @@ class InstallationControllerDatabase extends JControllerBase
 		// Check for request forgeries.
 //		JSession::checkToken() or $app->sendJsonResponse(new Exception(JText::_('JINVALID_TOKEN'), 403));
 
-		// Check the form
-		$vars = (new InstallationModelSetup)->checkForm('setup');
+		(new InstallationModelSetup)->checkForm('setup');
+		// Get the options from the session
+		$options = (new InstallationModelSetup)->getOptions();
 
 		// Determine if the configuration file path is writable.
 		$path   = JPATH_CONFIGURATION . '/configuration.php';
@@ -43,8 +44,8 @@ class InstallationControllerDatabase extends JControllerBase
 		$r->view = $useftp ? 'ftp' : 'install';
 
 		// Attempt to initialise the database.
-		if (!(new InstallationModelDatabase)->initialise($vars)){
-			if (!(new InstallationModelDatabase)->createDatabase($vars))
+		if (!(new InstallationModelDatabase)->initialise($options)){
+			if (!(new InstallationModelDatabase)->createDatabase($options))
 			{
 				$r->view = 'setup';
 			}

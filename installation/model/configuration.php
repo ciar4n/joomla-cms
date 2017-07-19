@@ -39,9 +39,43 @@ class InstallationModelConfiguration extends JModelBase
 			return false;
 		}
 
+		// Do the database init/fill
+		$databaseModel = new InstallationModelDatabase;
+
+		// Create Db
+		if (!$databaseModel->createDatabase($options))
+		{
+			$this->deleteConfiguartion();
+			return false;
+		}
+
+		$options->db_select=true;
+		$options->db_created=1;
+
+		// Create tables
+		if (!$databaseModel->createTables($options))
+		{
+			$this->deleteConfiguartion();
+			return false;
+		}
+
 		// Attempt to create the root user.
 		if (!$this->createRootUser($options))
 		{
+			$this->deleteConfiguartion();
+			return false;
+		}
+
+//		// Handle old db if exists
+//		if (!$databaseModel->handleOldDatabase($options))
+//		{
+//			return false;
+//		}
+
+		// Install CSM data
+		if (!$databaseModel->installCmsData($options))
+		{
+//			$this->deleteConfiguartion();
 			return false;
 		}
 
@@ -170,7 +204,8 @@ class InstallationModelConfiguration extends JModelBase
 
 		if ((file_exists($path) && !is_writable($path)) || (!file_exists($path) && !is_writable(dirname($path) . '/')))
 		{
-			$useFTP = true;
+			return false;
+			// $useFTP = true;
 		}
 
 		// Check for safe mode.
@@ -364,5 +399,24 @@ class InstallationModelConfiguration extends JModelBase
 		}
 
 		return true;
+	}
+
+	/**
+	 * Method to create the root user for the site.
+	 *
+	 * @return  boolean  True on success.
+	 *
+	 * @since   __DEPLOY_VERSION__
+	 */
+	private function deleteConfiguartion()
+	{
+		// Build the configuration file path.
+		$path = JPATH_CONFIGURATION . '/configuration.php';
+
+		// Determine if the configuration file path is writable.
+		if (file_exists($path))
+		{
+			unlink($path);
+		}
 	}
 }

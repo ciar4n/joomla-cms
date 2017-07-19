@@ -95,9 +95,6 @@ class InstallationModelDatabase extends JModelBase
 	 */
 	public function initialise($options)
 	{
-		// Get the options as an object for easier handling.
-		$options = ArrayHelper::toObject($options);
-
 		// Load the backend language files so that the DB error messages work.
 		$lang = JFactory::getLanguage();
 		$currentLang = $lang->getTag();
@@ -208,12 +205,12 @@ class InstallationModelDatabase extends JModelBase
 		// Disable autoselect database before it's created.
 		$tmpSelect = true;
 
-		if (isset($options['db_select']))
+		if (isset($options->db_select))
 		{
-			$tmpSelect = $options['db_select'];
+			$tmpSelect = $options->db_select;
 		}
 
-		$options['db_select'] = false;
+		$options->db_select = false;
 
 		$db = $this->initialise($options);
 
@@ -222,9 +219,6 @@ class InstallationModelDatabase extends JModelBase
 			// Error messages are enqueued by the initialise function, we just need to tell the controller how to redirect
 			return false;
 		}
-
-		// Get the options as an object for easier handling.
-		$options = ArrayHelper::toObject($options);
 
 		// Check database version.
 		$type = $options->db_type;
@@ -403,7 +397,7 @@ class InstallationModelDatabase extends JModelBase
 	 */
 	public function handleOldDatabase($options)
 	{
-		if (!isset($options['db_created']) || !$options['db_created'])
+		if (!isset($options->db_created) || !$options->db_created)
 		{
 			return $this->createDatabase($options);
 		}
@@ -452,7 +446,7 @@ class InstallationModelDatabase extends JModelBase
 	 */
 	public function createTables($options)
 	{
-		if (!isset($options['db_created']) || !$options['db_created'])
+		if (!isset($options->db_created) || !$options->db_created)
 		{
 			return $this->createDatabase($options);
 		}
@@ -461,9 +455,6 @@ class InstallationModelDatabase extends JModelBase
 		{
 			return false;
 		}
-
-		// Get the options as an object for easier handling.
-		$options = ArrayHelper::toObject($options);
 
 		// Check database type.
 		$type = $options->db_type;
@@ -679,7 +670,7 @@ class InstallationModelDatabase extends JModelBase
 	 */
 	public function installSampleData($options)
 	{
-		if (!isset($options['db_created']) || !$options['db_created'])
+		if (!isset($options->db_created) || !$options->db_created)
 		{
 			return $this->createDatabase($options);
 		}
@@ -688,9 +679,6 @@ class InstallationModelDatabase extends JModelBase
 		{
 			return false;
 		}
-
-		// Get the options as an object for easier handling.
-		$options = ArrayHelper::toObject($options);
 
 		// Build the path to the sample data file.
 		$type = $options->db_type;
@@ -755,12 +743,12 @@ class InstallationModelDatabase extends JModelBase
 	 */
 	public function installCmsData($options)
 	{
-		// Attempt to create the database tables.
-		if (!$this->createTables($options))
-		{
-			return false;
-		}
-
+//		// Attempt to create the database tables.
+//		if (!$this->createTables($options))
+//		{
+//			return false;
+//		}
+//
 		if (!$db = $this->initialise($options))
 		{
 			return false;
@@ -821,6 +809,7 @@ class InstallationModelDatabase extends JModelBase
 		{
 			foreach ($fields as $field)
 			{
+//				$xtable = str_replace('#__', $db->getPrefix(), $table);
 				$query = $db->getQuery(true)
 					->update($db->quoteName($table))
 					->set($db->quoteName($field) . ' = ' . $db->quote($userId))

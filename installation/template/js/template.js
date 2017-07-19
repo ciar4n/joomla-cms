@@ -53,6 +53,15 @@
 	document.addEventListener('DOMContentLoaded', function() {
 		var page = document.getElementById('installer-view');
 
+		// Show the container
+		var container = document.getElementById('container-installation');
+		if (container) {
+			Joomla.installationBaseUrl = container.getAttribute('data-base-url');
+			Joomla.installationBaseUrl += "installation/index.php"
+		} else {
+			throw new Error('Javascript required to be enabled!')
+		}
+
 		if (page && page.getAttribute('data-page-name')) {
 			var script = document.querySelector('script[src*="template.js"]');
 			el = document.createElement('script');
@@ -60,15 +69,9 @@
 			document.head.appendChild(el);
 		}
 
-		// Show the container
-		var container = document.getElementById('container-installation');
 		if (container) {
 			container.classList.remove('no-js');
 			container.style.display = "block";
-			Joomla.installation.baseUrl = container.getAttribute('data-base-url');
-			Joomla.installation.baseUrl += "installation/index.php"
-		} else {
-			throw new Error('Javascript required to be enabled!')
 		}
 	});
 })();

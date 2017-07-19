@@ -12,19 +12,19 @@ defined('_JEXEC') or die;
 /* @var InstallationViewDefault $this */
 ?>
 
-	<div class="row">
-		<div id="installer-view" class="col-md-11 col-lg-12 container" data-page-name="setup">
-				<form action="index.php" method="post" id="languageForm" class="lang-select">
-					<div class="form-group row">
-						<div class="col-md-8 offset-md-2">
-							<?php echo $this->form->getLabel('language'); ?>
-							<?php echo $this->form->getInput('language'); ?>
-						</div>
+<div class="row">
+	<div id="installer-view" class="col-md-11 col-lg-12 container" data-page-name="setup">
+			<form action="index.php" method="post" id="languageForm" class="lang-select">
+				<div class="form-group row">
+					<div class="col-md-8 offset-md-2">
+						<?php echo $this->form->getLabel('language'); ?>
+						<?php echo $this->form->getInput('language'); ?>
 					</div>
-					<input type="hidden" name="task" value="setlanguage">
-					<input type="hidden" name="format" value="json">
-					<?php echo JHtml::_('form.token'); ?>
-				</form>
+				</div>
+				<input type="hidden" name="task" value="setlanguage">
+				<input type="hidden" name="format" value="json">
+				<?php echo JHtml::_('form.token'); ?>
+			</form>
 
 		<form action="index.php" method="post" id="adminForm" class="form-validate">
 			<div id="installStep1" class="install-step active">
@@ -107,12 +107,12 @@ defined('_JEXEC') or die;
 			</div>
 
 			<div class="col-md-8 offset-md-2 justify-content-end d-flex form-group">
-				<button class="btn btn-success" onclick="Joomla.checkInputs()" ?><?php echo JText::_('Install'); ?> <span class="fa fa-chevron-right" aria-hidden="true"></span></button>
+				<a class="btn btn-success" onclick="Joomla.checkInputs()" ?><?php echo JText::_('Install'); ?> <span class="fa fa-chevron-right" aria-hidden="true"></span></a>
 			</div>
-
-		</div>
 
 			<input type="hidden" name="admin_password2" id="jform_admin_password2">
 			<?php echo JHtml::_('form.token'); ?>
 		</form>
+
+	</div>
 </div>

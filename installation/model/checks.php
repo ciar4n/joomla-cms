@@ -60,13 +60,6 @@ class InstallationModelChecks extends JModelBase
 	{
 		$options = [];
 
-		// Check the PHP Version.
-		$option = new stdClass;
-		$option->label  = JText::sprintf('INSTL_PHP_VERSION_NEWER', JOOMLA_MINIMUM_PHP);
-		$option->state  = version_compare(PHP_VERSION, JOOMLA_MINIMUM_PHP, '>=');
-		$option->notice = null;
-		$options[] = $option;
-
 		// Check for zlib support.
 		$option = new stdClass;
 		$option->label  = JText::_('INSTL_ZLIB_COMPRESSION_SUPPORT');
@@ -136,7 +129,7 @@ class InstallationModelChecks extends JModelBase
 
 		$option = new stdClass;
 		$option->label  = JText::sprintf('INSTL_WRITABLE', 'configuration.php');
-		$option->state  = false; //$writable;
+		$option->state  = $writable;
 		$option->notice = $option->state ? null : JText::_('INSTL_NOTICEYOUCANSTILLINSTALL');
 		$options[] = $option;
 
@@ -164,6 +157,61 @@ class InstallationModelChecks extends JModelBase
 		}
 
 		return $result;
+	}
+
+	/**
+	 * Gets PHP Settings.
+	 *
+	 * @return  array
+	 *
+	 * @since   3.1
+	 */
+	public function getPhpSettings()
+	{
+		$settings = array();
+		// Check for safe mode.
+		$setting = new stdClass;
+		$setting->label = JText::_('INSTL_SAFE_MODE');
+		$setting->state = (bool) ini_get('safe_mode');
+		$setting->recommended = false;
+		$settings[] = $setting;
+		// Check for display errors.
+		$setting = new stdClass;
+		$setting->label = JText::_('INSTL_DISPLAY_ERRORS');
+		$setting->state = (bool) ini_get('display_errors');
+		$setting->recommended = false;
+		$settings[] = $setting;
+		// Check for file uploads.
+		$setting = new stdClass;
+		$setting->label = JText::_('INSTL_FILE_UPLOADS');
+		$setting->state = (bool) ini_get('file_uploads');
+		$setting->recommended = true;
+		$settings[] = $setting;
+		// Check for magic quotes runtimes.
+		$setting = new stdClass;
+		$setting->label = JText::_('INSTL_MAGIC_QUOTES_RUNTIME');
+		$setting->state = (bool) ini_get('magic_quotes_runtime');
+		$setting->recommended = false;
+		$settings[] = $setting;
+		// Check for output buffering.
+		$setting = new stdClass;
+		$setting->label = JText::_('INSTL_OUTPUT_BUFFERING');
+		$setting->state = (bool) ini_get('output_buffering');
+		$setting->recommended = false;
+		$settings[] = $setting;
+		// Check for session auto-start.
+		$setting = new stdClass;
+		$setting->label = JText::_('INSTL_SESSION_AUTO_START');
+		$setting->state = (bool) ini_get('session.auto_start');
+		$setting->recommended = false;
+		$settings[] = $setting;
+		// Check for native ZIP support.
+		$setting = new stdClass;
+		$setting->label = JText::_('INSTL_ZIP_SUPPORT_AVAILABLE');
+		$setting->state = function_exists('zip_open') && function_exists('zip_read');
+		$setting->recommended = true;
+		$settings[] = $setting;
+		return $settings;
 	}
 
 	/**

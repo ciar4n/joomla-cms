@@ -14,7 +14,7 @@ defined('_JEXEC') or die;
  *
  * @since  3.1
  */
-class InstallationControllerSetup extends JControllerBase
+class InstallationControllerInstallDbcheck extends JControllerBase
 {
 	/**
 	 * Execute the controller.
@@ -30,16 +30,17 @@ class InstallationControllerSetup extends JControllerBase
 		$app = $this->getApplication();
 
 		// Check for request forgeries.
-//		JSession::checkToken() or $app->sendJsonResponse(new Exception(JText::_('JINVALID_TOKEN'), 403));
+		JSession::checkToken() or $app->sendJsonResponse(new Exception(JText::_('JINVALID_TOKEN'), 403));
 
 		// Redirect to the page.
 		$r = new stdClass;
-		$r->view = 'remove';
+		$r->crap = 'setup';
 
 		// Check the form
 		if ((new InstallationModelSetup)->checkForm('setup') === false || (new InstallationModelSetup)->initialise('setup') === false)
 		{
-			$r->view = 'setup';
+			$r->messages = 'Check your DB credentials, db type, db name or hostname';
+			$r->crap = 'setup';
 		}
 
 		$app->sendJsonResponse($r);
