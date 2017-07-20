@@ -345,9 +345,10 @@ if (document.getElementById('step2')) {
 		if (document.getElementById('installStep3')) {
 			document.getElementById('installStep3').removeAttribute('hidden');
 			document.getElementById('installStep3').classList.add('active');
-			document.getElementById('step2').parentNode.removeChild(document.getElementById('step2'))
+			document.getElementById('step2').parentNode.removeChild(document.getElementById('step2'));
 			document.querySelector('li[data-step="3"]').classList.add('active');
 			document.getElementById('installStep3').scrollIntoView();
+			document.getElementById('setupButton').style.display = 'block';
 		}
 	})
 }

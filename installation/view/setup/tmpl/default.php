@@ -107,7 +107,7 @@ defined('_JEXEC') or die;
 			</div>
 
 			<div class="col-md-8 offset-md-2 justify-content-end d-flex form-group">
-				<a class="btn btn-success" onclick="Joomla.checkInputs()" ?><?php echo JText::_('Install'); ?> <span class="fa fa-chevron-right" aria-hidden="true"></span></a>
+				<a class="btn btn-success" id="setupButton" onclick="Joomla.checkInputs()" style="display:none"><?php echo JText::_('Install'); ?> <span class="fa fa-chevron-right" aria-hidden="true"></span></a>
 			</div>
 
 			<input type="hidden" name="admin_password2" id="jform_admin_password2">
