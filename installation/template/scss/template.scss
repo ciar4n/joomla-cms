@@ -288,3 +288,109 @@ form {
   background-color: #75b544;
   border-color: #75b544;
 }
+
+
+// Form
+
+.form-control {
+  background-color: $white-offset;
+
+  &.input-full {
+    max-width: 100%;
+  }
+
+}
+
+.control-group {
+  margin-bottom: 18px;
+
+  &::after {
+    display: table;
+    clear: both;
+    content: "";
+  }
+
+  .control-label {
+    float: left;
+    padding-top: 5px;
+    padding-right: 5px;
+    text-align: left;
+  }
+}
+
+.form-no-margin {
+
+  .control-group {
+
+    .controls {
+      margin-left: 0;
+    }
+
+    .control-label {
+      float: none;
+    }
+
+  }
+
+}
+
+.spacer hr {
+  width: 380px;
+}
+
+.card .custom-select {
+  width: 100%;
+}
+
+td .form-control {
+  display: inline-block;
+  width: auto;
+}
+
+legend {
+  margin-bottom: 1.1rem;
+}
+
+.checkboxes {
+  padding-top: 5px;
+
+  .checkbox input {
+    position: static;
+    margin-left: 0;
+  }
+
+}
+
+.form-check {
+  padding-top: 5px;
+  margin-bottom: 0;
+}
+
+.modal label {
+  width: 100%;
+}
+
+// Validation
+.invalid {
+  color: $switcher-color-danger;
+  border-color: $switcher-color-danger;
+}
+.valid {
+  border-color: $switcher-color-success;
+}
+
+// Possibly temporary until Bootstrap support it themselves
+.custom-select[multiple] {
+  height: auto;
+  background: none;
+}
+
+// Validation
+.invalid {
+  color: $switcher-color-danger;
+  border-color: $switcher-color-danger;
+}
+
+.valid {
+  border-color: $switcher-color-success;
+}

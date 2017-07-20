@@ -30,7 +30,7 @@ class InstallationViewRemoveHtml extends JViewHtml
 		$this->development = $version->isInDevelopmentState();
 		$this->options     = $altModel->getOptions();
 		$this->phpoptions  = $altModel->getPhpOptions();
-//		$this->phpsettings = $altModel->getPhpSettings();
+		$this->phpsettings = $altModel->getPhpSettings();
 
 		return parent::render();
 	}
