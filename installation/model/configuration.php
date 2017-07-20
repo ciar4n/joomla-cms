@@ -49,8 +49,8 @@ class InstallationModelConfiguration extends JModelBase
 			return false;
 		}
 
-		$options->db_select=true;
-		$options->db_created=1;
+		$options->db_select = true;
+		$options->db_created = 1;
 
 		// Create tables
 		if (!$databaseModel->createTables($options))

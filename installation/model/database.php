@@ -178,8 +178,7 @@ class InstallationModelDatabase extends JModelBase
 				$options->db_user,
 				$options->db_pass,
 				$options->db_name,
-				$options->db_prefix,
-				$options->db_select
+				$options->db_prefix
 			);
 		}
 		catch (RuntimeException $e)

@@ -69,9 +69,7 @@ class InstallationControllerDefault extends JControllerBase
 			switch ($vName)
 			{
 				case 'remove':
-					if ((new InstallationModelSetup)->checkForm('setup') === false || (new InstallationModelSetup)->initialise('setup') === false) {
-						$app->redirect('index.php?view=setup');
-					}
+					// We need to check if we have a successful install (session + db)
 					break;
 				case 'setup':
 				default:
