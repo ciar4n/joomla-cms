@@ -1,7 +1,7 @@
 (function() {
 	// Initialize the Installation object
 	Joomla.installation = function(_container, _base) {
-		var container, busy, baseUrl, view,
+		var container, baseUrl, view,
 		    /**
 		     * Method to submit a form from the installer via AJAX
 		     *
@@ -11,13 +11,7 @@
 			    var form = document.getElementById('adminForm'),
 			        data = Joomla.serialiseForm(form);
 
-			    if (busy) {
-				    alert(Joomla.JText._('INSTL_PROCESS_BUSY', 'Process is in progress. Please wait...'));
-				    return false;
-			    }
-
 			    Joomla.loadingLayer("show");
-			    busy = true;
 			    Joomla.removeMessages();
 
 			    Joomla.request({
@@ -35,18 +29,11 @@
 					    if (response.error) {
 						    Joomla.renderMessages({'error': [response.message]});
 						    Joomla.loadingLayer("hide");
-						    busy = false;
 					    } else {
-
-						    var lang = document.getElementsByTagName('html')[0].getAttribute('lang');
-						    console.log(response.data.view)
-						    window.location = baseUrl + '?view=' + response.data.view + '&layout=default';
-						    // if (response.lang && lang.toLowerCase() === response.lang.toLowerCase()) {
-						    // 	if (response.data && response.data.view)
-						    //     Install.goToPage(response.data.view, true);
-						    // } else {
-						    //    window.location = baseUrl + '?view=' + response.data.view + '&layout=default';
-						    // }
+						    Joomla.loadingLayer("hide");
+						    if (response.data && response.data.view) {
+							    Install.goToPage(response.data.view, true);
+						    }
 					    }
 				    },
 				    onError  : function (xhr) {
@@ -100,7 +87,6 @@
 				    },
 				    onError:   function(xhr){
 					    Joomla.loadingLayer("hide");
-					    busy = false;
 					    try {
 						    var r = JSON.parse(xhr.responseText);
 						    Joomla.replaceTokens(r.token);
@@ -137,7 +123,6 @@
 		     * Executes the required tasks to complete site installation
 		     *
 		     * @param tasks       An array of install tasks to execute
-		     * @param step_width  The width of the progress bar element
 		     */
 		    install = function(tasks) {
 			    if (!tasks.length) {
@@ -157,12 +142,10 @@
 				    perform: true,
 				    onSuccess: function(response, xhr){
 					    response = JSON.parse(response);
-					    console.log(response.data.view)
 					    Joomla.replaceTokens(response.token);
-					    // Install.install(['Database']);
+
 					    if (response.messages) {
 						    Joomla.renderMessages(response.messages);
-						    console.log(response.data.view)
 						    Install.goToPage(response.data.view, true);
 					    } else {
 						    Joomla.loadingLayer('hide');
@@ -183,14 +166,12 @@
 			    });
 		    },
 
-		    checkDbCredentials = () => {
+		    checkDbCredentials = function() {
 			    Joomla.loadingLayer("show");
 
 			    var form = document.getElementById('adminForm'),
 			        data = Joomla.serialiseForm(form);
 
-			    console.log(data)
-			    console.log(Joomla.installationBaseUrl + '?task=InstallDbcheck&format=json')
 			    Joomla.request({
 				    type: "POST",
 				    url : Joomla.installationBaseUrl + '?task=InstallDbcheck&format=json',

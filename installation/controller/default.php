@@ -68,18 +68,19 @@ class InstallationControllerDefault extends JControllerBase
 
 			switch ($vName)
 			{
-				case 'languages':
-				case 'defaultlanguage':
-					$model        = new InstallationModelLanguages;
-					$checkOptions = false;
-					$options      = [];
+				case 'remove':
+					if ((new InstallationModelSetup)->checkForm('setup') === false || (new InstallationModelSetup)->initialise('setup') === false) {
+						$app->redirect('index.php?view=setup');
+					}
+					else
+					{
+						$options      = (new InstallationModelChecks)->getOptions();
+						$model        = new InstallationModelSetup;
+						$checkOptions = true;
+					}
 
 					break;
-				case 'remove':
-					$options      = (new InstallationModelChecks)->getOptions();
-					$model        = new InstallationModelSetup;
-					$checkOptions = true;
-					break;
+				case 'setup':
 				default:
 					$options      = (new InstallationModelChecks)->getOptions();
 					$model        = new InstallationModelSetup;
