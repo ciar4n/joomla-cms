@@ -63,7 +63,7 @@ class InstallationModelChecks extends JModelBase
 		// Check for zlib support.
 		$option = new stdClass;
 		$option->label  = JText::_('INSTL_ZLIB_COMPRESSION_SUPPORT');
-		$option->state  = extension_loaded('zlib');
+		$option->state  = false; //extension_loaded('zlib');
 		$option->notice = null;
 		$options[] = $option;
 
@@ -145,18 +145,17 @@ class InstallationModelChecks extends JModelBase
 	 */
 	public function getPhpOptionsSufficient()
 	{
-		$result  = true;
 		$options = $this->getPhpOptions();
 
 		foreach ($options as $option)
 		{
-			if (!is_null($option->notice))
+			if ($option->state === false)
 			{
-				$result = ($result && $option->state);
+				$result = $option->state;
 			}
 		}
 
-		return $result;
+		return isset($result) ? false : true;
 	}
 
 	/**
