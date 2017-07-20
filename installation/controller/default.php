@@ -72,21 +72,15 @@ class InstallationControllerDefault extends JControllerBase
 					if ((new InstallationModelSetup)->checkForm('setup') === false || (new InstallationModelSetup)->initialise('setup') === false) {
 						$app->redirect('index.php?view=setup');
 					}
-					else
-					{
-						$options      = (new InstallationModelChecks)->getOptions();
-						$model        = new InstallationModelSetup;
-						$checkOptions = true;
-					}
-
 					break;
 				case 'setup':
 				default:
-					$options      = (new InstallationModelChecks)->getOptions();
-					$model        = new InstallationModelSetup;
-					$checkOptions = true;
 					break;
 			}
+
+			$options      = (new InstallationModelChecks)->getOptions();
+			$model        = new InstallationModelSetup;
+			$checkOptions = true;
 
 			if ($vName !== $defaultView && ($checkOptions && empty($options)))
 			{

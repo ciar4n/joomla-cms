@@ -282,7 +282,7 @@
 					document.getElementById('installStep2').classList.add('active');
 					document.getElementById('step1').parentNode.removeChild(document.getElementById('step1'));
 					document.querySelector('li[data-step="2"]').classList.add('active');
-					document.getElementById('installStep2').scrollIntoView();
+					Joomla.scrollTo(document.getElementById('installStep2'), document.getElementById('installStep2').offsetTop);
 				}
 			}
 		})
@@ -297,7 +297,7 @@
 					document.getElementById('installStep3').classList.add('active');
 					document.getElementById('step2').parentNode.removeChild(document.getElementById('step2'));
 					document.querySelector('li[data-step="3"]').classList.add('active');
-					document.getElementById('installStep3').scrollIntoView();
+					Joomla.scrollTo(document.getElementById('installStep3'), document.getElementById('installStep3').offsetTop);
 					document.getElementById('setupButton').style.display = 'block';
 				}
 			}
@@ -338,4 +338,16 @@
 		Joomla.getOptions('system.installation').url ? Joomla.getOptions('system.installation').url.replace(/&amp;/g, '&') : 'index.php'
 	);
 
+	Joomla.scrollTo = function (elem, pos)
+	{
+		var y = elem.scrollTop;
+		y += (pos - y) * 0.3;
+		if (Math.abs(y-pos) < 2)
+		{
+			elem.scrollTop = pos;
+			return;
+		}
+		elem.scrollTop = y;
+		setTimeout(Joomla.scrollTo, 40, elem, pos);
+	}
 })();
