@@ -242,6 +242,11 @@
 		}
 	};
 
+	// Focus to the next field
+	if (document.getElementById('jform_site_name')) {
+		document.getElementById('jform_site_name').focus();
+	}
+
 	// Init on dom content loaded event
 	Joomla.makeRandomDbPrefix = function() {
 		var numbers = '0123456789', letters = 'abcdefghijklmnopqrstuvwxyz', symbols = numbers + letters;
@@ -283,6 +288,11 @@
 					document.getElementById('step1').parentNode.removeChild(document.getElementById('step1'));
 					document.querySelector('li[data-step="2"]').classList.add('active');
 					Joomla.scrollTo(document.getElementById('installStep2'), document.getElementById('installStep2').offsetTop);
+
+					// Focus to the next field
+					if (document.getElementById('jform_admin_user')) {
+						document.getElementById('jform_admin_user').focus();
+					}
 				}
 			}
 		})
@@ -299,6 +309,11 @@
 					document.querySelector('li[data-step="3"]').classList.add('active');
 					Joomla.scrollTo(document.getElementById('installStep3'), document.getElementById('installStep3').offsetTop);
 					document.getElementById('setupButton').style.display = 'block';
+
+					// Focus to the next field
+					if (document.getElementById('jform_db_type')) {
+						document.getElementById('jform_db_type').focus();
+					}
 				}
 			}
 		})
