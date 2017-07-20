@@ -353,6 +353,12 @@ if (document.getElementById('step2')) {
 	})
 }
 
+Joomla.checkFields = function(fields) {
+	if (fields.length) {
+		fields.forEach()
+	}
+};
+
 Joomla.checkInputs = function() {
 	document.getElementById('jform_admin_password2').value = document.getElementById('jform_admin_password').value;
 	// document.getElementById('jform_admin_password2').type = 'text';
