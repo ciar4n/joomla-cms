@@ -74,12 +74,14 @@ JText::script('INSTL_FTP_SETTINGS_CORRECT');
 		</header>
 		<?php // Container ?>
 		<section class="container container-main" role="main">
-			<jdoc:include type="message" />
+			<div id="system-message-container">
+				<jdoc:include type="message" />
+			</div>
 			<div id="javascript-warning">
 				<noscript>
-					<div class="alert alert-danger text-center">
+					<joomla-alert level="danger text-center">
 						<?php echo JText::_('INSTL_WARNJAVASCRIPT'); ?>
-					</div>
+					</joomla-alert>
 				</noscript>
 			</div>
 			<div id="container-installation" class="container-installation flex no-js" data-base-url="<?php echo JUri::root(); ?>" style="display:none">

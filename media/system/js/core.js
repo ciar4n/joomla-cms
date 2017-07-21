@@ -316,23 +316,42 @@ Joomla.editors.instances = Joomla.editors.instances || {
 			// Array of messages of this type
 			typeMessages = messages[ type ];
 
-			// Create the alert box
-			messagesBox = document.createElement( 'div' );
+			if (window.customElements && typeof customElements.get('joomla-alert') === 'function') {
+				messagesBox = document.createElement( 'joomla-alert' );
 
-			// Message class
-			alertClass = (type == 'notice') ? 'alert-info' : 'alert-' + type;
-			alertClass = (type == 'message') ? 'alert-success' : alertClass;
-			alertClass = (type == 'error') ? 'alert-danger' : alertClass;
+				if (['notice','message', 'error'].indexOf(type) > -1) {
+					alertClass = (type == 'notice') ? 'info' : type;
+					alertClass = (type == 'message') ? 'success' : alertClass;
+					alertClass = (type == 'error') ? 'danger' : alertClass;
+				} else {
+					alertClass = 'info';
+				}
 
-			messagesBox.className = 'alert ' + alertClass;
+				messagesBox.setAttribute('level', alertClass);
+				messagesBox.setAttribute('dismiss', 'true');
+			} else {
+				// Create the alert box
+				messagesBox = document.createElement( 'div' );
 
-			// Close button
-			var buttonWrapper = document.createElement( 'button' );
-			buttonWrapper.setAttribute('type', 'button');
-			buttonWrapper.setAttribute('data-dismiss', 'alert');
-			buttonWrapper.className = 'close';
-			buttonWrapper.innerHTML = '×';
-			messagesBox.appendChild( buttonWrapper );
+				// Message class
+				if (['notice','message', 'error'].indexOf(type) > -1) {
+					alertClass = (type == 'notice') ? 'info' : type;
+					alertClass = (type == 'message') ? 'success' : alertClass;
+					alertClass = (type == 'error') ? 'danger' : alertClass;
+				} else {
+					alertClass = 'info';
+				}
+
+				messagesBox.className = 'alert ' + alertClass;
+
+				// Close button
+				var buttonWrapper = document.createElement( 'button' );
+				buttonWrapper.setAttribute('type', 'button');
+				buttonWrapper.setAttribute('data-dismiss', 'alert');
+				buttonWrapper.className = 'close';
+				buttonWrapper.innerHTML = '×';
+				messagesBox.appendChild( buttonWrapper );
+			}
 
 			// Title
 			title = Joomla.JText._( type );
@@ -341,7 +360,7 @@ Joomla.editors.instances = Joomla.editors.instances || {
 			if ( typeof title != 'undefined' ) {
 				titleWrapper = document.createElement( 'h4' );
 				titleWrapper.className = 'alert-heading';
-				titleWrapper.innerHTML = Joomla.JText._( type );
+				titleWrapper.innerHTML = Joomla.JText._( type ) ? Joomla.JText._( type ) : type;
 				messagesBox.appendChild( titleWrapper );
 			}
 
@@ -378,14 +397,26 @@ Joomla.editors.instances = Joomla.editors.instances || {
 		} else {
 			messageContainer = container;
 		}
+		if (!messageContainer) {
+			messageContainer = document;
+		}
 
-		// Empty container with a while for Chrome performance issues
-		while ( messageContainer.firstChild ) messageContainer.removeChild( messageContainer.firstChild );
+		if (window.customElements && customElements.get('joomla-alert')) {
+			var messages = messageContainer.querySelectorAll('joomla-alert');
+			if (messages.length) {
+				for (var i = 0, l = messages.length; i < l; i++) {
+					messages[i].parentNode.remove(messages[i]);
+				}
+			}
+		} else {
+			// Empty container with a while for Chrome performance issues
+			while ( messageContainer.firstChild ) messageContainer.removeChild( messageContainer.firstChild );
 
-		// Fix Chrome bug not updating element height
-		messageContainer.style.display = 'none';
-		messageContainer.offsetHeight;
-		messageContainer.style.display = '';
+			// Fix Chrome bug not updating element height
+			messageContainer.style.display = 'none';
+			messageContainer.offsetHeight;
+			messageContainer.style.display = '';
+		}
 	};
 
 	/**
