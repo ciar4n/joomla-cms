@@ -10,18 +10,27 @@ defined('_JEXEC') or die;
 
 /** @var JDocumentHtml $this */
 
+// @TODO Remove when webcomponents get merged into the core
+JLoader::register('JDocumentRendererHtmlMessage', __DIR__ . '/message.php', true);
+
 // Add Stylesheets
-JHtml::_('stylesheet', 'installation/template/css/template.css', array('version' => 'auto'));
-JHtml::_('stylesheet', 'media/vendor/font-awesome/css/font-awesome.min.css');
+JHtml::_('stylesheet', 'installation/template/css/template.css', ['version' => 'auto']);
+JHtml::_('stylesheet', 'media/vendor/font-awesome/css/font-awesome.min.css', ['version' => 'auto']);
+JHtml::_('stylesheet', 'installation/template/css/joomla-alert.min.css', ['version' => 'auto']);
 
 // Add scripts
 JHtml::_('behavior.core');
 JHtml::_('behavior.keepalive');
 JHtml::_('behavior.formvalidator');
-JHtml::_('script', 'installation/template/js/template.js', array('version' => 'auto'));
+JHtml::_('script', 'installation/template/js/template.js', ['version' => 'auto']);
+JHtml::_('script', 'installation/template/js/wc-loader.min.js', ['version' => 'auto']);
 
 // Add script options
-$this->addScriptOptions('system.installation', array('url' => JRoute::_('index.php')));
+$this->addScriptOptions('system.installation', ['url' => JRoute::_('index.php')]);
+$this->addScriptOptions(
+		'webcomponents',
+			['joomla-alert' => JHtml::_('script', 'installation/template/js/joomla-alert.min.js', ['relative' => false, 'pathOnly' => true])]
+);
 
 // Load JavaScript message titles
 JText::script('ERROR');

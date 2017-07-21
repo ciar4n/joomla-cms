@@ -58,6 +58,8 @@ Joomla.installation.detectFtpRoot = function(el) {
 };
 
 if (document.getElementById('showFtp')) {
+	// @TODO FTP??
+	document.getElementById('showFtp').style.display = 'none';
 	document.getElementById('showFtp').addEventListener('click', function(e) {
 		e.preventDefault();
 		if (document.getElementById('ftpOptions')) {
@@ -70,6 +72,7 @@ if (document.getElementById('showFtp')) {
 if (document.getElementById('verifybutton')) {
 	document.getElementById('verifybutton').addEventListener('click', function(e) {
 		e.preventDefault();
+		// @TODO FTP??
 		//onclick="Install.verifyFtpSettings(this);"
 		var ftpForm = document.getElementById('ftpForm');
 		if (ftpForm) {
