@@ -20,8 +20,13 @@ defined('_JEXEC') or die;
 						<?php foreach ($this->options as $option) : ?>
 							<?php if ($option->state === 'JNO' || $option->state === false) : ?>
 								<div class="alert preinstall-alert">
-									<strong><?php echo $option->label; ?></strong>
-									<p class="form-text text-muted small"><?php echo $option->notice; ?></p>
+									<div class="alert-icon">
+										<span class="alert-icon fa fa-exclamation-triangle"></span>
+									</div>
+									<div class="alert-text">
+										<strong><?php echo $option->label; ?></strong>
+										<p class="form-text text-muted small"><?php echo $option->notice; ?></p>
+									</div>
 								</div>
 							<?php endif; ?>
 						<?php endforeach; ?>

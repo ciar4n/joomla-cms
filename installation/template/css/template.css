@@ -8836,27 +8836,34 @@ form {
 .system-message .alert {
   margin: 25px 50px; }
 
-.preinstall-alert {
+.alert {
   position: relative;
-  display: block;
-  padding: 20px 20px 20px 100px;
+  display: -ms-flexbox;
+  display: flex;
   margin: 20px 0;
   background: #fafafa;
   border: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.05); }
-  .preinstall-alert::after {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    width: 100px;
-    font-family: FontAwesome;
-    font-size: 3rem;
-    text-align: center;
-    content: "\f071";
-    opacity: .2;
-    transform: translateY(-50%); }
-  .preinstall-alert p {
+  .alert p {
     margin-bottom: 0; }
+
+.alert-icon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+  width: 25%;
+  margin-bottom: 0;
+  font-size: 3rem;
+  opacity: .6; }
+  .alert-icon .fa {
+    width: 100%;
+    text-align: center; }
+
+.alert-text {
+  padding: 10px 20px; }
 
 .lang-select {
   top: 0;
