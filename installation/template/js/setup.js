@@ -191,6 +191,7 @@ Joomla.installation = function(_container, _base) {
 					    alert('good to go')
 					    // You shall pass
 					    install(['Config']);
+					    install(['Config']);
 
 					    // If all good (we need some code here)
 					    goToPage('remove');

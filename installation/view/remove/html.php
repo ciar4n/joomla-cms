@@ -23,12 +23,12 @@ class InstallationViewRemoveHtml extends JViewHtml
 		// Sample data
 
 		// Available languages
-		$langModel         = new InstallationModelLanguages();
-		$this->items       = $langModel->getItems();
 		$version           = new Jversion();
 		$altModel          = new InstallationModelChecks;
+		$langModel         = new InstallationModelLanguages();
+
+		$this->items       = $langModel->getItems();
 		$this->development = $version->isInDevelopmentState();
-		$this->options     = $altModel->getOptions();
 		$this->phpoptions  = $altModel->getPhpOptions();
 		$this->phpsettings = $altModel->getPhpSettings();
 

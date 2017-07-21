@@ -45,7 +45,7 @@ class InstallationModelConfiguration extends JModelBase
 		// Create Db
 		if (!$databaseModel->createDatabase($options))
 		{
-			$this->deleteConfiguartion();
+//			$this->deleteConfiguartion();
 			return false;
 		}
 
@@ -55,14 +55,14 @@ class InstallationModelConfiguration extends JModelBase
 		// Create tables
 		if (!$databaseModel->createTables($options))
 		{
-			$this->deleteConfiguartion();
+//			$this->deleteConfiguartion();
 			return false;
 		}
 
 		// Attempt to create the root user.
 		if (!$this->createRootUser($options))
 		{
-			$this->deleteConfiguartion();
+//			$this->deleteConfiguartion();
 			return false;
 		}
 
