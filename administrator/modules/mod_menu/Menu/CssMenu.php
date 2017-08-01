@@ -179,8 +179,8 @@ class CssMenu
 		$unique = self::$counter;
 
 		// Print the item
-		$ariaPopup = $this->_current->hasChildren() ? 'aria-haspopup="true"' : '';
-		echo '<li' . $class . ' role="menuitem" ' . $ariaPopup . '>';
+		$ariaPopup = $this->_current->hasChildren() ? ' aria-haspopup="true"' : '';
+		echo '<li' . $class . ' role="menuitem" tabindex="-1"' . $ariaPopup . '>';
 
 		// Print a link if it exists
 		$linkClass = array();
@@ -192,7 +192,7 @@ class CssMenu
 			$dataToggle = '';
 
 			// If the menu item has children, override the href
-			$this->_current->link = '#collapse' . $unique;
+//			$this->_current->link = '#collapse' . $unique;
 		}
 		else
 		{
@@ -212,7 +212,7 @@ class CssMenu
 		// Convert blank href to collapse trigger
 		if ($this->_current->link === '#')
 		{
-			$this->_current->link = '#collapse' . $unique;
+//			$this->_current->link = '#collapse' . $unique;
 		}
 
 		if ($this->_current->link != null && $this->_current->target != null)
@@ -239,8 +239,7 @@ class CssMenu
 		// @TODO - A better solution needed to add 2nd level title ($this->_current->title) & 'close'
 		while ($this->_current->hasChildren())
 		{
-			echo '<ul id="collapse' . $unique . '" class="nav panel-collapse collapse-level-1 collapse" role="menu" aria-hidden="true">
-		   <li>' . $this->_current->title . '<a href="#" class="close"><span aria-label="Close Menu">×</span></a></li>' . "\n";
+			echo '<ul id="collapse' . $unique . '" class="nav" aria-hidden="true" aria-expanded="false" tabindex="-1" aria-label="' . $this->_current->title . '">';
 
 			foreach ($this->_current->getChildren() as $child)
 			{

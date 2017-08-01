@@ -141,21 +141,10 @@
 
     ul {
       position: absolute;
-      top: 0;
-      left: 50px;
-      z-index: -3;
       display: block;
       width: 200px;
-      height: 100%;
       padding: 0;
-      opacity: 0;
-      transition: left .2s ease, opacity .2s ease;
-      transition-delay: 0;
-      ul {
-        display: none;
-        opacity: 1;
-      }
-
+      background-color: $atum-template-color;
       li {
         text-indent: 15px;
       }
