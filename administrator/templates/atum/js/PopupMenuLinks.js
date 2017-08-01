@@ -234,22 +234,6 @@ PopupMenu.prototype.open = function () {
 	// Get position and bounding rectangle of controller object's DOM node
 	var rect = this.controller.domNode.getBoundingClientRect();
 
-	// Set CSS properties
-	if (!this.controller.isMenubarItem) {
-		this.domNode.parentNode.style.position = 'relative';
-		this.domNode.style.display = 'block';
-		this.domNode.style.position = 'absolute';
-		this.domNode.style.left = rect.width + 'px';
-		this.domNode.style.zIndex = 100;
-	}
-	else {
-		this.domNode.style.display = 'block';
-		this.domNode.style.position = 'absolute';
-		// this.domNode.style.top = (rect.height - 1) + 'px';
-		this.domNode.style.left = (rect.left + 220) + 'px';
-		this.domNode.style.zIndex = 100;
-	}
-
 	this.controller.domNode.setAttribute('aria-expanded', 'true');
 
 };
@@ -263,8 +247,6 @@ PopupMenu.prototype.close = function (force) {
 	}
 
 	if (force || (!this.hasFocus && !this.hasHover && !controllerHasHover)) {
-		this.domNode.style.display = 'none';
-		this.domNode.style.zIndex = 0;
 		this.controller.domNode.setAttribute('aria-expanded', 'false');
 	}
 };
