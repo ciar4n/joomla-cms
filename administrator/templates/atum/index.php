@@ -30,11 +30,17 @@ $logoSm      = $this->baseurl . '/templates/' . $this->template . '/images/logo-
 
 // Add JavaScript
 JHtml::_('bootstrap.framework');
-JHtml::_('script', 'media/vendor/flying-focus-a11y/js/flying-focus.min.js', ['version' => 'auto']);
+//JHtml::_('script', 'media/vendor/flying-focus-a11y/js/flying-focus.min.js', ['version' => 'auto']);
 if ($cpanel)
 {
 	JHtml::_('script', 'media/vendor/masonry/js/masonry.pkgd.min.js', ['version' => 'auto']);
 }
+
+JHtml::_('script', 'MenubarLinks.js', ['version' => 'auto', 'relative' => true]);
+JHtml::_('script', 'MenubarItemLinks.js', ['version' => 'auto', 'relative' => true]);
+JHtml::_('script', 'PopupMenuLinks.js', ['version' => 'auto', 'relative' => true]);
+JHtml::_('script', 'PopupMenuItemLinks.js', ['version' => 'auto', 'relative' => true]);
+
 JHtml::_('script', 'template.js', ['version' => 'auto', 'relative' => true]);
 
 // Load template CSS file
