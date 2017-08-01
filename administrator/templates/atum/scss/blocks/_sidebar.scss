@@ -102,14 +102,6 @@
 
   }
 
-  a {
-    &:focus {
-      + ul {
-        display: block;
-      }
-    }
-  }
-
   li {
     line-height: 40px;
 

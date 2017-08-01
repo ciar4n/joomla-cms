@@ -234,6 +234,15 @@ PopupMenu.prototype.open = function () {
 	// Get position and bounding rectangle of controller object's DOM node
 	var rect = this.controller.domNode.getBoundingClientRect();
 
+	// Set CSS properties
+	if (!this.controller.isMenubarItem) {
+		this.domNode.parentNode.style.position = 'relative';
+		this.domNode.style.display = 'block';
+	}
+	else {
+		this.domNode.style.display = 'block';
+	}
+
 	this.controller.domNode.setAttribute('aria-expanded', 'true');
 
 };
@@ -247,6 +256,7 @@ PopupMenu.prototype.close = function (force) {
 	}
 
 	if (force || (!this.hasFocus && !this.hasHover && !controllerHasHover)) {
+		this.domNode.style.display = 'none';
 		this.controller.domNode.setAttribute('aria-expanded', 'false');
 	}
 };
