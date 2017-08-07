@@ -138,8 +138,8 @@ class CssMenu
 		// Recurse through children if they exist
 		while ($this->_current->hasChildren())
 		{
-		echo "<div class='main-nav-container' role=\"navigation\" aria-label=\"Main menu\">";
-		echo "<ul id='menu' class='nav navbar-nav nav-stacked main-nav clearfix' role=\"menubar\">";
+		echo '<div class="main-nav-container" role="navigation" aria-label="Main menu">';
+		echo '<ul id="menu" class="nav navbar-nav nav-stacked main-nav clearfix" role="menubar">';
 
 			foreach ($this->_current->getChildren() as $child)
 			{
@@ -180,7 +180,7 @@ class CssMenu
 
 		// Print the item
 		$ariaPopup = $this->_current->hasChildren() ? ' aria-haspopup="true"' : '';
-		echo '<li' . $class . ' role="menuitem" tabindex="-1"' . $ariaPopup . '>';
+		echo '<li' . $class . ' role="menuitem"' . $ariaPopup . '>';
 
 		// Print a link if it exists
 		$linkClass = array();
@@ -239,7 +239,7 @@ class CssMenu
 		// @TODO - A better solution needed to add 2nd level title ($this->_current->title) & 'close'
 		while ($this->_current->hasChildren())
 		{
-			echo '<ul id="collapse' . $unique . '" class="nav" aria-hidden="true" aria-expanded="false" tabindex="-1" aria-label="' . $this->_current->title . '">';
+			echo '<ul id="collapse' . $unique . '" class="nav" aria-label="' . $this->_current->title . '">';
 
 			foreach ($this->_current->getChildren() as $child)
 			{
