@@ -47,7 +47,7 @@
   }
 
   header {
-    margin-bottom: 0;
+    margin: 0;
     + div:not(.container-banner) {
       margin-top: $aurora-grid-gutter;
     }
