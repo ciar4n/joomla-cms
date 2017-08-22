@@ -334,6 +334,7 @@ window.Install = new Joomla.installation(
 					document.getElementById('installStep2').removeAttribute('hidden');
 					document.getElementById('installStep2').classList.add('active');
 					document.getElementById('step1').parentNode.removeChild(document.getElementById('step1'));
+					document.getElementById('installStep1').classList.remove('active');
 					document.querySelector('li[data-step="2"]').classList.add('active');
 					Joomla.scrollTo(document.getElementById('installStep2'), document.getElementById('installStep2').offsetTop);
 
@@ -354,6 +355,7 @@ window.Install = new Joomla.installation(
 					document.getElementById('installStep3').removeAttribute('hidden');
 					document.getElementById('installStep3').classList.add('active');
 					document.getElementById('step2').parentNode.removeChild(document.getElementById('step2'));
+					document.getElementById('installStep2').classList.remove('active');
 					document.querySelector('li[data-step="3"]').classList.add('active');
 					Joomla.scrollTo(document.getElementById('installStep3'), document.getElementById('installStep3').offsetTop);
 					document.getElementById('setupButton').style.display = 'block';
