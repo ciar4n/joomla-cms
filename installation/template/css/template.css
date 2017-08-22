@@ -8694,144 +8694,94 @@ a.text-gray-dark:focus, a.text-gray-dark:hover {
   overflow: visible;
   clip: auto; }
 
+body {
+  background-color: #1c3d5c;
+  background-image: linear-gradient(90deg, #1c3d5c 0%, #2a5c8b 100%); }
+
 *, *::after, *::before {
   box-sizing: border-box; }
 
-form {
+.j-install {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  min-height: 100vh; }
+
+.j-header {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  color: #fff; }
+
+.j-container {
   width: 100%;
-  padding: 0 20px; }
+  max-width: 620px;
+  margin: 0 auto; }
 
-.container {
-  width: 940px; }
-
-.container-main, .container-header {
-  width: 940px;
-  box-shadow: 0 0 50px rgba(0, 0, 0, 0.15); }
-
-.container-header {
-  position: relative;
-  height: 140px;
-  background-color: #1c3d5c; }
-
-.header {
-  position: fixed;
-  z-index: 1080;
-  width: 100%;
+.j-footer {
+  padding: 10px 20px;
+  margin-top: auto;
+  font-size: .8rem;
   color: #fff;
-  background-color: #1c3d5c;
-  background-repeat: no-repeat;
-  box-shadow: 0 7px 0 0 #2a5c8b; }
-  .header .logo {
-    width: 100%;
-    max-width: 280px;
-    margin-bottom: 15px; }
-  .header a {
-    color: #00afff; }
+  text-align: right;
+  background-color: #0b3257; }
 
-.nav-steps {
-  position: absolute;
-  bottom: -51px;
-  left: 0;
-  display: table;
-  width: 960px;
-  padding: 0 140px;
-  margin: 0 auto;
-  color: #182c3e;
-  list-style: none;
-  table-layout: fixed; }
-  .nav-steps .nav-link {
-    font-size: 1.1rem;
-    color: #1b3956;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    opacity: .5; }
-  .nav-steps > li {
-    position: relative;
-    display: table-cell;
-    font-size: .8rem;
-    color: #fff;
-    text-align: center; }
-    .nav-steps > li::before {
-      position: relative;
-      z-index: 1000;
-      display: block;
-      width: 3rem;
-      height: 3rem;
-      margin: 0 auto;
-      margin-bottom: .25rem;
-      font-family: "FontAwesome";
-      font-size: 1.2rem;
-      font-weight: bold;
-      line-height: 2.3rem;
-      text-align: center;
-      background-color: #4882b7;
-      background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.1) 100%);
-      border: .4rem solid #e8e6e6;
-      border-radius: 100%;
-      box-shadow: 0 0 1px rgba(0, 0, 0, 0.3), inset 0 0 1px rgba(0, 0, 0, 0.3), inset 1px 1px 1px rgba(255, 255, 255, 0.3); }
-    .nav-steps > li[data-step="1"]::before {
-      content: "\f015"; }
-    .nav-steps > li[data-step="2"]::before {
-      content: "\f007"; }
-    .nav-steps > li[data-step="3"]::before {
-      content: "\f1e6"; }
-    .nav-steps > li::after {
-      position: absolute;
-      top: 1.2rem;
-      right: 50%;
-      display: block;
-      width: 100%;
-      height: .4rem;
-      margin-left: 1.5rem\9;
-      content: "";
-      background: #4882b7; }
-    .nav-steps > li:first-child::after {
-      display: none; }
-    .nav-steps > li.active::before, .nav-steps > li.active::after {
-      background-color: #7ac143; }
+.j-header-logo {
+  width: 100%;
+  max-width: 240px;
+  margin: 20px; }
 
-.container-main {
-  position: relative;
-  z-index: 1060;
-  padding-top: 200px;
-  padding-bottom: 80px;
-  margin-bottom: 100px;
+.j-header-help {
+  margin: 20px 20px 20px auto; }
+  .j-header-help a {
+    padding: 1rem;
+    font-size: 2rem;
+    color: #fff; }
+
+.j-install-step {
+  display: none;
+  margin-bottom: 20px;
   background-color: #fff;
-  box-shadow: 0 0 80px rgba(0, 0, 0, 0.1), inset 0 7px 0 #e8e6e6; }
+  box-shadow: 0 0 2px rgba(52, 58, 67, 0.1), 0 2px 5px rgba(52, 58, 67, 0.08), 0 5px 15px rgba(52, 58, 67, 0.08); }
+  .j-install-step.active {
+    display: block; }
+  .j-install-step select {
+    width: 100%;
+    margin-left: 0 !important; }
+  .j-install-step .btn-block {
+    margin-top: 40px; }
 
-.install-form {
-  padding: 0 42px; }
-  .install-form form {
-    margin: 30px 0 0; }
-  .install-form input, .install-form textarea, .install-form select {
-    border-color: #b6bcc2; }
-  .install-form .progress {
-    margin-top: 10px; }
-  .install-form .text-muted {
-    color: #2a5c8b !important; }
+.j-install-step-header {
+  position: relative;
+  padding: 10px 25px;
+  font-size: 1.1rem;
+  line-height: 2.4rem;
+  color: #fff;
+  background-color: #0b3257; }
+  .j-install-step-header::after {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    content: "";
+    background-color: #006898;
+    background-image: linear-gradient(to right, #59afff 0, #59daff 100%); }
+  .j-install-step-header span {
+    position: relative;
+    top: 5px;
+    margin-right: 5px;
+    font-size: 2rem; }
+
+.j-install-step-form {
+  padding: 30px 30px 10px; }
 
 .languageForm {
   padding: 0 0 30px; }
   .languageForm .custom-select {
     width: 100%; }
-
-.install-nav-footer {
-  margin: 20px -27px -17px;
-  text-align: center;
-  background: #fafafa;
-  border-top: 1px solid #ddd; }
-  .install-nav-footer .nav-link {
-    margin-bottom: 0;
-    border: 0; }
-  .install-nav-footer .nav-button {
-    display: block;
-    font-weight: bold;
-    line-height: 4rem;
-    text-transform: uppercase; }
-    .install-nav-footer .nav-button.disabled {
-      opacity: .3; }
-  .install-nav-footer .nav-item + .nav-item {
-    border-left: 1px solid #ddd; }
 
 .system-message .alert {
   margin: 25px 50px; }
@@ -8880,33 +8830,6 @@ form {
 
 [hidden="hidden"] {
   display: none; }
-
-.install-step {
-  padding-top: 200px;
-  margin-top: -200px; }
-  .install-step .form-group {
-    opacity: 0;
-    transition: all .3s ease;
-    transform: translateY(30px); }
-  .install-step select {
-    width: 100%;
-    margin-left: 0 !important; }
-
-.active .form-group {
-  opacity: 1;
-  transform: translateY(0); }
-  .active .form-group:first-of-type {
-    transition-delay: .1s; }
-  .active .form-group:nth-of-type(2) {
-    transition-delay: .15s; }
-  .active .form-group:nth-of-type(3) {
-    transition-delay: .2s; }
-  .active .form-group:nth-of-type(4) {
-    transition-delay: .25s; }
-  .active .form-group:nth-of-type(5) {
-    transition-delay: .3s; }
-  .active .form-group:nth-of-type(6) {
-    transition-delay: .35s; }
 
 .btn-success {
   color: #fff;

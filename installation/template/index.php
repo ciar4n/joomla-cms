@@ -56,38 +56,40 @@ JText::script('INSTL_FTP_SETTINGS_CORRECT');
 		<jdoc:include type="styles" />
 	</head>
 	<body data-basepath="<?php echo JUri::root(true); ?>">
-		<?php // Header ?>
-		<header class="header" role="banner">
-			<div id="top-header" class="container container-header d-flex justify-content-center">
-				<img src="<?php echo $this->baseurl ?>/template/images/logo.svg" alt="Joomla" class="logo"/>
-				<ul class="nav-steps hidden">
-					<li class="step active" id="site" data-step="1">
-						<a class="nav-link" href="#"></a></li>
-					<li class="step" data-step="2">
-						<a class="nav-link"  id="database" href="#" ></a>
-					</li>
-					<li class="step disabled " id="summary " data-step="3">
-						<a class="nav-link disabled"></a>
-					</li>
-				</ul>
-			</div>
-		</header>
-		<?php // Container ?>
-		<section class="container container-main" role="main">
-			<div id="system-message-container">
-				<jdoc:include type="message" />
-			</div>
-			<div id="javascript-warning">
-				<noscript>
-					<joomla-alert level="danger text-center">
-						<?php echo JText::_('INSTL_WARNJAVASCRIPT'); ?>
-					</joomla-alert>
-				</noscript>
-			</div>
-			<div id="container-installation" class="container-installation flex no-js" data-base-url="<?php echo JUri::root(); ?>" style="display:none">
-				<jdoc:include type="component" />
-			</div>
-		</section>
-		<jdoc:include type="scripts" />
+		<div class="j-install">
+			<?php // Header ?>
+			<header class="j-header" role="banner">
+				<div class="j-header-logo">
+					<img src="<?php echo $this->baseurl ?>/template/images/logo.svg" alt="Joomla" class="logo"/>
+				</div>
+				<div class="j-header-help">
+					<a href="#">
+						<span class="fa fa-lightbulb-o" aria-hidden="true"></span>
+					</a>
+				</div>
+			</header>
+			<?php // Container ?>
+			<section class="j-container" role="main">
+				<div id="system-message-container">
+					<jdoc:include type="message" />
+				</div>
+				<div id="javascript-warning">
+					<noscript>
+						<joomla-alert level="danger text-center">
+							<?php echo JText::_('INSTL_WARNJAVASCRIPT'); ?>
+						</joomla-alert>
+					</noscript>
+				</div>
+				<div id="container-installation" class="container-installation flex no-js" data-base-url="<?php echo JUri::root(); ?>" style="display:none">
+					<jdoc:include type="component" />
+				</div>
+			</section>
+			<jdoc:include type="scripts" />
+			<footer class="j-footer">
+				<a href="https://www.joomla.org" target="_blank">Joomla!</a>
+				is free software released under the
+				<a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.html" target="_blank" rel="noopener noreferrer">GNU General Public License</a>
+			</footer>
+		</div>
 	</body>
 </html>
