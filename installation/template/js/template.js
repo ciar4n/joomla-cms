@@ -36,7 +36,7 @@
 		Joomla.installation = Joomla.installation || {};
 
 		// Initialize the FTP installation data
-		if (sessionStorage.getItem('installData')) {
+		if (sessionStorage && sessionStorage.getItem('installation-data')) {
 			var data = sessionStorage.getItem('installData').split(',');
 			Joomla.installation.data = {
 				ftpUsername: data[0],

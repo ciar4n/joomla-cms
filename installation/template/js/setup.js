@@ -222,7 +222,9 @@ Joomla.installation = function(_container, _base) {
 		    view = '';
 
 		    // Merge options from the session storage
-		    Joomla.extend(this.options, sessionStorage.getItem('installation-data'));
+		    if (sessionStorage && sessionStorage.getItem('installation-data')) {
+			    Joomla.extend(this.options, sessionStorage.getItem('installation-data'));
+		    }
 
 		    Joomla.pageInit();
 		    var el = document.querySelector('.nav-steps.hidden');
@@ -271,7 +273,7 @@ Joomla.checkFormField = function(fields) {
 
 Joomla.checkInputs = function() {
 	document.getElementById('jform_admin_password2').value = document.getElementById('jform_admin_password').value;
-	document.getElementById('jform_db_prefix').value = Joomla.makeRandomDbPrefix();
+	Joomla.makeRandomDbPrefix();
 
 	var inputs = [].slice.call(document.querySelectorAll('input[type="password"], input[type="text"], input[type="email"], select')),
 	    state = true;
@@ -279,7 +281,14 @@ Joomla.checkInputs = function() {
 		if (!item.valid) state = false;
 	});
 
+	// Reveal everything
+	document.getElementById('installStep1').classList.add('active');
+	document.getElementById('installStep2').classList.add('active');
+	document.getElementById('installStep3').classList.add('active');
+
+
 	if (Joomla.checkFormField(['#jform_site_name', '#jform_admin_user', '#jform_admin_email', '#jform_admin_password', '#jform_db_type', '#jform_db_host', '#jform_db_user', '#jform_db_name'])) {
+console.log('hdfgh')
 		Install.checkDbCredentials();
 	}
 };
@@ -335,7 +344,6 @@ window.Install = new Joomla.installation(
 					document.getElementById('installStep2').classList.add('active');
 					document.getElementById('step1').parentNode.removeChild(document.getElementById('step1'));
 					document.getElementById('installStep1').classList.remove('active');
-					document.querySelector('li[data-step="2"]').classList.add('active');
 					Joomla.scrollTo(document.getElementById('installStep2'), document.getElementById('installStep2').offsetTop);
 
 					// Focus to the next field
@@ -356,7 +364,6 @@ window.Install = new Joomla.installation(
 					document.getElementById('installStep3').classList.add('active');
 					document.getElementById('step2').parentNode.removeChild(document.getElementById('step2'));
 					document.getElementById('installStep2').classList.remove('active');
-					document.querySelector('li[data-step="3"]').classList.add('active');
 					Joomla.scrollTo(document.getElementById('installStep3'), document.getElementById('installStep3').offsetTop);
 					document.getElementById('setupButton').style.display = 'block';
 
@@ -366,6 +373,11 @@ window.Install = new Joomla.installation(
 					}
 				}
 			}
+		})
+
+		document.getElementById('setupButton').addEventListener('click', function(e) {
+			e.preventDefault();
+			Joomla.checkInputs();
 		})
 	}
 

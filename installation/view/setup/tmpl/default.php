@@ -98,7 +98,7 @@ defined('_JEXEC') or die;
 					<?php echo $this->form->getInput('db_old'); ?>
 				</div>
 				<div class="form-group">
-					<button class="btn btn-primary btn-block" id="setupButton" onclick="Joomla.checkInputs()"><?php echo JText::_('INSTL_INSTALL_JOOMLA'); ?> <span class="fa fa-chevron-right" aria-hidden="true"></span></button>
+					<button class="btn btn-primary btn-block" id="setupButton"><?php echo JText::_('INSTL_INSTALL_JOOMLA'); ?> <span class="fa fa-chevron-right" aria-hidden="true"></span></button>
 				</div>
 			</div>
 		</div>
