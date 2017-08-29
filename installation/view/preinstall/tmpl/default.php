@@ -13,10 +13,11 @@ defined('_JEXEC') or die;
 <div id="installer-view" class="container" data-page-name="preinstall">
 		<div class="row">
 			<div class="col-md-12 mb-4">
-				<h3 class="text-center"><?php echo JText::_('INSTL_PRECHECK_TITLE'); ?></h3>
-				<hr>
-				<div class="row">
-					<div class="col-md-8 offset-md-2">
+				<div class="j-install-step active">
+					<div class="j-install-step-header">
+						<span class="fa fa-check" aria-hidden="true"></span> <?php echo JText::_('INSTL_PRECHECK_TITLE'); ?>
+					</div>
+					<div class="j-install-step-form">
 						<?php foreach ($this->options as $option) : ?>
 							<?php if ($option->state === 'JNO' || $option->state === false) : ?>
 								<div class="alert preinstall-alert">
@@ -32,6 +33,8 @@ defined('_JEXEC') or die;
 						<?php endforeach; ?>
 					</div>
 				</div>
+				
+						
 				<?php if ($option->state === false && preg_match('$configuration.php$', $option->label)) : ?>
 					<div id="ftpOptions" class="ftp-options mb-4 hidden">
 						<form action="index.php" method="post" id="ftpForm" class="form-validate">
