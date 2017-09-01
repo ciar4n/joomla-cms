@@ -384,6 +384,10 @@ class InstallationModelSetup extends JModelBase
 		// Get a database object.
 		try
 		{
+			if (!property_exists($options, 'db_select'))
+{
+    debug_print_backtrace();die;
+}
 			return InstallationHelperDatabase::getDbo(
 				$options->db_type,
 				$options->db_host,

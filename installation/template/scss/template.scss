@@ -106,6 +106,9 @@ body {
 
 .j-install-step-form {
   padding: 30px 30px 10px;
+  .btn-block + .btn-block {
+    margin-top: .5rem;
+  }
 }
 
 
