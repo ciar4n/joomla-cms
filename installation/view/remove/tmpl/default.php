@@ -174,20 +174,12 @@ defined('_JEXEC') or die;
 					<input type="hidden" name="task" value="InstallLanguages">
 					<?php echo JHtml::_('form.token'); ?>
 					<?php endif; ?>
-					<button
-							class="btn btn-block btn-primary"
-							href="#"
-							onclick="installLanguages()"
-							rel="next"
-							title="<?php echo JText::_('JNEXT'); ?>">
+					<button id="installLanguages" class="btn btn-block btn-primary">
 						<?php echo JText::_('JNEXT'); ?>
 					</button>
-					<a
-						id="skipLanguages"
-						class="btn btn-block btn-secondary"
-						href="#">
+					<button id="skipLanguages" class="btn btn-block btn-secondary">
 					<?php echo JText::_('JSKIP'); ?>
-					</a>
+					</button>
 				</div>
 			</div>
 		</div>
@@ -200,10 +192,10 @@ defined('_JEXEC') or die;
 				<h3><?php echo JText::_('Do you want to install sample data?'); ?></h3>
 				<p><?php echo JText::_('INSTL_SITE_INSTALL_SAMPLE_DESC'); ?></p>
 				<div class="form-group">
-					<button class="btn btn-primary btn-block" id="installSampleData"><?php echo JText::_('INSTL_SITE_INSTALL_SAMPLE_LABEL'); ?> <span class="fa fa-chevron-right" aria-hidden="true"></span></button>
-					<a id="skipSampleData" class="btn btn-block btn-secondary" href="#">
+					<button id="installSampleData" class="btn btn-primary btn-block"><?php echo JText::_('INSTL_SITE_INSTALL_SAMPLE_LABEL'); ?> <span class="fa fa-chevron-right" aria-hidden="true"></span></button>
+					<button id="skipSampleData" class="btn btn-block btn-secondary">
 						<?php echo JText::_('JSKIP'); ?>
-					</a>
+					</button>
 				</div>
 			</div>
 		</div>
@@ -215,8 +207,8 @@ defined('_JEXEC') or die;
 			<div class="j-install-step-form">
 				<p><?php echo JText::_('INSTL_COMPLETE_FINAL_DESC'); ?></p>
 				<div class="form-group">
-					<button class="btn btn-primary btn-block" href="<?php echo JUri::root(); ?>" title="<?php echo JText::_('JSITE'); ?>"><span class="fa fa-eye"></span> <?php echo JText::_('INSTL_COMPLETE_SITE_BTN'); ?></button>
-					<button class="btn btn-primary btn-block" href="<?php echo JUri::root(); ?>administrator/" title="<?php echo JText::_('JADMINISTRATOR'); ?>"><span class="fa fa-lock"></span> <?php echo JText::_('INSTL_COMPLETE_ADMIN_BTN'); ?></button>
+					<a class="btn btn-primary btn-block" href="<?php echo JUri::root(); ?>" title="<?php echo JText::_('JSITE'); ?>" role="button"><span class="fa fa-eye"></span> <?php echo JText::_('INSTL_COMPLETE_SITE_BTN'); ?></a>
+					<a class="btn btn-primary btn-block" href="<?php echo JUri::root(); ?>administrator/" title="<?php echo JText::_('JADMINISTRATOR'); ?>" role="button"><span class="fa fa-lock"></span> <?php echo JText::_('INSTL_COMPLETE_ADMIN_BTN'); ?></a>
 				</div>
 			</div>
 		</div>

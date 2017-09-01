@@ -288,7 +288,7 @@ Joomla.checkInputs = function() {
 
 
 	if (Joomla.checkFormField(['#jform_site_name', '#jform_admin_user', '#jform_admin_email', '#jform_admin_password', '#jform_db_type', '#jform_db_host', '#jform_db_user', '#jform_db_name'])) {
-console.log('hdfgh')
+		console.log('hdfgh')
 		Install.checkDbCredentials();
 	}
 };
@@ -318,7 +318,7 @@ window.Install = new Joomla.installation(
 		document.getElementById('jform_site_name').focus();
 	}
 
-// Are we in the main form?
+	// Are we in the main form?
 	if (document.getElementById('jform_admin_password')) {
 		var elemmm = document.getElementById('jform_admin_password').parentNode;
 		elemmm.querySelector('span.input-group-addon').addEventListener('click', function(e) {

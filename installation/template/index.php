@@ -23,14 +23,10 @@ JHtml::_('behavior.core');
 JHtml::_('behavior.keepalive');
 JHtml::_('behavior.formvalidator');
 JHtml::_('script', 'installation/template/js/template.js', ['version' => 'auto']);
-JHtml::_('script', 'installation/template/js/wc-loader.min.js', ['version' => 'auto']);
+//JHtml::_('webcomponent', ['joomla-alert' => 'system/joomla-alert.min.js'], ['version' => 'auto', 'relative' => true]);
 
 // Add script options
 $this->addScriptOptions('system.installation', ['url' => JRoute::_('index.php')]);
-$this->addScriptOptions(
-		'webcomponents',
-			['joomla-alert' => JHtml::_('script', 'installation/template/js/joomla-alert.min.js', ['relative' => false, 'pathOnly' => true])]
-);
 
 // Load JavaScript message titles
 JText::script('ERROR');
