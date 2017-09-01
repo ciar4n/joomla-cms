@@ -8777,6 +8777,8 @@ body {
 
 .j-install-step-form {
   padding: 30px 30px 10px; }
+  .j-install-step-form .btn-block + .btn-block {
+    margin-top: .5rem; }
 
 .languageForm {
   padding: 0 0 30px; }

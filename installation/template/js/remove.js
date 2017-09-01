@@ -1,29 +1,31 @@
 // Init on dom content loaded event
 var url = Joomla.getOptions('system.installation').url ? Joomla.getOptions('system.installation').url.replace(/&amp;/g, '&') : 'index.php';
 
-if (document.getElementById('step1')) {
-	document.getElementById('step1').addEventListener('click', function(e) {
-		e.preventDefault();
-		if (document.getElementById('installStep2')) {
-			document.getElementById('installStep2').removeAttribute('hidden');
-			document.getElementById('installStep2').classList.add('active');
-			document.getElementById('step1').parentNode.removeChild(document.getElementById('step1'));
-
-			document.getElementById('installStep2').scrollIntoView();
-		}
+if (document.getElementById('installAddFeatures')) {
+	document.getElementById('installAddFeatures').addEventListener('click', function(e) {
+		document.getElementById('installLanguages').classList.add('active');
+		document.getElementById('installCongrat').classList.remove('active');
+		document.getElementById('installRecommended').classList.remove('active');
 	})
 }
 
-if (document.getElementById('step2')) {
-	document.getElementById('step2').addEventListener('click', function(e) {
-		// e.preventDefault();
-		if (document.getElementById('installStep3')) {
-			document.getElementById('installStep3').removeAttribute('hidden');
-			document.getElementById('installStep3').classList.add('active');
-			document.getElementById('step2').parentNode.removeChild(document.getElementById('step2'))
-
-			document.getElementById('installStep3').scrollIntoView();
-		}
-	});
+if (document.getElementById('skipLanguages')) {
+	document.getElementById('skipLanguages').addEventListener('click', function(e) {
+		document.getElementById('installSampleData').classList.add('active');
+		document.getElementById('installLanguages').classList.remove('active');
+	})
 }
 
+if (document.getElementById('installSampleData')) {
+	document.getElementById('installSampleData').addEventListener('click', function(e) {
+		document.getElementById('installLanguages').classList.add('active');
+		document.getElementById('installSampleData').classList.remove('active');
+	})
+}
+
+if (document.getElementById('skipSampleData')) {
+	document.getElementById('skipSampleData').addEventListener('click', function(e) {
+		document.getElementById('installFinal').classList.add('active');
+		document.getElementById('installSampleData').classList.remove('active');
+	})
+}
