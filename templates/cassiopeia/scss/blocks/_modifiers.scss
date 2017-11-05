@@ -33,6 +33,7 @@
 
 .blog-item {
   padding: 0 ($cassiopeia-grid-gutter / 2) $cassiopeia-grid-gutter ($cassiopeia-grid-gutter / 2);
+  width: 100%;
 }
 
 @supports (display: grid) {

@@ -8787,7 +8787,8 @@ header {
       width: 100%; } }
 
 .blog-item {
-  padding: 0 7.5px 15px 7.5px; }
+  padding: 0 7.5px 15px 7.5px;
+  width: 100%; }
 
 @supports (display: grid) {
   .blog-items {
