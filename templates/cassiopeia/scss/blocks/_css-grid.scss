@@ -9,7 +9,7 @@
       ". head head head head ."
       ". banner banner banner banner ."
       ". top-a top-a top-a top-a ."
-      ". top-b top-b top-b top-b ."
+      "top-b top-b top-b top-b top-b top-b"
       ". main main main main ."
       ". bot-a bot-a bot-a bot-a ."
       ". bot-b bot-b bot-b bot-b ."
@@ -25,7 +25,7 @@
     }
 
     .container-top-a,
-    .container-top-b,
+    .container-top-b .wrapper,
     .container-bottom-a,
     .container-bottom-b {
       > div {
@@ -46,7 +46,7 @@
         ". head head head head ."
         ". banner banner banner banner ."
         ". main main main main ."
-        ". top-a top-a top-a top-a ."
+        "top-a top-a top-a top-a top-a top-a"
         ". top-b top-b top-b top-b ."
         ". bot-a bot-a bot-a bot-a ."
         ". bot-b bot-b bot-b bot-b ."
@@ -62,6 +62,7 @@
         margin-top: $cassiopeia-grid-gutter;
       }
     }
+
   }
 
   .container-banner {
@@ -102,7 +103,7 @@
 }
 
 .container-top-a,
-.container-top-b,
+.container-top-b .wrapper,
 .container-bottom-a,
 .container-bottom-b {
   display: grid;
@@ -115,4 +116,10 @@
   @include media-breakpoint-down(sm) {
     grid-template-columns: 1fr;
   }
+}
+
+.container-top-b .wrapper {
+  max-width: 1125px;
+  margin: 0 auto;
+  grid-auto-flow: row;
 }

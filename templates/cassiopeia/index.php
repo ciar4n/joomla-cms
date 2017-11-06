@@ -133,8 +133,10 @@ $this->setMetaData('viewport', 'width=device-width, initial-scale=1');
 	<?php endif; ?>
 
 	<?php if ($this->countModules('top-b')) : ?>
-	<div class="container-top-b">
-		<jdoc:include type="modules" name="top-b" style="card" />
+	<div class="container-top-b background-purple">
+		<div class="wrapper">
+			<jdoc:include type="modules" name="top-b" style="card" />
+		</div>
 	</div>
 	<?php endif; ?>
 
