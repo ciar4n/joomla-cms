@@ -304,4 +304,28 @@
     }
   }
 
+  &.image {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='30' height='30'><circle cx='15' cy='15' r='10' /></svg>")  no-repeat;
+  }
+
+}
+
+.site-grid .container-header {
+  &.reverse {
+    .navbar-brand {
+      order: 1;
+      margin-right: 0;
+      margin-left: auto;
+    }
+  }
+  &.center {
+    .navbar {
+      flex-direction: column;
+    }
+    .navbar-brand {
+      margin-right: 0;
+      margin-left: 0;
+    }
+  }
+  
 }
