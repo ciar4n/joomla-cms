@@ -186,6 +186,7 @@
       background-color: rgba(255,255,255,.1);
     }
   }
+
   &.bg-purple {
     background-color: $cassiopeia-template-color !important;
   }
@@ -285,7 +286,6 @@
     .wrapper {
       grid-template-columns: 1fr 1fr;
       > div:first-of-type {
-        // grid-column-end: span 3;
         grid-row-end: span 3;
       }
     }
@@ -303,11 +303,38 @@
       }
     }
   }
-
-  &.image {
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='30' height='30'><circle cx='15' cy='15' r='10' /></svg>")  no-repeat;
+  &.svg-top {
+    position: relative;
+    flex-direction: column;
+    margin-top: 50px;
+    padding-top: 25px !important;
+    padding-bottom: 25px !important;
+    &:before {
+      background-color: inherit;
+      mask: url(../images/block-top.svg);
+      width: 100%;
+      height: 42px;
+      content: "";
+      position: absolute;
+      bottom: 100%;
+      margin-bottom: -1px;
+    }
   }
-
+  &.svg-bottom {
+    position: relative;
+    flex-direction: column;
+    margin-bottom: 50px;
+    &:after {
+      background-color: inherit;
+      mask: url(../images/block-bottom.svg);
+      width: 100%;
+      height: 42px;
+      content: "";
+      position: absolute;
+      top: 100%;
+      margin-top: -1px;
+    }
+  }
 }
 
 .site-grid .container-header {
@@ -329,3 +356,10 @@
   }
   
 }
+
+[class*=' bg-'] + [class*=' bg-'] {
+  margin-top: -10px !important;
+}
+
+bg-purple bg-black bg-navy svg-bottom svg-top full columns-1 columns-2 layout-1 layout-2 layout-3 gap-row-x2 gap-row-x4 grad-top
+{} 

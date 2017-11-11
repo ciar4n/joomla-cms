@@ -125,18 +125,29 @@ $this->setMetaData('viewport', 'width=device-width, initial-scale=1');
 			</div>
 		</header>
 	</div>
-	
-	<?php if ($this->countModules('top-a')) : ?>
-	<div class="container-top-a">
-		<jdoc:include type="modules" name="top-a" style="cardGrey" />
-	</div>
-	<?php endif; ?>
-
 	<?php if ($this->countModules('top-b')) : ?>
-	<div class="container-top-b background-purple">
+	<div class="container-top full-width">
+	<div class="container-top-b">
 		<div class="wrapper">
 			<jdoc:include type="modules" name="top-b" style="card" />
 		</div>
+	</div>
+	<div class="container-top-b bg-purple">
+		<div class="wrapper">
+			<jdoc:include type="modules" name="top-b" style="card" />
+		</div>
+	</div>
+	<div class="container-top-b bg-black">
+		<div class="wrapper">
+			<jdoc:include type="modules" name="top-b" style="card" />
+		</div>
+	</div>
+	<div class="container-top-b">
+		<div class="wrapper">
+			<jdoc:include type="modules" name="top-b" style="card" />
+		</div>
+	</div>
+
 	</div>
 	<?php endif; ?>
 
