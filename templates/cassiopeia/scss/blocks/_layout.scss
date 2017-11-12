@@ -73,6 +73,8 @@ header {
 
 .container-sidebar-left,
 .container-sidebar-right, {
+  flex: 0 0 auto;
+  width: calc(25% - 20px);
 
   > div {
     width: 100%;

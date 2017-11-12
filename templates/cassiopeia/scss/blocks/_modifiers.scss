@@ -192,10 +192,13 @@
     background-color: $cassiopeia-template-color !important;
   }
   &.bg-black {
-    background-color: $black !important;
+    background-color: #0a0f0d !important;
   }
   &.bg-navy {
     background-color: #011936 !important;
+  }
+  &.bg-orange {
+    background-color: #e4572e !important;
   }
   &.columns-1 {
     .wrapper {
