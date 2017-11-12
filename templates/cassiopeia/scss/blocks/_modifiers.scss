@@ -184,7 +184,8 @@
       border-color: rgba(255,255,255,.1) !important;
     }
     .card {
-      background-color: rgba(255,255,255,.1);
+      background-color: rgba(255,255,255,.075);
+      background-size: cover;
     }
   }
 
@@ -199,6 +200,24 @@
   }
   &.bg-orange {
     background-color: #e4572e !important;
+  }
+  &.image {
+    background-image: url('../images/sample-image.jpg');
+  }
+  &.image-layout-1 {
+    background-image: url('../images/sample-image.jpg');
+    background-size: 50%;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    .wrapper {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      > div {
+        grid-column: auto / auto;
+        &:nth-child(2n+1) {
+          grid-column: 3 / auto;
+        }
+      }
+    }
   }
   &.columns-1 {
     .wrapper {

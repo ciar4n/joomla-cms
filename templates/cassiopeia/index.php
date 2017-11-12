@@ -132,7 +132,7 @@ $this->setMetaData('viewport', 'width=device-width, initial-scale=1');
 			<jdoc:include type="modules" name="top-b" style="card" />
 		</div>
 	</div>
-	<div class="container-top-b bg-purple">
+	<div class="container-top-b bg-purple image-layout-1">
 		<div class="wrapper">
 			<jdoc:include type="modules" name="top-b" style="card" />
 		</div>
