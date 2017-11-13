@@ -23,19 +23,19 @@
 		<fields name="params">
 			<fieldset name="basic">
 				<field
-					name="sample1"
+					name="position"
 					type="text"
 					label="Module Position"
 				/>
 
 				<field
-					name="sample2"
+					name="position-class"
 					type="text"
 					label="Container Class"
 				/>
 
 				<field
-					name="sample3"
+					name="position-id"
 					type="text"
 					label="Container ID"
 				/>

@@ -125,6 +125,9 @@ $this->setMetaData('viewport', 'width=device-width, initial-scale=1');
 			</div>
 		</header>
 	</div>
+
+	<jdoc:include type="modules" name="module-top" />
+
 	<?php if ($this->countModules('top-b')) : ?>
 	<div class="container-top full-width">
 	<div class="container-top-b">

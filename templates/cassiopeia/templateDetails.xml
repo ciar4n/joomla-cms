@@ -23,6 +23,7 @@
 		<folder>language</folder>
 	</files>
 	<positions>
+		<position>module-top</position>
 		<position>menu</position>
 		<position>search</position>
 		<position>banner</position>

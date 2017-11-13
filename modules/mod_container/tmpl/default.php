@@ -11,6 +11,8 @@ defined('_JEXEC') or die;
 ?>
 
 
-<div class="custom" <?php if ($params->get('backgroundimage')) : ?> style="background-image:url(<?php echo $params->get('backgroundimage'); ?>)"<?php endif; ?> >
-	<?php echo $module->content; ?>
+<div class="container-modules">
+	<div class="wrapper">
+		<jdoc:include type="modules" name="<?php echo $params->get('position'); ?>"/>
+	</div>
 </div>

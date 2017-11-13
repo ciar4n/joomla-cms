@@ -176,38 +176,80 @@
       margin: 0 $cassiopeia-grid-gutter;
     }
   }
-  &[class^='bg-']:not(.bg-gray), &[class*=' bg-']:not(.bg-gray) {
+  &[class^='bg-'], &[class*=' bg-'] {
     padding-top: $cassiopeia-grid-gutter;
     padding-bottom: $cassiopeia-grid-gutter;
+  }
+  
+  &.bg-gray {
+    background-color: #eee;
+    * {
+      border-color: rgba(0,0,0,.1) !important;
+    }
+    .card {
+      background-color: rgba(255,255,255,.075);
+    }
+  }
+  &.bg-purple {
+    background-color: $cassiopeia-template-color !important;
+    * {
+      color: #fff !important;
+      border-color: rgba(0,0,0,.1) !important;
+    }
+    .card {
+      background-color: rgba(0,0,0,.075);
+    }
+  }
+  &.bg-black {
+    background-color: #0a0f0d !important;
     * {
       color: #fff !important;
       border-color: rgba(255,255,255,.1) !important;
     }
     .card {
       background-color: rgba(255,255,255,.075);
-      background-size: cover;
     }
-  }
-
-  &.bg-purple {
-    background-color: $cassiopeia-template-color !important;
-  }
-  &.bg-black {
-    background-color: #0a0f0d !important;
   }
   &.bg-navy {
     background-color: #011936 !important;
+    * {
+      color: #fff !important;
+      border-color: rgba(255,255,255,.1) !important;
+    }
+    .card {
+      background-color: rgba(0,0,0,.075);
+    }
   }
   &.bg-orange {
     background-color: #e4572e !important;
+    * {
+      color: #fff !important;
+      border-color: rgba(255,255,255,.1) !important;
+    }
+    .card {
+      background-color: rgba(0,0,0,.075);
+    }
   }
   &.image {
+    padding-top: $cassiopeia-grid-gutter;
+    padding-bottom: $cassiopeia-grid-gutter;
     background-image: url('../images/sample-image.jpg');
+    background-size: 100% auto;
+    background-position: 50% 50%;
+    * {
+      color: #fff !important;
+      border-color: rgba(0,0,0,.2) !important;
+    }
+    .card {
+      background-color: rgba(0,0,0,.275);
+    }
   }
   &.image-layout-1 {
+    padding-top: $cassiopeia-grid-gutter;
+    padding-bottom: $cassiopeia-grid-gutter;
     background-image: url('../images/sample-image.jpg');
     background-size: 50%;
-    background-position: 0 0;
+    background-position: -15px 0;
     background-repeat: no-repeat;
     .wrapper {
       grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -378,7 +420,8 @@
   
 }
 
-[class*=' bg-'] + [class*=' bg-'] {
+[class*=' bg-'] + [class*=' bg-'],
+[class*=' image'] + [class*=' bg-'] {
   margin-top: -($cassiopeia-grid-gutter / 2) !important;
 }
 // [class*=' svg-bottom'] + div, [class*=' svg-bottom'] + [class*=" bg-"] {
