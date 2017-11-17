@@ -59,17 +59,17 @@ $assoc = JLanguageAssociations::isEnabled();
 		</div>
 		<?php } ?>
 		<div class="<?php if (!empty($this->sidebar)) {echo 'col-md-10'; } else { echo 'col-md-12'; } ?>">
+			<?php
+			// Search tools bar
+			echo JLayoutHelper::render('joomla.searchtools.default', array('view' => $this));
+			?>
 			<div id="j-main-container" class="j-main-container">
-				<?php
-				// Search tools bar
-				echo JLayoutHelper::render('joomla.searchtools.default', array('view' => $this));
-				?>
 				<?php if (empty($this->items)) : ?>
 					<div class="alert alert-warning alert-no-items">
 						<?php echo JText::_('JGLOBAL_NO_MATCHING_RESULTS'); ?>
 					</div>
 				<?php else : ?>
-					<table class="table table-striped" id="articleList">
+					<table class="table" id="articleList">
 						<thead>
 							<tr>
 								<th style="width:1%" class="nowrap text-center hidden-sm-down">
