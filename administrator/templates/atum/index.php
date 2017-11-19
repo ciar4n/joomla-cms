@@ -81,8 +81,9 @@ $this->setMetaData('theme-color', '#1c3d5c');
 		<div id="sidebar-wrapper" class="sidebar-wrapper" <?php echo $hidden ? 'data-hidden="' . $hidden . '"' :''; ?>>
 			<div id="main-brand" class="main-brand align-items-center">
 				<a href="<?php echo JRoute::_('index.php'); ?>" aria-label="<?php echo JText::_('TPL_BACK_TO_CONTROL_PANEL'); ?>">
-					<img src="<?php echo $logoLg; ?>" class="logo" alt="<?php echo $sitename; ?>">
+					<img src="<?php echo $logoSm; ?>" class="logo" alt="<?php echo $sitename; ?>">
 				</a>
+				<h3>My Sitename</h3>
 			</div>
 			<jdoc:include type="modules" name="menu" style="none" />
 		</div>

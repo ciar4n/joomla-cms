@@ -62,7 +62,7 @@ function modChrome_well($module, &$params, &$attribs)
 		$headerClass    = ($headerClass) ? ' ' . htmlspecialchars($headerClass) : '';
 
 		echo '<div class="' . $moduleClass . ' grid-item grid-sizer">';
-		echo '<' . $moduleTag . ' class="card mb-3' . $moduleClassSfx . '">';
+		echo '<' . $moduleTag . ' class="card ' . $moduleClassSfx . '">';
 		echo '<div class="card-body">';
 
 			if ($canEdit)

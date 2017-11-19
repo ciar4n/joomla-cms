@@ -162,6 +162,7 @@
 					element="com_menus"
 					link="index.php?option=com_menus&amp;view=item&amp;layout=edit&amp;menutype={sql:menutype}"
 					scope="edit"
+					class="class:new"
 				/>
 			</menuitem>
 		</menuitem>
@@ -181,9 +182,9 @@
 				<menuitem
 					title="MOD_MENU_MENU_MANAGER_NEW_MENU_ITEM"
 					type="component"
-					element="com_menus"
 					link="index.php?option=com_menus&amp;view=item&amp;layout=edit&amp;menutype={sql:menutype}"
 					scope="edit"
+					class="class:ciaran"
 				/>
 			</menuitem>
 		</menuitem>

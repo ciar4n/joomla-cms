@@ -7,7 +7,10 @@
   }
 
   .card {
-    box-shadow: $atum-box-shadow;
+    margin-bottom: $grid-gutter-height;
+    background-color: transparent;
+    border: 0;
+    // box-shadow: $atum-box-shadow;
 
     p:first-of-type {
       margin-top: 1rem;
@@ -63,14 +66,13 @@
     padding: .9em $card-spacer-x $card-spacer-y;
     margin-top: - $card-spacer-x;
     margin-right: - $card-spacer-x;
-    margin-bottom: 0;
+    margin-bottom: 8px;
     margin-left: - $card-spacer-x;
     font-size: $h5-font-size;
-    color: $atum-template-color;
-    background-color: $atum-card-title-bg;
-    border-bottom: 1px solid rgba(0,0,0,.125);
-    border-radius: $border-radius $border-radius 0 0;
-    box-shadow: 0 1px $white-offset inset, 0 2px 3px -3px rgba(0,0,0,.15);
+    font-weight: normal;
+    color: $white;
+    background-color: $atum-template-color;
+    box-shadow: 0 2px 3px -3px rgba(0,0,0,.15);
   }
 
   .module-actions {
@@ -84,12 +86,9 @@
       width: 2.6em;
       height: 2.6em;
       line-height: 2.6em;
-      color: $gray-700;
+      color: $white;
       text-align: center;
-      background-color: $atum-card-title-icon-bg;
-      border-left: 1px solid $atum-border-color;
-      border-top-right-radius: $border-radius;
-      box-shadow: 1px 0 $white-offset inset;
+      background-color: $atum-template-color-light;
 
       &:hover,
       &:focus {
