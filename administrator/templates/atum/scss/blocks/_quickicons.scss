@@ -1,6 +1,7 @@
 // Quick Icons
 
 .quick-icons {
+  display: flex;
 
   a {
     display: inline-flex;
@@ -13,7 +14,7 @@
     text-align: center;
     background: $quickicon-bg;
     border-radius: 3px;
-    // box-shadow: $quickicon-box-shadow;
+    box-shadow: $atum-box-shadow;
     transition: background .25s ease;
 
     > div {
@@ -57,12 +58,12 @@
 
     &.danger {
       background-color: lighten(theme-color("danger"), 7%);
-      box-shadow: $quickicon-box-shadow-danger;
+      box-shadow: $atum-box-shadow;
     }
 
     &.success {
       background-color: lighten(theme-color("success"), 7%);
-      box-shadow: $quickicon-box-shadow-success;
+      box-shadow: $atum-box-shadow;
     }
 
   }

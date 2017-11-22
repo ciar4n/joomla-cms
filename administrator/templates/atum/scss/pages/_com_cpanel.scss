@@ -25,6 +25,7 @@
       margin-right: - $card-spacer-x;
       margin-bottom: - $card-spacer-x;
       margin-left: - $card-spacer-x;
+      box-shadow: 0 0 8px rgba(0,0,0,.1);
 
       > li {
         padding: .6rem $card-spacer-x;
@@ -63,16 +64,12 @@
 
   .card-title {
     position: relative;
-    padding: .9em $card-spacer-x $card-spacer-y;
-    margin-top: - $card-spacer-x;
-    margin-right: - $card-spacer-x;
-    margin-bottom: 8px;
     margin-left: - $card-spacer-x;
     font-size: $h5-font-size;
     font-weight: normal;
-    color: $white;
-    background-color: $atum-template-color;
-    box-shadow: 0 2px 3px -3px rgba(0,0,0,.15);
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 1px;
   }
 
   .module-actions {
@@ -86,9 +83,8 @@
       width: 2.6em;
       height: 2.6em;
       line-height: 2.6em;
-      color: $white;
+      color: #666;
       text-align: center;
-      background-color: $atum-template-color-light;
 
       &:hover,
       &:focus {
