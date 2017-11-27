@@ -1,7 +1,7 @@
 // Sidebar
 
 .wrapper {
-  padding-left: 250px;
+  padding-left: 310px;
   transition: all .3s ease;
 
   @include media-breakpoint-down(md) {
@@ -14,10 +14,12 @@
   position: fixed;
   left: 0;
   z-index: 10;
-  width: 250px;
+  display: flex;
+  flex-direction: row;
+  width: 310px;
   height: 100%;
   margin-left: 0;
-  background-color: $white;
+  background-color: #fff;
   box-shadow: 0 3px 2px rgba(0,0,0,.2);
   transition: all .3s ease;
 
@@ -43,12 +45,11 @@
 
   .main-brand {
     display: flex;
-    padding-left: 10px;
-    line-height: 48px;
+    padding-left: 12px;
+    line-height: 60px;
     color: $white;
     text-align: left;
     text-indent: 0;
-    background-color: $atum-template-color;
     border: 0;
     box-shadow: none;
     align-content: center;
@@ -67,7 +68,7 @@
     }
 
     img {
-      width: 30px;
+      width: 36px;
     }
 
     h3 {
@@ -77,6 +78,65 @@
 
   }
 
+}
+
+.sidebar-inner {
+  display: flex;
+  flex-direction: column;
+  width: 60px;
+  padding-bottom: 10px;
+  background-color: $atum-template-color;
+  .nav-item {
+    // background-color: $header-icons-bg;
+    // border-left: 1px solid $atum-template-color;
+  }
+
+  .nav-link {
+    position: relative;
+    padding: 0;
+    line-height: 40px;
+
+    .fa {
+      width: 60px;
+      font-size: 1.3rem;
+      color: $white-offset;
+      vertical-align: middle;
+      transition: all .2s ease-in-out;
+    }
+
+    .fa-external-link { // Position correct
+      position: relative;
+      left: 2px;
+    }
+
+    .badge {
+      position: absolute;
+      top: 4px;
+      right: 6px;
+    }
+
+    &.dropdown-toggle::after {
+      display: none;
+    }
+
+    &:hover .fa {
+      font-size: 1.3rem;
+      transition: all .2s ease-in-out;
+    }
+
+  }
+}
+
+.sidebar-outter-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 60px;
+  padding: 0 15px;
+  h3 {
+    margin-bottom: 0;
+    font-weight: normal;
+  }
 }
 
 .menu-toggle-icon {
@@ -95,10 +155,10 @@
 
   // Parent items
   li {
-    border-bottom: 1px solid rgba(0,0,0,.15);
+    border-bottom: 1px solid rgba(0,0,0,.05);
 
     &:first-of-type {
-      border-top: 1px solid rgba(0,0,0,.15);
+      border-top: 1px solid rgba(0,0,0,.05);
     }
 
   }
@@ -207,6 +267,7 @@
     font-size: 20px;
     text-align: center;
     vertical-align: middle;
+    opacity: .4;
   }
 
   // 2nd level items

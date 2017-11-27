@@ -3,7 +3,8 @@
 .js-stools {
   position: relative;
   width: 100%;
-  padding: 8px 10px 0;
+  padding: 21px 0 6px;
+  margin-top: -55px;
 
   .btn-wrapper {
     display: inline-block;
@@ -20,7 +21,7 @@
     margin: 0;
     background-color: $white;
     border: 1px solid $atum-border-color;
-    border-radius: 0 0 0 $border-radius;
+    border-radius: 0;
     box-shadow: -1px 1px 4px rgba(0, 0, 0, .05);
 
     .js-stools-field-list:last-of-type {

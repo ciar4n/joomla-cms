@@ -85,13 +85,33 @@ $this->setMetaData('theme-color', '#1c3d5c');
 						<img src="<?php echo $logoSm; ?>" class="logo" alt="<?php echo $sitename; ?>">
 					</a>
 				</div>
+				<?php if (!$hidden) : ?>
+				<div class="menu-collapse d-none">
+					<a id="menu-collapse" class="menu-toggle" href="#">
+						<span class="menu-toggle-icon fa fa-chevron-left fa-fw" aria-hidden="true"></span>
+						<span class="sr-only"><?php echo JText::_('TPL_ATUM_CONTROL_PANEL_MENU'); ?></span>
+					</a>
+				</div>
+				<?php endif; ?>
+				<ul class="nav text-center">
+					<li class="nav-item">
+						<a id="menu-collapse" class="nav-link" href="#">
+							<span class="fa fa-bars" aria-hidden="true"></span>
+							<span class="sr-only">Joomla CMS</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="http://localhost/joomla-cms/" title="Preview Joomla CMS" target="_blank">
+							<span class="fa fa-plus" aria-hidden="true"></span>
+							<span class="sr-only">Joomla CMS</span>
+						</a>
+					</li>
+				</ul>
+				<jdoc:include type="modules" name="status" style="no" />
 			</div>
 			<div class="sidebar-outter">
-				<div id="main-brand" class="main-brand align-items-center">
-					<a href="<?php echo JRoute::_('index.php'); ?>" aria-label="<?php echo JText::_('TPL_BACK_TO_CONTROL_PANEL'); ?>">
-						<img src="<?php echo $logoSm; ?>" class="logo" alt="<?php echo $sitename; ?>">
-					</a>
-					<h3>My Sitename</h3>
+				<div class="sidebar-outter-header">
+					<h3>My Joomla Site</h3>
 				</div>
 				<jdoc:include type="modules" name="menu" style="none" />
 			</div>
@@ -102,16 +122,7 @@ $this->setMetaData('theme-color', '#1c3d5c');
 		<header id="header" class="header">
 			<div class="container-fluid">
 				<div class="d-flex row justify-content-end">
-					<?php if (!$hidden) : ?>
-					<div class="menu-collapse">
-						<a id="menu-collapse" class="menu-toggle" href="#">
-							<span class="menu-toggle-icon fa fa-chevron-left fa-fw" aria-hidden="true"></span>
-							<span class="sr-only"><?php echo JText::_('TPL_ATUM_CONTROL_PANEL_MENU'); ?></span>
-						</a>
-					</div>
-					<?php endif; ?>
 					<jdoc:include type="modules" name="title" />
-					<jdoc:include type="modules" name="status" style="no" />
 				</div>
 			</div>
 		</header>

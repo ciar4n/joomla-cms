@@ -7,7 +7,7 @@
   left: 0;
   width: auto;
   min-height: 43px;
-  padding: 15px 0;
+  padding: 26px 0 15px;
   color: #0c192e;
   background: $atum-container-main-bg;
 
@@ -49,8 +49,9 @@
     line-height: $atum-toolbar-line-height;
     color: $body-color;
     background-color: $white;
-    border-color: $atum-border-color;
-    box-shadow: 0 1px 2px rgba(0,0,0,.05);
+    border-color: #ddd;
+    border-radius: 0;
+    box-shadow: 0 0 3px rgba(0,0,0,.03);
 
     [class^="icon-"],
     [class*=" icon-"],
@@ -62,11 +63,11 @@
       height: auto;
       line-height: 32px;
       color: inherit;
-      background-color: $gray-200;
+      background-color: $white;
     }
 
     &:hover {
-      background-color: $gray-200;
+      background-color: $white;
       border-color: $atum-border-color;
     }
 

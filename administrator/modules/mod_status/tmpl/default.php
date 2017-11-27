@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 $hideLinks = $app->input->getBool('hidemainmenu');
 
 ?>
-<div class="ml-auto">
+<div class="mt-auto">
 	<ul class="nav text-center">
 		<?php if (JLanguageMultilang::isEnabled()) : ?>
 			<?php $module = JModuleHelper::getModule('mod_multilangstatus'); ?>
