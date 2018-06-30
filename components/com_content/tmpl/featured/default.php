@@ -11,6 +11,8 @@ defined('_JEXEC') or die;
 
 JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
 
+JHtml::_('stylesheet', 'vendor/font-awesome/font-awesome.css', array('version' => 'auto', 'relative' => true));
+
 // If the page class is defined, add to class as suffix.
 // It will be a separate class if the user starts it with a space
 ?>

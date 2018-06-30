@@ -9,6 +9,8 @@
 
 defined('_JEXEC') or die;
 
+JHtml::_('stylesheet', 'vendor/font-awesome/font-awesome.css', array('version' => 'auto', 'relative' => true));
+
 $cookieLogin = $this->user->get('cookieLogin');
 
 if (!empty($cookieLogin) || $this->user->get('guest'))

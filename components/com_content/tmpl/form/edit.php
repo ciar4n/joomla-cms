@@ -18,6 +18,8 @@ JHtml::_('formbehavior.chosen', '#jform_catid', null, array('disable_search_thre
 
 HTMLHelper::_('script', 'com_content/form-edit.js', ['relative' => true, 'version' => 'auto']);
 
+JHtml::_('stylesheet', 'vendor/font-awesome/font-awesome.css', array('version' => 'auto', 'relative' => true));
+
 $this->tab_name = 'com-content-form';
 $this->ignore_fieldsets = array('image-intro', 'image-full', 'jmetadata', 'item_associations');
 

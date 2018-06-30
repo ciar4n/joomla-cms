@@ -11,6 +11,8 @@ defined('_JEXEC') or die;
 
 JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
 
+JHtml::_('stylesheet', 'vendor/font-awesome/font-awesome.css', array('version' => 'auto', 'relative' => true));
+
 $app = JFactory::getApplication();
 
 $this->category->text = $this->category->description;

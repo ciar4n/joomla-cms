@@ -9,6 +9,8 @@
 
 defined('_JEXEC') or die;
 
+JHtml::_('stylesheet', 'vendor/font-awesome/font-awesome.css', array('version' => 'auto', 'relative' => true));
+
 // Create shortcuts to some parameters.
 $params  = $this->item->params;
 $images  = json_decode($this->item->images);

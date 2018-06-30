@@ -9,6 +9,8 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Router\Route;
 
 ?>
@@ -20,7 +22,7 @@ use Joomla\CMS\Router\Route;
 
 			if ($button) :
 				if ($imagebutton) :
-					$btn_output = '<input type="image" alt="' . $button_text . '" class="btn btn-primary" src="' . $img . '" onclick="this.form.searchword.focus();">';
+					$btn_output = HTMLHelper::_('image', 'mod-search/search-solid.svg', $button_text, null, true);
 				else :
 					$btn_output = '<button class="btn btn-primary" onclick="this.form.searchword.focus();">' . $button_text . '</button>';
 				endif;
@@ -28,7 +30,9 @@ use Joomla\CMS\Router\Route;
 				$output .= '<div class="input-group">';
 				$output .= $input;
 				$output .= '<span class="input-group-append">';
+				$output .= '<span class="input-group-text">';
 				$output .= $btn_output;
+				$output .= '</span>';
 				$output .= '</span>';
 				$output .= '</div>';
 			else :

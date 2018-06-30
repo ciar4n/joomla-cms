@@ -17,6 +17,8 @@ HTMLHelper::addIncludePath(JPATH_COMPONENT . '/helpers');
 $description      = $this->params->get('all_tags_description');
 $descriptionImage = $this->params->get('all_tags_description_image');
 
+JHtml::_('stylesheet', 'vendor/font-awesome/font-awesome.css', array('version' => 'auto', 'relative' => true));
+
 ?>
 <div class="com-tags tag-category">
 	<?php if ($this->params->get('show_page_heading')) : ?>

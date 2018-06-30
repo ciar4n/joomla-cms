@@ -13,6 +13,8 @@ use Joomla\CMS\Router\Route;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Factory;
 
+JHtml::_('stylesheet', 'vendor/font-awesome/font-awesome.css', array('version' => 'auto', 'relative' => true));
+
 ?>
 <div class="com-users-profile profile">
     <?php if ($this->params->get('show_page_heading')) : ?>

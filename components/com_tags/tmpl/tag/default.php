@@ -15,6 +15,8 @@ use Joomla\CMS\HTML\HTMLHelper;
 HTMLHelper::addIncludePath(JPATH_COMPONENT . '/helpers');
 $isSingleTag = count($this->item) === 1;
 
+JHtml::_('stylesheet', 'vendor/font-awesome/font-awesome.css', array('version' => 'auto', 'relative' => true));
+
 ?>
 
 <div class="com-tags-tag tag-category">

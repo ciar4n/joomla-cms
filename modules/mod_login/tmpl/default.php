@@ -23,6 +23,7 @@ HTMLHelper::_('script', 'system/fields/passwordview.min.js', array('version' => 
 
 Text::script('JSHOW');
 Text::script('JHIDE');
+
 ?>
 <form id="login-form" class="mod-login" action="<?php echo Route::_('index.php', true); ?>" method="post">
 
@@ -39,7 +40,9 @@ Text::script('JHIDE');
 					<input id="modlgn-username" type="text" name="username" class="form-control" placeholder="<?php echo Text::_('MOD_LOGIN_VALUE_USERNAME'); ?>">
 					<span class="input-group-append">
 						<label for="modlgn-username" class="sr-only"><?php echo Text::_('MOD_LOGIN_VALUE_USERNAME'); ?></label>
-						<span class="input-group-text icon-user hasTooltip" title="<?php echo Text::_('MOD_LOGIN_VALUE_USERNAME'); ?>"></span>
+						<span class="input-group-text hasTooltip" title="<?php echo Text::_('MOD_LOGIN_VALUE_USERNAME'); ?>">
+							<?php echo HTMLHelper::_('image', 'mod_login/user-solid.svg', Text::_('MOD_LOGIN_VALUE_USERNAME'), null, true); ?>
+						</span>
 					</span>
 				</div>
 			<?php else : ?>
@@ -54,7 +57,9 @@ Text::script('JHIDE');
 					<input id="modlgn-passwd" type="password" name="password" class="form-control" placeholder="<?php echo Text::_('JGLOBAL_PASSWORD'); ?>">
 					<span class="input-group-append">
 						<span class="sr-only"><?php echo Text::_('JSHOW'); ?></span>
-						<span class="input-group-text icon-eye" aria-hidden="true"></span>
+						<span class="input-group-text" aria-hidden="true">
+							<?php echo HTMLHelper::_('image', 'mod_login/eye-regular.svg', Text::_('JGLOBAL_PASSWORD'), null, true); ?>
+						</span>
 					</span>
 				</div>
 			<?php else : ?>
@@ -73,14 +78,18 @@ Text::script('JHIDE');
 						</span>
 						<input id="modlgn-secretkey" autocomplete="off" type="text" name="secretkey" class="form-control" placeholder="<?php echo Text::_('JGLOBAL_SECRETKEY'); ?>">
 						<span class="input-group-append hasTooltip" title="<?php echo Text::_('JGLOBAL_SECRETKEY_HELP'); ?>">
-							<span class="input-group-text icon-help"></span>
+							<span class="input-group-text">
+								<?php echo HTMLHelper::_('image', 'mod_login/star-solid.svg', Text::_('JGLOBAL_SECRETKEY_HELP'), null, true); ?>
+							</span>
 						</span>
 					</div>
 				<?php else : ?>
 					<label for="modlgn-secretkey"><?php echo Text::_('JGLOBAL_SECRETKEY'); ?></label>
 					<input id="modlgn-secretkey" autocomplete="off" type="text" name="secretkey" class="form-control" placeholder="<?php echo Text::_('JGLOBAL_SECRETKEY'); ?>">
 					<span class="btn width-auto hasTooltip" title="<?php echo Text::_('JGLOBAL_SECRETKEY_HELP'); ?>">
-						<span class="icon-help"></span>
+						<span class="icon-help">
+							<?php echo HTMLHelper::_('image', 'mod_login/question-solid.svg', Text::_('JGLOBAL_SECRETKEY_HELP'), null, true); ?>
+						</span>
 					</span>
 				<?php endif; ?>
 			</div>

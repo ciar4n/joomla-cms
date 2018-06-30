@@ -16,6 +16,8 @@ use Joomla\CMS\HTML\HTMLHelper;
 HTMLHelper::addIncludePath(JPATH_COMPONENT . '/helpers');
 $n = count($this->items);
 
+JHtml::_('stylesheet', 'vendor/font-awesome/font-awesome.css', array('version' => 'auto', 'relative' => true));
+
 ?>
 
 <div class="com-tags-tag-list tag-category">

@@ -16,6 +16,8 @@ JHtml::_('behavior.core');
 JText::script('JGLOBAL_EXPAND_CATEGORIES');
 JText::script('JGLOBAL_COLLAPSE_CATEGORIES');
 
+JHtml::_('stylesheet', 'vendor/font-awesome/font-awesome.css', array('version' => 'auto', 'relative' => true));
+
 JFactory::getDocument()->addScriptDeclaration("
 jQuery(function($) {
 	$('.categories-list').find('[id^=category-btn-]').each(function(index, btn) {

@@ -14,6 +14,8 @@ use Joomla\CMS\HTML\HTMLHelper;
 JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
 JHtml::_('behavior.core');
 
+JHtml::_('stylesheet', 'vendor/font-awesome/font-awesome.css', array('version' => 'auto', 'relative' => true));
+
 // Add strings for translations in Javascript.
 JText::script('JGLOBAL_EXPAND_CATEGORIES');
 JText::script('JGLOBAL_COLLAPSE_CATEGORIES');
