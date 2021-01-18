@@ -1,19 +1,18 @@
 // Custom Forms
 
-.form-select,
 .custom-select {
   max-width: $input-max-width;
   cursor: pointer;
-  background: $form-select-background;
-  background-color: $form-select-bg;
+  background: $custom-select-background;
+  background-color: $custom-select-bg;
   border: $input-border;
   // var needed
   box-shadow: $input-box-shadow;
 
   [dir=rtl] & {
-    padding: $form-select-padding-y $form-select-padding-x $form-select-padding-y ($form-select-padding-x + $form-select-indicator-padding);
-    background: $form-select-background-rtl;
-    background-color: $form-select-bg;
+    padding: $custom-select-padding-y $custom-select-padding-x $custom-select-padding-y ($custom-select-padding-x + $custom-select-indicator-padding);
+    background: $custom-select-background-rtl;
+    background-color: $custom-select-bg;
   }
 
   &[multiple] {
@@ -21,7 +20,7 @@
     background-color: var(--white-offset);
 
     option {
-      padding: $form-select-multiple-padding-y $form-select-padding-x;
+      padding: $custom-select-multiple-padding-y $custom-select-padding-x;
       background-color: var(--white-offset);
 
       &:checked {
@@ -31,27 +30,28 @@
     }
   }
 
-  &.form-select-success,
-  &.custom-select-success {
-    color: var(--success);
-    background-color: var(--success);
-    border-color: var(--success);
+  &.custom-select-color-state {
 
-    option {
-      color: $form-select-color;
-      background-color: var(--white-offset);
+    &.custom-select-success {
+      color: theme-color("success");
+      background-color: theme-color("success");
+      border-color: theme-color("success");
+
+      option {
+        color: $custom-select-color;
+        background-color: var(--white-offset);
+      }
     }
-  }
 
-  &.form-select-danger,
-  &.custom-select-danger {
-    color: var(--danger);
-    background-color: var(--danger);
-    border-color: var(--danger);
+    &.custom-select-danger {
+      color: theme-color("danger");
+      background-color: theme-color("danger");
+      border-color: theme-color("danger");
 
-    option {
-      color: $form-select-color;
-      background-color: var(--white-offset);
+      option {
+        color: $custom-select-color;
+        background-color: var(--white-offset);
+      }
     }
   }
 
