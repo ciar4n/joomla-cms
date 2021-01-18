@@ -163,17 +163,17 @@ $input-max-width:                     100%;
 
 $cassiopeia-input-focus-shadow:       0 0 0 .2rem hsla(0, 0%, 0%, .1);
 
-$custom-select-indicator-padding:     3rem;
-$custom-select-bg:                    $gray-200;
-$custom-select-bg-size:               116rem;
-$custom-select-bg-size-sm:            75rem;
-$custom-select-indicator:             url("../images/select-bg.svg");
-$custom-select-indicator-rtl:         url("../images/select-bg-rtl.svg");
-$custom-select-indicator-active:      url("../../../images/select-bg.svg");
-$custom-select-indicator-active-rtl:  url("../../../images/select-bg-rtl.svg");
-$custom-select-background:            $custom-select-indicator no-repeat right center / $custom-select-bg-size; // Used so we can have multiple background elements (e.g., arrow and feedback icon)
-$custom-select-background-rtl:        $custom-select-indicator-rtl no-repeat left center / $custom-select-bg-size; // Used so we can have multiple background elements (e.g., arrow and feedback icon)
-$custom-select-multiple-padding-y:    .3rem;
+$form-select-indicator-padding:     3rem;
+$form-select-bg:                    $gray-200;
+$form-select-bg-size:               116rem;
+$form-select-bg-size-sm:            75rem;
+$form-select-indicator:             url("../images/select-bg.svg");
+$form-select-indicator-rtl:         url("../images/select-bg-rtl.svg");
+$form-select-indicator-active:      url("../../../images/select-bg.svg");
+$form-select-indicator-active-rtl:  url("../../../images/select-bg-rtl.svg");
+$form-select-background:            $form-select-indicator no-repeat right center / $form-select-bg-size; // Used so we can have multiple background elements (e.g., arrow and feedback icon)
+$form-select-background-rtl:        $form-select-indicator-rtl no-repeat left center / $form-select-bg-size; // Used so we can have multiple background elements (e.g., arrow and feedback icon)
+$form-select-multiple-padding-y:    .3rem;
 
 // Z-index master list
 $zindex-negative:                     -1;
