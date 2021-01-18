@@ -21,16 +21,16 @@
   width: 23.75rem;
 }
 
-.form-select {
+.custom-select {
   max-width: $input-max-width;
 }
 
-.form-inline .form-select {
+.form-inline .custom-select {
   width: auto;
 }
 
 @include media-breakpoint-down(sm) {
-  .form-inline .form-select {
+  .form-inline .custom-select {
     width: 100%;
   }
 }

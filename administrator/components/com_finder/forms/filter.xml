@@ -90,7 +90,7 @@
 			name="state"
 			type="list"
 			label="JSTATUS"
-			class="form-select-color-state"
+			class="custom-select-color-state"
 			filter="intval"
 			size="1"
 			default="1"

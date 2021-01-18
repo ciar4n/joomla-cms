@@ -78,7 +78,7 @@ $checkboxName = $options['checkbox_name'];
 			$attribs = [
 				'id'        => 'transition-select_' . (int) $row ?? '',
 				'list.attr' => [
-					'class'    => 'form-select form-select-sm w-auto',
+					'class'    => 'custom-select custom-select-sm w-auto',
 					'onchange' => "this.form.transition_id.value=this.value;Joomla.listItemTask('" . $checkboxName . $this->escape($row ?? '') . "', 'articles.runTransition')"]
 				];
 

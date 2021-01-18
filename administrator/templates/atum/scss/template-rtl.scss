@@ -209,7 +209,7 @@ ul {
 }
 
 .input-group > .form-control:not(:last-child),
-.input-group > .form-select:not(:last-child) {
+.input-group > .custom-select:not(:last-child) {
   @include border-left-radius(0);
   @include border-right-radius($border-radius);
 }

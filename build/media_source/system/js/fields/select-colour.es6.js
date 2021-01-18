@@ -9,26 +9,26 @@
     const self = target;
     const value = parseInt(self.value, 10);
 
-    self.classList.remove('form-select-success', 'form-select-danger');
+    self.classList.remove('custom-select-success', 'custom-select-danger');
 
     if (value === 1) {
-      self.classList.add('form-select-success');
+      self.classList.add('custom-select-success');
     } else if (value === 0 || value === -2) {
-      self.classList.add('form-select-danger');
+      self.classList.add('custom-select-danger');
     }
   };
 
   const updateSelectboxColour = () => {
-    const colourSelects = [].slice.call(document.querySelectorAll('.form-select-color-state'));
+    const colourSelects = [].slice.call(document.querySelectorAll('.custom-select-color-state'));
 
     colourSelects.forEach((colourSelect) => {
       const value = parseInt(colourSelect.value, 10);
 
       // Add class on page load
       if (value === 1) {
-        colourSelect.classList.add('form-select-success');
+        colourSelect.classList.add('custom-select-success');
       } else if (value === 0 || value === -2) {
-        colourSelect.classList.add('form-select-danger');
+        colourSelect.classList.add('custom-select-danger');
       }
 
       // Add class when value is changed

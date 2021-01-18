@@ -24,7 +24,7 @@ $attr = array(
 	'group.label' => 'text',
 	'group.items' => null,
 	'list.attr' => [
-		'class' => 'form-select'
+		'class' => 'custom-select'
 	]
 );
 

@@ -34,7 +34,7 @@
 			type="list"
 			label="JSTATUS"
 			default="1"
-			class="form-select-color-state"
+			class="custom-select-color-state"
 			size="1"
 			validate="options"
 			>
@@ -403,7 +403,7 @@
 				name="newsfeed_layout"
 				type="componentlayout"
 				label="JFIELD_ALT_LAYOUT_LABEL"
-				class="form-select"
+				class="custom-select"
 				extension="com_newsfeeds"
 				view="newsfeed"
 				useglobal="true"

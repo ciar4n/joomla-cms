@@ -19,7 +19,7 @@ use Joomla\CMS\Language\Text;
 	<?php echo HTMLHelper::_(
 		'access.assetgrouplist',
 		'batch[assetgroup_id]', '',
-		'class="form-select"',
+		'class="custom-select"',
 		array(
 			'title' => Text::_('JLIB_HTML_BATCH_NOCHANGE'),
 			'id'    => 'batch-access'
